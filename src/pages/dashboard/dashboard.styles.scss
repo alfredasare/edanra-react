@@ -1,0 +1,55 @@
+#dashboard {
+  margin-top: 100px;
+}
+
+.number-hours {
+  font-size: 20px;
+  color: #00695C;
+  font-weight: bold;
+  text-align: center;
+  margin-right: 0 !important;
+}
+
+.number-minutes {
+  font-size: 20px;
+  color: #00695C;
+  font-weight: bold;
+  text-align: center;
+}
+
+.number-seconds {
+  font-size: 20px;
+  color: #00695C;
+  font-weight: bold;
+  text-align: center;
+}
+
+.countdown {
+  margin-right: 0 !important;
+}
+
+.countdown-nums {
+  margin-right: 0 !important;
+  font-size: 20px;
+}
+
+.options {
+  display: flex;
+  justify-content: space-between;
+  line-height: 10px;
+  padding-top: 10px;
+}
+
+.options-link {
+  color: #00695C;
+
+  &:hover {
+    color: #004D40;
+    text-decoration: none;
+  }
+}
+
+.list-group {
+  font-size: 1.2em;
+  border-top: 1px rgba(0, 0, 0, 0.1) solid;
+}

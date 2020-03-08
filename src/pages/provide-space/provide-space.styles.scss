@@ -1,0 +1,8 @@
+.selectpicker {
+  padding-left: 10px;
+  option {
+    &:hover {
+      background-color: var(--teal);
+    }
+  }
+}

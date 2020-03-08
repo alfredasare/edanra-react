@@ -8,16 +8,19 @@ import Dashboard from "./pages/dashboard/dashboard.component";
 import ErrorPage from "./pages/error/error-page.component";
 import HostingComplete from "./pages/hosting-complete/hosting-complete.component";
 import LoginPage from "./pages/login/login.component";
-import ProvideSpace from "./pages/provide-space/provide-space.components";
-import SearchAndResults from "./pages/search-and-results/search-and-results.components";
-import SignUp from "./pages/signup/signup.components";
-import TermsPage from "./pages/terms/terms.components";
-import ViewSpace from "./pages/view-space/view-space.components";
+import ProvideSpace from "./pages/provide-space/provide-space.component";
+import SearchPage from "./pages/search/search.component";
+import SignUp from "./pages/signup/signup.component";
+import TermsPage from "./pages/terms/terms.component";
+import ViewSpace from "./pages/view-space/view-space.component";
+import Navbar from "./components/navbar/navbar.component";
+import Footer from "./components/footer/footer.component";
+import SearchResultsPage from "./pages/search-results/search-results.component";
 
 function App() {
     return (
         <div className="App">
-            <h1>Hello Efiewura</h1>
+            <Navbar/>
             <Switch>
                 <Route exact path='/' component={HomePage}/>
                 <Route path='/about' component={AboutPage}/>
@@ -26,12 +29,14 @@ function App() {
                 <Route path='/done' component={HostingComplete}/>
                 <Route path='/login' component={LoginPage}/>
                 <Route path='/provide-space' component={ProvideSpace}/>
-                <Route path='/search' component={SearchAndResults}/>
+                <Route path='/search' component={SearchPage}/>
+                <Route path='/search-results' component={SearchResultsPage}/>
                 <Route path='/signup' component={SignUp}/>
                 <Route path='/terms' component={TermsPage}/>
                 <Route path='/view-space' component={ViewSpace}/>
                 <Route component={ErrorPage}/>
             </Switch>
+            <Footer/>
         </div>
 );
 }

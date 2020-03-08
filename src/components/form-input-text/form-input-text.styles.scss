@@ -1,0 +1,91 @@
+.is-focused [class*=" bmd-label"], .is-focused [class^=bmd-label] {
+  color: var(--teal)
+}
+
+.custom-form {
+  width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 80px;
+  padding: 50px 50px;
+  border-top: solid 2px var(--teal);
+  border-bottom: solid 2px var(--teal);
+  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1);
+
+  h2 {
+    text-align: center;
+  }
+
+  > div {
+    margin-top: 30px;
+  }
+}
+
+.file-attachment {
+  margin-top: 30px;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+
+  > .bmd-label-floating {
+    margin-right: 40px;
+    color: black;
+    font-weight: bold;
+  }
+}
+
+#custom-form-buttons {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  margin-top: 60px;
+
+  button {
+    font-size: 1.01em;
+    text-transform: capitalize;
+    margin: 5px 10px;
+    padding: 12px 40px;
+  }
+}
+
+.custom-form-subhead {
+  font-weight: bold;
+  margin-top: 30px;
+}
+
+label {
+  color: #333;
+}
+
+.custom-search-inputs {
+  border: 1px solid #d2d2d2;
+  border-radius: .25rem !important;
+}
+
+.form-check {
+  .form-check-label {
+    .circle {
+      .check {
+        background-color: var(--teal);
+      }
+    }
+  }
+
+  .form-check-input {
+    &:checked {
+      ~ {
+        .circle {
+          border-color: var(--teal-hover);
+        }
+      }
+
+      + {
+        .form-check-sign {
+          .check {
+            background: var(--teal);
+          }
+        }
+      }
+    }
+  }
+}
