@@ -6,3 +6,4 @@ export const selectAllProperties = createSelector(
     [selectProperties],
     properties => properties.propertyItems
 );
+

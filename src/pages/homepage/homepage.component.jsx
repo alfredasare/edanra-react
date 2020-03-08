@@ -1,10 +1,12 @@
 import React from "react";
 import './homepage.styles.scss';
+import PropertyItemCollection from "../../components/property-item-collection/property-item-collection.component";
 
 const HomePage = () => {
 
     return (
         <>
+
             <header className="wow fadeIn" id="hero" data-wow-delay="0.1s">
                 <div id="hero-message" className="animated fadeIn" style={{height: '30vh'}}>
                     <h1>Welcome To EFIEWURA</h1>
@@ -55,243 +57,28 @@ const HomePage = () => {
                 </div>
             </section>
 
-            {/*Ashanti*/}
-            <div style={{marginTop: '100px'}} className="container-fluid">
+            <div className="container-fluid">
                 <div className="row">
-                    <div className="workspace-head-wrapper" style={{marginBottom: '20px'}}>
-                        <h2>Find yourself a home that suits your exact needs</h2>
-                        <h2 className="workspace-head"><span className="first-word">Homes</span> in Ashanti Region</h2>
-                    </div>
-                    <div className="owl-carousel owl-theme">
-                        <div className="slide-item">
-                            <div className="item-image">
-                                <img className="img-fluid" src={require('../../assets/img/22.jpg')}
-                                     alt="house"/>
-                            </div>
-                            <div className="item-content">
-                                <div className="item-location">Tema, Comm 19 &#9679; Greater Accra</div>
-                                <div className="item-name">Amoah House</div>
-                                <div className="item-price">Ghc 2500 &#9679; <span
-                                    className="negotiation-status">Negotiable</span></div>
-                                <a className="workspace-link" href="#">View Efie</a>
-                            </div>
-                        </div>
-                    </div>
+                    <h2 style={{paddingLeft: '20px', marginTop: '70px'}}>Find yourself a home that suits your exact needs</h2>
                 </div>
             </div>
-            {/*Ashanti END*/}
 
-
-            {/*Brong-Ahafo Region*/}
-            <div style={{marginTop: '100px'}} className="container-fluid">
-                <div className="row">
-                    <div className="workspace-head-wrapper" style={{marginBottom: '20px'}}>
-                        <h2 className="workspace-head"><span className="first-word">Homes</span> in Brong-Ahafo Region
-                        </h2>
-                    </div>
-                    <div className="owl-carousel owl-theme">
-                        <div className="slide-item">
-                            <div className="item-image">
-                                <img className="img-fluid" src={require('../../assets/img/1.jpg')}
-                                     alt="house"/>
-                            </div>
-                            <div className="item-content">
-                                <div className="item-location">Kumasi, Adum &#9679; Ashanti</div>
-                                <div className="item-name">Bonsu House</div>
-                                <div className="item-price">Ghc 55 &#9679; <span
-                                    className="negotiation-status">Negotiable</span></div>
-                                <a className="workspace-link" href="view_space.html">View Efie</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            {/*Brong-Ahafo END*/}
-
-
-            {/*Central Region*/}
-            <div style={{marginTop: '100px'}} className="container-fluid">
-                <div className="row">
-                    <div className="workspace-head-wrapper" style={{marginBottom: '20px'}}>
-                        <h2 className="workspace-head"><span className="first-word">Homes</span> in Central Region</h2>
-                    </div>
-                    <div className="owl-carousel owl-theme">
-                        <div className="slide-item">
-                            <div className="item-image">
-                                <img className="img-fluid" src={require('../../assets/img/15.jpg')}
-                                     alt="house"/>
-                            </div>
-                            <div className="item-content">
-                                <div className="item-location">Kumasi, Gate &#9679; Ashanti</div>
-                                <div className="item-name">Odenkey's Residence</div>
-                                <div className="item-price">Ghc 60 &#9679; <span
-                                    className="negotiation-status">Negotiable</span></div>
-                                <a className="workspace-link" href="view_space.html">View Efie</a>
-                            </div>
-                        </div>
-                        <div className="slide-item">
-                            <div className="item-image">
-                                <img className="img-fluid" src={require('../../assets/img/11.jpg')}
-                                     alt="house"/>
-                            </div>
-                            <div className="item-content">
-                                <div className="item-location">Tema, Comm 19 &#9679; Greater Accra</div>
-                                <div className="item-name">Amoah House</div>
-                                <div className="item-price">Ghc 2500 &#9679; <span
-                                    className="negotiation-status">Negotiable</span></div>
-                                <a className="workspace-link" href="view_space.html">View Efie</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            {/*Central END*/}
-
-
-            {/*Eastern Region*/}
-            <div style={{marginTop: '100px'}} className="container-fluid">
-                <div className="row">
-                    <div className="workspace-head-wrapper" style={{marginBottom: '20px'}}>
-                        <h2 className="workspace-head"><span className="first-word">Homes</span> in Eastern Region</h2>
-                    </div>
-                    <div className="owl-carousel owl-theme">
-                        <div className="slide-item">
-                            <div className="item-image">
-                                <img className="img-fluid" src={require('../../assets/img/7.jpg')}
-                                     alt="house"/>
-                            </div>
-                            <div className="item-content">
-                                <div className="item-location">Paraku Estate &#9679; Ashanti</div>
-                                <div className="item-name">Abena's Residence</div>
-                                <div className="item-price">Ghc 6500&#9679; <span
-                                    className="negotiation-status">Negotiable</span></div>
-                                <a className="workspace-link" href="view_space.html">View Efie</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            {/*Eastern END*/}
-
-
-            {/*Greater Accra Region*/}
-            <div style={{marginTop: '100px'}} className="container-fluid">
-                <div className="row">
-                    <div className="workspace-head-wrapper" style={{marginBottom: '20px'}}>
-                        <h2 className="workspace-head"><span className="first-word">Homes</span> in Greater Accra Region
-                        </h2>
-                    </div>
-                    <div className="owl-carousel owl-theme">
-                        <div className="slide-item">
-                            <div className="item-image">
-                                <img className="img-fluid" src={require('../../assets/img/20.jpg')}
-                                     alt="house"/>
-                            </div>
-                            <div className="item-content">
-                                <div className="item-location">Tema, Comm 19 &#9679; Greater Accra</div>
-                                <div className="item-name">Amoah House</div>
-                                <div className="item-price">Ghc 45000 &#9679; <span
-                                    className="negotiation-status">Non-Negotiable</span></div>
-                                <a className="workspace-link" href="view_space.html">View Efie</a>
-
-                            </div>
-                        </div>
-                        <div className="slide-item">
-                            <div className="item-image">
-                                <img className="img-fluid" src={require('../../assets/img/1.jpg')}
-                                     alt="house"/>
-                            </div>
-                            <div className="item-content">
-                                <div className="item-location">Kumasi, Adum &#9679; Ashanti</div>
-                                <div className="item-name">Bonsu House</div>
-                                <div className="item-price">Ghc 55 &#9679; <span
-                                    className="negotiation-status">Negotiable</span></div>
-                                <a className="workspace-link" href="view_space.html">View Efie</a>
-                            </div>
-                        </div>
-                        <div className="slide-item">
-                            <div className="item-image">
-                                <img className="img-fluid" src={require('../../assets/img/2.jpg')}
-                                     alt="house"/>
-                            </div>
-                            <div className="item-content">
-                                <div className="item-location">Kumasi, Gate &#9679; Ashanti</div>
-                                <div className="item-name">Odenkey's Residence</div>
-                                <div className="item-price">Ghc 60 &#9679; <span
-                                    className="negotiation-status">Negotiable</span></div>
-                                <a className="workspace-link" href="view_space.html">View Efie</a>
-                            </div>
-                        </div>
-                        <div className="slide-item">
-                            <div className="item-image">
-                                <img className="img-fluid" src={require('../../assets/img/4.jpg')}
-                                     alt="house"/>
-                            </div>
-                            <div className="item-content">
-                                <div className="item-location">Paraku Estate &#9679; Ashanti</div>
-                                <div className="item-name">Abena's Residence</div>
-                                <div className="item-price">Ghc 65000 &#9679; <span
-                                    className="negotiation-status">Non-Negotiable</span></div>
-                                <a className="workspace-link" href="view_space.html">View Efie</a>
-                            </div>
-                        </div>
-                        <div className="slide-item">
-                            <div className="item-image">
-                                <img className="img-fluid" src={require('../../assets/img/3.jpg')}
-                                     alt="house"/>
-                            </div>
-                            <div className="item-content">
-                                <div className="item-location">Grader Estate &#9679; Greater Accra</div>
-                                <div className="item-name">Nana's Residence</div>
-                                <div className="item-price">Ghc 15000 &#9679; <span
-                                    className="negotiation-status">Non-Negotiable</span></div>
-                                <a className="workspace-link" href="view_space.html">View Efie</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            {/*Greater Accra END*/}
-
-
-            {/*Northern Region*/}
-            <div style={{marginTop: '100px'}} className="container-fluid">
-                <div className="row">
-                    <div className="workspace-head-wrapper" style={{marginBottom: '20px'}}>
-                        <h2 className="workspace-head"><span className="first-word">Homes</span> in Northern Region</h2>
-                        <p className="workspace-paragraph">Find yourself a home that suits your exact needs</p>
-                    </div>
-                    <div className="owl-carousel owl-theme">
-                        <div className="slide-item">
-                            <div className="item-image">
-                                <img className="img-fluid" src={require('../../assets/img/6.jpg')}
-                                     alt="house"/>
-                            </div>
-                            <div className="item-content">
-                                <div className="item-location">Grader Estate &#9679; Greater Accra</div>
-                                <div className="item-name">Nana's Residence</div>
-                                <div className="item-price">Ghc 1000&#9679; <span
-                                    className="negotiation-status">Non-Negotiable</span></div>
-                                <a className="workspace-link" href="view_space.html">View Efie</a>
-                            </div>
-                        </div>
-                        <div className="slide-item">
-                            <div className="item-image">
-                                <img className="img-fluid" src={require('../../assets/img/9.jpg')}
-                                     alt="house"/>
-                            </div>
-                            <div className="item-content">
-                                <div className="item-location">Kumasi, Adum &#9679; Ashanti</div>
-                                <div className="item-name">Bonsu House</div>
-                                <div className="item-price">Ghc 35&#9679; <span
-                                    className="negotiation-status">Negotiable</span></div>
-                                <a className="workspace-link" href="view_space.html">View Efie</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            {/*Northern END*/}
+            <PropertyItemCollection region="Ashanti"/>
+            <PropertyItemCollection region="Bono"/>
+            <PropertyItemCollection region="Bono East"/>
+            <PropertyItemCollection region="Ahafo"/>
+            <PropertyItemCollection region="Central"/>
+            <PropertyItemCollection region="Eastern"/>
+            <PropertyItemCollection region="Greater Accra"/>
+            <PropertyItemCollection region="Northern"/>
+            <PropertyItemCollection region="Savannah"/>
+            <PropertyItemCollection region="North East"/>
+            <PropertyItemCollection region="Upper East"/>
+            <PropertyItemCollection region="Upper West"/>
+            <PropertyItemCollection region="Oti"/>
+            <PropertyItemCollection region="Western"/>
+            <PropertyItemCollection region="Western North"/>
+            <PropertyItemCollection region="Volta"/>
         </>
     );
 };
