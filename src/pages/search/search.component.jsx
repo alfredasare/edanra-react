@@ -1,5 +1,8 @@
 import React from "react";
 import './search.styles.scss';
+import FormInputText from "../../components/form-input-text/form-input-text.component";
+import CustomButton from "../../components/custom-button/custom-button.component";
+import CustomButtonsContainer from "../../components/custom-buttons-container/custom-buttons-container.component";
 
 const SearchPage = () => {
 
@@ -7,18 +10,13 @@ const SearchPage = () => {
         <main className="container">
             <div className="row">
                 <div className="col-sm-12 offset-sm-0 col-md-8 offset-md-2">
-                    <form className="animated fadeIn delay-1s" id="custom-form"
-                          action="https://wwwefiewura.000webhostapp.com"
-                          method="GET">
+                    <form className="custom-form animated fadeIn delay-1s">
                         <h2>Find a home in your preferred location</h2>
 
-                        <div style={{margin: '50px 0'}} className="form-group bmd-form-group">
-                            <label className="bmd-label-floating" htmlFor="town-name">Town Name</label>
-                            <input type="text" className="form-control" id="town-name" name="q"/>
-                        </div>
+                        <FormInputText type="text" name="town-name" id="town-name" label="Town Name" required/>
+
 
                         <h4 style={{fontWeight: 'bold'}}>Filters : </h4>
-
                         <h4 style={{fontWeight: 'bold'}}>Property type</h4>
                         <div className="form-check form-check-radio">
                             <label htmlFor="house" className="form-check-label">
@@ -100,10 +98,10 @@ const SearchPage = () => {
                             </datalist>
                         </div>
 
-                        <div id="custom-form-buttons">
-                            <button type="submit" className="btn btn-primary">Search</button>
-                            <button type="reset" className="btn btn-primary">Reset</button>
-                        </div>
+                        <CustomButtonsContainer>
+                            <CustomButton type='submit'>Send</CustomButton>
+                            <CustomButton type='reset' inverted>Reset</CustomButton>
+                        </CustomButtonsContainer>
                     </form>
                 </div>
             </div>

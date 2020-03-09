@@ -1,5 +1,8 @@
 import React from "react";
+import {NavLink} from "react-router-dom";
 import './signup.styles.scss';
+import CustomButton from "../../components/custom-button/custom-button.component";
+import CustomButtonsContainer from "../../components/custom-buttons-container/custom-buttons-container.component";
 
 const SignUp = () => {
 
@@ -17,7 +20,7 @@ const SignUp = () => {
                         </p>
                         <p style={{fontSize: '1.1em'}} className="fadeInUp" data-wow-delay="0.7s">Already have an account?
                             Just
-                            <a style={{fontWeight: 'bold'}} id="login-link" href="login.html">login</a>
+                            <NavLink style={{fontWeight: 'bold'}} id="login-link" to="/login"> Login</NavLink>
                         </p>
                     </div>
                     <form style={{marginBottom: '70px'}} className="form-horizontal custom-form">
@@ -105,13 +108,10 @@ const SignUp = () => {
                                 </div>
                         </div>
 
-
-                        <div id="custom-form-buttons">
-                            <button id="submit" type="submit" className="btn btn-primary">Sign Up</button>
-                            <button type="reset" className="btn btn-primary">Reset</button>
-                            <input type="hidden" name="next" value="complete" />
-                        </div>
-
+                        <CustomButtonsContainer>
+                            <CustomButton type='submit'>Send</CustomButton>
+                            <CustomButton type='reset' inverted>Reset</CustomButton>
+                        </CustomButtonsContainer>
                     </form>
                 </div>
             </div>

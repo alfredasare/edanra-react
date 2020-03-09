@@ -51,15 +51,9 @@ const Navbar = () => {
                             </NavLink>
                         </li>
                         <li className="nav-item">
-                            <form className="form-inline my-2 my-lg-0 ml-auto">
-                                <input id="nav-form" className="form-control" type="search" placeholder="Search"
-                                       aria-label="Search"/>
-                                <div id="nav-button">
-                                    <button className="btn btn-primary btn-md my-2 my-sm-0 ml-3"
-                                            type="submit">Search
-                                    </button>
-                                </div>
-                            </form>
+                            <NavLink activeClassName="nav-active" className="nav-link" title="" to="/login">
+                                Sign In
+                            </NavLink>
                         </li>
                     </ul>
                 </div>

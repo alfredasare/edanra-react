@@ -1,5 +1,9 @@
 import React from "react";
+import {NavLink} from "react-router-dom";
 import './login.styles.scss';
+import FormInputText from "../../components/form-input-text/form-input-text.component";
+import CustomButton from "../../components/custom-button/custom-button.component";
+import CustomButtonsContainer from "../../components/custom-buttons-container/custom-buttons-container.component";
 
 const LoginPage = () => {
 
@@ -12,21 +16,22 @@ const LoginPage = () => {
                     <div className="m-auto w-lg-75 w-xl-50">
                         <h2>Login To EFIEWURA</h2>
                         <form>
-                            <div className="form-group">
-                                <label className="text-secondary">Email</label>
-                                <input className="form-control" type="text" required=""
-                                       pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,15}$" inputMode="email"/>
-                            </div>
-                            <div className="form-group">
-                                <label className="text-secondary">Password</label>
-                                <input className="form-control" type="password" required=""/>
-                            </div>
-                            <button className="btn btn-primary mt-2" type="submit">Log In</button>
+                            <FormInputText type='text' name='email' id='email' label='Email' required/>
+                            <FormInputText type='password' name='password' id='password' label='Password' required/>
+
+
+
+                                <CustomButton type='submit'>Sign In</CustomButton>
+                                <CustomButton id="google-signin" type='button'>
+                                    <i className="fa fa-google" /> Sign In With Google
+                                </CustomButton>
+
                         </form>
                         <div style={{fontSize: '1.3em'}} className="mt-3 mb-0">
                             <p style={{fontSize: '1.3em'}}>Don't have an account? </p>
-                            <a href="#" className="" style={{color: '#00695C', fontWeight: 'bold'}}>Sign up
-                                here.</a>
+                            <NavLink to="/signup" className="" style={{color: '#00695C', fontWeight: 'bold'}}>Sign up
+                                here.
+                            </NavLink>
                         </div>
                     </div>
                 </div>

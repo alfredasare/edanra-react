@@ -1,5 +1,8 @@
 import React from "react";
 import './provide-space.styles.scss';
+import CustomButton from "../../components/custom-button/custom-button.component";
+import CustomButtonsContainer from "../../components/custom-buttons-container/custom-buttons-container.component";
+import FormInputText from "../../components/form-input-text/form-input-text.component";
 
 const ProvideSpace = () => {
 
@@ -7,8 +10,7 @@ const ProvideSpace = () => {
         <main className="container">
             <div className="row">
                 <div className="col-sm-12 offset-sm-0 col-md-8 offset-md-2 animated fadeIn delay-1s">
-                    <form id="custom-form" className="form-horizontal" method="POST"
-                          action="https://wwwefiewura.000webhostapp.com/done">
+                    <form className="custom-form form-horizontal">
                         <h2>Provide The Details For Your Listing</h2>
                         <h4>Fill the form below with the details of the particular property you want to host. To
                             make
@@ -17,37 +19,11 @@ const ProvideSpace = () => {
                         </h4>
                         <h5 className="custom-form-subhead">1. Please enter your details</h5>
 
-                        <div className="form-group bmd-form-group">
-                            <label className="bmd-label-floating">Name</label>
-                            <input type="text" className="form-control" id="host-name" name="name" required/>
-                            <div id="nameAlert" className="alert alert-warning" style={{display: 'none'}}>
-                                <button type="button" className="close" data-dismiss="alert">&times;</button>
-                                <strong>Required!</strong> Name required to move on
-                            </div>
-                        </div>
+                        <FormInputText type='text' name='name' id='name' label='Name' required/>
+                        <FormInputText type='email' name='email' id='email' label='Email' required/>
+                        <FormInputText type='tel' name='contact' id='contact' label='Contact' required/>
+                        <FormInputText type='text' name='address' id='address' label='Address' required/>
 
-                        <div className="form-group bmd-form-group">
-                            <label className="bmd-label-floating" htmlFor="host-email">Email</label>
-                            <input type="email" className="form-control" id="host-email" name="email"/>
-                        </div>
-
-                        <div className="form-group bmd-form-group">
-                            <label className="bmd-label-floating" htmlFor="host-contact">Contact Number</label>
-                            <input type="tel" className="form-control" id="host-contact" name="number" required/>
-                            <div id="numberAlert" className="alert alert-warning" style={{display: 'none'}}>
-                                <button type="button" className="close" data-dismiss="alert">&times;</button>
-                                <strong>Required!</strong> Number required to move on
-                            </div>
-                            <div id="numberError" className="alert alert-danger" style={{display: 'none'}}>
-                                <button type="button" className="close" data-dismiss="alert">&times;</button>
-                                <strong>Wrong Format!</strong> Number format error
-                            </div>
-                        </div>
-
-                        <div className="form-group bmd-form-group">
-                            <label className="bmd-label-floating" htmlFor="host-address">Address</label>
-                            <input type="text" className="form-control" id="host-address" name="Address"/>
-                        </div>
 
                         <div className="form-group form-file-upload form-file-multiple">
                             <input type="file" multiple="" className="inputFileHidden"/>
@@ -114,11 +90,9 @@ const ProvideSpace = () => {
                             </label>
                         </div>
 
-                        <div className="form-group bmd-form-group">
-                            <label className="bmd-label-floating" htmlFor="description">Description</label>
-                            <textarea className="form-control" id="description" rows="3"
-                                      name="description"/>
-                        </div>
+                        <FormInputText type='textarea' name='description' id='description' label='Description' rows='3'
+                                       required/>
+
 
                         <div className="form-group">
                             <label style={{color: 'rgba(0,0,0,0.5)'}} htmlFor="region">Region</label>
@@ -156,36 +130,11 @@ const ProvideSpace = () => {
                             </datalist>
                         </div>
 
+                        <FormInputText type='text' name='town' id='town' label='Town' required/>
 
-                        <div className="form-group bmd-form-group">
-                            <label className="bmd-label-floating" htmlFor="town">Town</label>
-                            <input type="text" className="form-control" id="town" name="city" required/>
-                            <div id="cityAlert" className="alert alert-warning" style={{display: 'none'}}>
-                                <button type="button" className="close" data-dismiss="alert">&times;</button>
-                                <strong>Required!</strong> Town required to move on
-                            </div>
-                        </div>
 
                         <div className="form-group form-file-upload form-file-multiple">
                             <input type="file" multiple="" className="inputFileHidden"/>
-                            <div id="carouselExampleIndicators" className="carousel slide" data-ride="carousel">
-                                <ol className="carousel-indicators">
-                                </ol>
-                                <div className="carousel-inner">
-                                </div>
-                                <a className="carousel-control-prev" href=""
-                                   role="button"
-                                   data-slide="prev">
-                                    <span className="carousel-control-prev-icon" aria-hidden="true"/>
-                                    <span className="sr-only">Previous</span>
-                                </a>
-                                <a className="carousel-control-next" href=""
-                                   role="button"
-                                   data-slide="next">
-                                    <span className="carousel-control-next-icon" aria-hidden="true"/>
-                                    <span className="sr-only">Next</span>
-                                </a>
-                            </div>
                             <div className="input-group file-attachment">
                                 <label className="bmd-label-floating"> Upload picture of property (Maximum of 5
                                     pictures)</label>
@@ -195,20 +144,10 @@ const ProvideSpace = () => {
                                     <i className="material-icons">layers</i>
                                     <div className="ripple-container"/>
                                 </button>
-
                             </div>
                         </div>
 
-                        <h5 className="custom-form-subhead">3. Price of listing</h5>
-                        <div className="form-group bmd-form-group">
-                            <label className="bmd-label-floating" htmlFor="price">Price in Ghana Cedis</label>
-                            <input type="number" className="form-control" id="price" name="price" required/>
-                            <div id="priceAlert" className="alert alert-warning" style={{display: 'none'}}>
-                                <button type="button" className="close" data-dismiss="alert">&times;</button>
-                                <strong>Required!</strong> Price required to move on
-                            </div>
-                        </div>
-
+                        <FormInputText type='number' name='price' id='price' label='Price' required/>
 
                         <h5 className="custom-form-subhead">4. Negotiation status</h5>
                         <div className="form-check form-check-radio">
@@ -242,15 +181,11 @@ const ProvideSpace = () => {
                                         </span>
                             </label>
                         </div>
-                        <div id="custom-form-buttons">
-                            <button id="pay" type="button" className="btn btn-primary" data-toggle="modal"
-                                    data-target="#loginModal"
-                                    style={{display: 'none'}}>Host
-                            </button>
-                            <button id="submit" type="submit" className="btn btn-primary">Done</button>
-                            <button type="reset" className="btn btn-primary">Reset</button>
-                            <input type="hidden" name="next" value="complete"/>
-                        </div>
+
+                        <CustomButtonsContainer>
+                            <CustomButton type='submit'>Send</CustomButton>
+                            <CustomButton type='reset' inverted>Reset</CustomButton>
+                        </CustomButtonsContainer>
 
                     </form>
                 </div>

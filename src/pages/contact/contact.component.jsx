@@ -24,9 +24,9 @@ const ContactPage = () => {
                         very much</p>
                 </div>
                 <div>
-                    <form style={{width: '50%'}} className="custom-form" action="">
+                    <form id="contact-form" className="custom-form" action="">
                         <FormInputText type='text' name='username' id='username' label='Name' required/>
-                        <FormInputText type='text' name='email' id='email' label='Email' required/>
+                        <FormInputText type='email' name='email' id='email' label='Email' required/>
                         <FormInputText type='text' name='subject' id='subject' label='Subject' required/>
                         <FormInputText type='textarea' name='message' id='message' label='Message' required/>
 
