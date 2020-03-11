@@ -4,7 +4,7 @@ import Header from "../../components/header/header.component";
 
 const TermsPage = () => {
 
-    const url = "https://firebasestorage.googleapis.com/v0/b/efiewura-db.appspot.com/o/site_images%2Fterms.png?alt=media&token=4d491b4d-bf2e-488a-8e2c-a6bdc76472fb";
+    const url = "https://firebasestorage.googleapis.com/v0/b/efiewura-db-60044.appspot.com/o/site-images%2Fterms.png?alt=media&token=10eb6c0d-b4fe-4b4f-bc93-2c6e93bed8fd";
 
     return (
         <>

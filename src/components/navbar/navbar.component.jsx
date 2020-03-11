@@ -1,9 +1,13 @@
 import React from 'react';
+import { connect } from 'react-redux';
 import './navbar.styles.scss';
 import {Link, NavLink} from "react-router-dom";
+import {createStructuredSelector} from "reselect";
+import {selectCurrentUser} from "../../redux/user/user.selectors";
+import {signOutStart} from "../../redux/user/user.actions";
 
 
-const Navbar = () => {
+const Navbar = ({currentUser, signOutStart}) => {
 
     return (
         <nav className="navbar fixed-top navbar-expand-lg"
@@ -46,14 +50,20 @@ const Navbar = () => {
                             </NavLink>
                         </li>
                         <li className="nav-item">
-                            <NavLink activeClassName="nav-active" className="nav-link" title="" to="/search">
+                            <NavLink activeClassName="nav-active" className="nav-link" to="/search">
                                 Find Space
                             </NavLink>
                         </li>
                         <li className="nav-item">
-                            <NavLink activeClassName="nav-active" className="nav-link" title="" to="/login">
-                                Sign In
-                            </NavLink>
+                            {
+                                currentUser ?
+                                    <Link className="nav-link" onClick={signOutStart} to="/login">
+                                        Sign Out
+                                    </Link>
+                                    : <NavLink activeClassName="nav-active" className="nav-link" to="/login">
+                                        Sign In
+                                    </NavLink>
+                            }
                         </li>
                     </ul>
                 </div>
@@ -62,4 +72,12 @@ const Navbar = () => {
     );
 };
 
-export default Navbar;
+const mapStateToProps = createStructuredSelector({
+    currentUser: selectCurrentUser
+});
+
+const mapDispatchToProps = dispatch => ({
+    signOutStart: () => dispatch(signOutStart())
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(Navbar);

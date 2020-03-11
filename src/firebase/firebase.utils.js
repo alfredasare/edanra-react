@@ -4,21 +4,21 @@ import 'firebase/auth';
 import 'firebase/storage';
 
 const config = {
-    apiKey: "AIzaSyCONwfWPtnkmaMRnj_zPWKq6nbhMlUeFtA",
-    authDomain: "efiewura-db.firebaseapp.com",
-    databaseURL: "https://efiewura-db.firebaseio.com",
-    projectId: "efiewura-db",
-    storageBucket: "efiewura-db.appspot.com",
-    messagingSenderId: "877109545657",
-    appId: "1:877109545657:web:7046b6acae6bc77ccba968",
-    measurementId: "G-Y02W62F1RS"
+    apiKey: "AIzaSyD5XrGQiHNAJUr-avU2QMeZe74zNjOQUJo",
+    authDomain: "efiewura-db-60044.firebaseapp.com",
+    databaseURL: "https://efiewura-db-60044.firebaseio.com",
+    projectId: "efiewura-db-60044",
+    storageBucket: "efiewura-db-60044.appspot.com",
+    messagingSenderId: "250845754435",
+    appId: "1:250845754435:web:4e65632462b5282f8150f6",
+    measurementId: "G-0EDERWGCDQ"
 };
 
 //  Adding auth users to Firestore
 export const createUserProfileDocument = async (userAuth, additionalData) => {
     if (!userAuth) return;
 
-    const userRef = firestore.doc(`users/${userAuth.id}`);
+    const userRef = firestore.doc(`users/${userAuth.uid}`);
     const snapshot = await userRef.get();
 
     //  Check if snapshot data does not exist in the database
@@ -41,7 +41,14 @@ export const createUserProfileDocument = async (userAuth, additionalData) => {
     return userRef;
 };
 
-
+export const getCurrentUser = () => {
+    return new Promise((resolve, reject) => {
+        const unsubscribe = auth.onAuthStateChanged(userAuth => {
+            unsubscribe();
+            resolve(userAuth);
+        }, reject);
+    });
+};
 
 firebase.initializeApp(config);
 

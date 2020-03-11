@@ -1,5 +1,6 @@
-import React from 'react';
-import { Switch, Route, Redirect} from 'react-router-dom';
+import React, {useEffect} from 'react';
+import { connect } from 'react-redux';
+import {Switch, Route, Redirect} from 'react-router-dom';
 import './App.css';
 import HomePage from "./pages/homepage/homepage.component";
 import AboutPage from "./pages/about/about.component";
@@ -16,8 +17,16 @@ import ViewSpace from "./pages/view-space/view-space.component";
 import Navbar from "./components/navbar/navbar.component";
 import Footer from "./components/footer/footer.component";
 import SearchResultsPage from "./pages/search-results/search-results.component";
+import {createStructuredSelector} from "reselect";
+import {selectCurrentUser} from "./redux/user/user.selectors";
+import {checkUserSession} from "./redux/user/user.actions";
 
-function App() {
+const App = ({checkUserSession, currentUser}) => {
+
+    useEffect(() => {
+        checkUserSession();
+    }, [checkUserSession]);
+
     return (
         <div className="App">
             <Navbar/>
@@ -27,18 +36,26 @@ function App() {
                 <Route path='/contact' component={ContactPage}/>
                 <Route path='/dashboard' component={Dashboard}/>
                 <Route path='/done' component={HostingComplete}/>
-                <Route path='/login' component={LoginPage}/>
+                <Route path='/login' render={() => currentUser ? (<Redirect to='/' />) : (<LoginPage/>)}/>
                 <Route path='/provide-space' component={ProvideSpace}/>
                 <Route path='/search' component={SearchPage}/>
                 <Route path='/search-results' component={SearchResultsPage}/>
-                <Route path='/signup' component={SignUp}/>
+                <Route exact path='/signup' render={() => currentUser ? (<Redirect to='/' />) : (<SignUp/>)}/>
                 <Route path='/terms' component={TermsPage}/>
                 <Route path='/view-space' component={ViewSpace}/>
                 <Route component={ErrorPage}/>
             </Switch>
             <Footer/>
         </div>
-);
-}
+    );
+};
 
-export default App;
+const mapStateToProps = createStructuredSelector({
+    currentUser: selectCurrentUser
+});
+
+const mapDispatchToProps = dispatch => ({
+    checkUserSession: () => dispatch(checkUserSession())
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(App);

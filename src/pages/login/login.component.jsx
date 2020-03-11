@@ -1,11 +1,26 @@
-import React from "react";
+import React, {useState} from "react";
+import {connect} from 'react-redux';
 import {NavLink} from "react-router-dom";
 import './login.styles.scss';
 import FormInputText from "../../components/form-input-text/form-input-text.component";
 import CustomButton from "../../components/custom-button/custom-button.component";
-import CustomButtonsContainer from "../../components/custom-buttons-container/custom-buttons-container.component";
+import {emailSignInStart, googleSignInStart} from "../../redux/user/user.actions";
 
-const LoginPage = () => {
+const LoginPage = ({googleSignInStart, emailSignInStart}) => {
+
+    const [userCredentials, setCredentials] = useState({email: '', password: ''});
+
+    const {email, password} = userCredentials;
+
+    const handleSubmit = async event => {
+        event.preventDefault();
+        emailSignInStart(email, password);
+    };
+
+    const handleChange = event => {
+        const {value, name} = event.target;
+        setCredentials({...userCredentials, [name]: value});
+    };
 
     return (
         <div style={{marginTop: '60px'}} className="container-fluid">
@@ -15,16 +30,14 @@ const LoginPage = () => {
                     id="login-block">
                     <div className="m-auto w-lg-75 w-xl-50">
                         <h2>Login To EFIEWURA</h2>
-                        <form>
-                            <FormInputText type='text' name='email' id='email' label='Email' required/>
-                            <FormInputText type='password' name='password' id='password' label='Password' required/>
+                        <form onSubmit={handleSubmit}>
+                            <FormInputText handleChange={handleChange} type='email' name='email' id='email' label='Email' required/>
+                            <FormInputText handleChange={handleChange} type='password' name='password' id='password' label='Password' required/>
 
-
-
-                                <CustomButton type='submit'>Sign In</CustomButton>
-                                <CustomButton id="google-signin" type='button'>
-                                    <i className="fa fa-google" /> Sign In With Google
-                                </CustomButton>
+                            <CustomButton type='submit'>Sign In</CustomButton>
+                            <CustomButton id="google-signin" type='button' onClick={googleSignInStart}>
+                                <i className="fa fa-google"/> Sign In With Google
+                            </CustomButton>
 
                         </form>
                         <div style={{fontSize: '1.3em'}} className="mt-3 mb-0">
@@ -46,4 +59,9 @@ const LoginPage = () => {
     );
 };
 
-export default LoginPage;
+const mapDispatchToProps = dispatch => ({
+    googleSignInStart: () => dispatch(googleSignInStart()),
+    emailSignInStart: (email, password) => dispatch(emailSignInStart({email, password}))
+});
+
+export default connect(null, mapDispatchToProps)(LoginPage);
