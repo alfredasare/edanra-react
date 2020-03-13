@@ -1,6 +1,6 @@
 .workspace-head-wrapper {
-  padding-left: 20px;
   margin-bottom: 20px;
+  margin-top: 2em;
 }
 
 .workspace-head {
@@ -88,7 +88,13 @@
   > img {
     border-radius: 5px;
     height: 200px;
+    width: 95%;
+
+    @media screen and (max-width: 768px) {
+      width: 100%;
+    }
   }
+
 }
 
 

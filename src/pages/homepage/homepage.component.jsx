@@ -1,12 +1,14 @@
-import React from "react";
+import React, {useEffect} from "react";
+import {connect} from 'react-redux';
 import './homepage.styles.scss';
 import PropertyItemCollection from "../../components/property-item-collection/property-item-collection.component";
+import {fetchPropertiesStart} from "../../redux/properties/properties.actions";
+
 
 const HomePage = () => {
 
     return (
         <>
-
             <header className="wow fadeIn" id="hero" data-wow-delay="0.1s">
                 <div id="hero-message" className="animated fadeIn" style={{height: '30vh'}}>
                     <h1>Welcome To EFIEWURA</h1>
@@ -57,9 +59,10 @@ const HomePage = () => {
                 </div>
             </section>
 
-            <div className="container-fluid">
+            <div className="container">
                 <div className="row">
-                    <h2 style={{paddingLeft: '20px', marginTop: '70px'}}>Find yourself a home that suits your exact needs</h2>
+                    <h2 style={{marginLeft: '10px', marginTop: '70px'}}>Find yourself a home that suits your exact
+                        needs</h2>
                 </div>
             </div>
 
@@ -82,5 +85,6 @@ const HomePage = () => {
         </>
     );
 };
+
 
 export default HomePage;

@@ -50,6 +50,40 @@ export const getCurrentUser = () => {
     });
 };
 
+export const convertPropertySnapshotToMap = (properties) => {
+    const transformedProperties = properties.docs.map(doc => {
+
+        const uid = doc.id;
+
+        return {
+            routeName: encodeURI(uid),
+            uid: uid,
+            ...doc.data()
+        };
+    });
+
+    // return transformedProperties;
+    return transformedProperties.reduce((accumulator, property) => {
+        accumulator[property.uid] = property;
+        return accumulator;
+    }, {});
+
+};
+
+// BULK UPLOAD OF PROPERTIES
+// export const addPropertyAndDocuments = async (propertyKey, objectsToAdd) => {
+//     const propertyRef = firestore.collection(propertyKey);
+//
+//     const batch = firestore.batch();
+//     objectsToAdd.forEach(obj => {
+//         const newDocRef = propertyRef.doc();
+//         batch.set(newDocRef, obj);
+//     });
+//
+//     return await batch.commit();
+// };
+
+
 firebase.initializeApp(config);
 
 export const auth = firebase.auth();

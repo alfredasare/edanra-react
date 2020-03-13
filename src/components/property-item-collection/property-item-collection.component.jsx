@@ -1,18 +1,21 @@
-import React from "react";
+import React, {useState} from "react";
 import {connect} from 'react-redux';
 import {createStructuredSelector} from "reselect";
-import {selectAllProperties} from "../../redux/properties/properties.selectors";
+import {selectPropertiesForDisplay} from "../../redux/properties/properties.selectors";
 import './property-item-collection.styes.scss';
 import PropertyItem from "../property-item/property-item.component";
 
 const PropertyItemCollection = ({region, allProperties}) => {
 
+    const [visible, setVisible] = useState(3);
+    // const [display, setDisplay] = useState('block');
+
     const filteredProperties = allProperties.filter((property) => {
         return property.region === region;
     });
 
-    const propertyItems = filteredProperties.map(({id, ...otherPropertyProps}) => (
-            <PropertyItem key={id} {...otherPropertyProps}/>
+    const propertyItems = filteredProperties.slice(0, visible).map(({uid, ...otherPropertyProps}) => (
+            <PropertyItem key={uid} {...otherPropertyProps}/>
         )
     );
 
@@ -20,28 +23,43 @@ const PropertyItemCollection = ({region, allProperties}) => {
         return region === item.region
     });
 
+    const loadMore = () => {
+        setVisible(visible => visible + 3);
+        // if (visible >= filteredProperties.length) {
+        //     setDisplay('none');
+        // }
+    };
+
+
     return (
-        <div style={{marginTop: '20px'}} className="container-fluid">
+        <div style={{marginTop: '20px'}} className="container">
+            {
+                regionCheck ? <div className="workspace-head-wrapper">
+                    <h2 className="workspace-head"><span className="first-word">Homes</span> in {region} Region</h2>
+                </div> : <></>
+            }
             <div className="row">
 
                 {
-                    regionCheck ? <div className="workspace-head-wrapper">
-                        <h2 className="workspace-head"><span className="first-word">Homes</span> in {region} Region</h2>
-                    </div> : <></>
+                    propertyItems
                 }
 
-                <div className="owl-carousel owl-theme">
-                    {
-                        propertyItems
-                    }
-                </div>
+
             </div>
+            <div className="row">
+                {
+                    regionCheck
+                        ? visible < filteredProperties.length && <button className="load-more" onClick={loadMore}>Load More</button>
+                        : <></>
+                }
+            </div>
+
         </div>
     );
 };
 
 const mapStateToProps = createStructuredSelector({
-    allProperties: selectAllProperties
+    allProperties: selectPropertiesForDisplay
 });
 
 export default connect(mapStateToProps)(PropertyItemCollection);

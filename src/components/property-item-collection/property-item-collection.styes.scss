@@ -1,0 +1,19 @@
+.load-more {
+  background-color: transparent;
+  border: 2px solid var(--teal);
+  color: var(--teal);
+  border-radius: 4px;
+  margin: 20px auto;
+  padding: 0.5em 1em;
+  font-size: 1em;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+  opacity: 0.8;
+
+  &:hover {
+    border: 2px solid var(--teal-hover);
+    color: var(--teal-hover);
+    opacity: 1.0;
+  }
+}

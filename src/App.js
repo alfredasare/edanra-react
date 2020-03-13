@@ -13,19 +13,21 @@ import ProvideSpace from "./pages/provide-space/provide-space.component";
 import SearchPage from "./pages/search/search.component";
 import SignUp from "./pages/signup/signup.component";
 import TermsPage from "./pages/terms/terms.component";
-import ViewSpace from "./pages/view-space/view-space.component";
 import Navbar from "./components/navbar/navbar.component";
 import Footer from "./components/footer/footer.component";
 import SearchResultsPage from "./pages/search-results/search-results.component";
 import {createStructuredSelector} from "reselect";
 import {selectCurrentUser} from "./redux/user/user.selectors";
 import {checkUserSession} from "./redux/user/user.actions";
+import ViewSpaceContainer from "./pages/view-space/view-space.container";
+import {fetchPropertiesStart} from "./redux/properties/properties.actions";
 
-const App = ({checkUserSession, currentUser}) => {
+const App = ({checkUserSession, currentUser, fetchPropertiesStart}) => {
 
     useEffect(() => {
         checkUserSession();
-    }, [checkUserSession]);
+        fetchPropertiesStart();
+    }, [checkUserSession, fetchPropertiesStart]);
 
     return (
         <div className="App">
@@ -42,7 +44,7 @@ const App = ({checkUserSession, currentUser}) => {
                 <Route path='/search-results' component={SearchResultsPage}/>
                 <Route exact path='/signup' render={() => currentUser ? (<Redirect to='/' />) : (<SignUp/>)}/>
                 <Route path='/terms' component={TermsPage}/>
-                <Route path='/view-space' component={ViewSpace}/>
+                <Route path='/properties/:uid' component={ViewSpaceContainer}/>
                 <Route component={ErrorPage}/>
             </Switch>
             <Footer/>
@@ -51,11 +53,12 @@ const App = ({checkUserSession, currentUser}) => {
 };
 
 const mapStateToProps = createStructuredSelector({
-    currentUser: selectCurrentUser
+    currentUser: selectCurrentUser,
 });
 
 const mapDispatchToProps = dispatch => ({
-    checkUserSession: () => dispatch(checkUserSession())
+    checkUserSession: () => dispatch(checkUserSession()),
+    fetchPropertiesStart: () => dispatch(fetchPropertiesStart())
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(App);
