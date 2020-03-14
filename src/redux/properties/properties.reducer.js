@@ -1,4 +1,3 @@
-import PROPERTIES_DATA from "./properties.data";
 import PropertyActionTypes from "./properties.types";
 
 const INITIAL_STATE = {

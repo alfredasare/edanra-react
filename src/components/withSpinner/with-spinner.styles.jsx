@@ -8,8 +8,6 @@ export const SpinnerOverlay = styled.div`
     align-items: center;
 `;
 
-// rgb(0, 77, 64)
-
 export const SpinnerContainer = styled.div`
     display: inline-block;
     width: 50px;

@@ -1,8 +1,6 @@
-import React, {useEffect} from "react";
-import {connect} from 'react-redux';
+import React from "react";
 import './homepage.styles.scss';
 import PropertyItemCollection from "../../components/property-item-collection/property-item-collection.component";
-import {fetchPropertiesStart} from "../../redux/properties/properties.actions";
 
 
 const HomePage = () => {
@@ -18,19 +16,16 @@ const HomePage = () => {
                 </div>
                 <div id="hero-social-container">
                     <div id="hero-social-icons" className="animated fadeIn delay-1s">
-                        <a rel="tooltip" data-placement="bottom" href="https://twitter.com/Efiewura"
-                           target="_blank"
-                           data-original-title="Follow us on Twitter">
+                        <a rel="noopener noreferrer" data-placement="bottom" href="https://twitter.com/Efiewura"
+                           target="_blank">
                             <i className="fa fa-twitter"/>
                         </a>
-                        <a rel="tooltip" data-placement="bottom" href="https://www.facebook.com/Efiewura"
-                           target="_blank"
-                           data-original-title="Like us on Facebook">
+                        <a rel="noopener noreferrer" data-placement="bottom" href="https://www.facebook.com/Efiewura"
+                           target="_blank">
                             <i className="fa fa-facebook-square"/>
                         </a>
-                        <a rel="tooltip" data-placement="bottom" href="https://www.instagram.com/Efiewura"
-                           target="_blank"
-                           data-original-title="Follow us on Instagram">
+                        <a rel="noopener noreferrer" data-placement="bottom" href="https://www.instagram.com/Efiewura"
+                           target="_blank">
                             <i className="fa fa-instagram"/>
                         </a>
                     </div>

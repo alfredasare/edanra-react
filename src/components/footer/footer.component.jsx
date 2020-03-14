@@ -1,6 +1,6 @@
 import React from "react";
 import './footer.styles.scss';
-import { Link } from "react-router-dom";
+import {Link} from "react-router-dom";
 
 const Footer = () => {
 
@@ -18,16 +18,13 @@ const Footer = () => {
                     </div>
                     <div className="col-md-4" style={{marginTop: '20px'}}>
                         <div id="footer-social" className="wow fadeInUp" data-wow-delay="0.9s">
-                            <a href="https://twitter.com/Efiewura"
-                               target="_blank" data-original-title="Follow us on Twitter">
+                            <a rel="noopener noreferrer" href="https://twitter.com/Efiewura" target="_blank">
                                 <i className="fa fa-twitter"/>
                             </a>
-                            <a href="https://www.facebook.com/Efiewura"
-                               target="_blank" data-original-title="Like us on Facebook">
+                            <a rel="noopener noreferrer" href="https://www.facebook.com/Efiewura" target="_blank">
                                 <i className="fa fa-facebook-square"/>
                             </a>
-                            <a href="https://www.instagram.com/Efiewura"
-                               target="_blank" data-original-title="Follow us on Instagram">
+                            <a rel="noopener noreferrer" href="https://www.instagram.com/Efiewura" target="_blank">
                                 <i className="fa fa-instagram"/>
                             </a>
                         </div>

@@ -1,11 +1,13 @@
 import React, {useState} from "react";
 import {connect} from 'react-redux';
 import {createStructuredSelector} from "reselect";
-import {selectPropertiesForDisplay} from "../../redux/properties/properties.selectors";
+import {selectIsPropertyFetching, selectPropertiesForDisplay} from "../../redux/properties/properties.selectors";
 import './property-item-collection.styes.scss';
 import PropertyItem from "../property-item/property-item.component";
+import LoadingContainer from "../loading-container/loading-container.component";
+// import PropertyItemContainer from "../property-item/property-item.container";
 
-const PropertyItemCollection = ({region, allProperties}) => {
+const PropertyItemCollection = ({region, allProperties, isLoading}) => {
 
     const [visible, setVisible] = useState(3);
     // const [display, setDisplay] = useState('block');
@@ -41,7 +43,7 @@ const PropertyItemCollection = ({region, allProperties}) => {
             <div className="row">
 
                 {
-                    propertyItems
+                    isLoading ? <LoadingContainer/> : propertyItems
                 }
 
 
@@ -59,7 +61,8 @@ const PropertyItemCollection = ({region, allProperties}) => {
 };
 
 const mapStateToProps = createStructuredSelector({
-    allProperties: selectPropertiesForDisplay
+    allProperties: selectPropertiesForDisplay,
+    isLoading: selectIsPropertyFetching
 });
 
 export default connect(mapStateToProps)(PropertyItemCollection);
