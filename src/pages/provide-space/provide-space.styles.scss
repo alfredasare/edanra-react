@@ -6,3 +6,26 @@
     }
   }
 }
+
+.upload-button-label {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+
+  .upload-text {
+    margin-left: 1em;
+    font-weight: bold;
+  }
+}
+
+.uploaded-images {
+  h5 {
+    font-weight: bold;
+  }
+
+  ul {
+    li {
+      font-size: 1.2em;
+    }
+  }
+}

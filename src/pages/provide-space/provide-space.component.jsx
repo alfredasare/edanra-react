@@ -1,16 +1,78 @@
-import React from "react";
+import React, {useState} from "react";
+import {connect} from 'react-redux';
 import './provide-space.styles.scss';
 import CustomButton from "../../components/custom-button/custom-button.component";
 import CustomButtonsContainer from "../../components/custom-buttons-container/custom-buttons-container.component";
 import FormInputText from "../../components/form-input-text/form-input-text.component";
+import DISTRICTS from "./districts.data";
+import REGIONS from "./regions.data";
+import {createStructuredSelector} from "reselect";
+import {selectCurrentUser} from "../../redux/user/user.selectors";
 
-const ProvideSpace = () => {
+const ProvideSpace = ({currentUser}) => {
+
+    const districts = DISTRICTS;
+    const regions = REGIONS;
+
+    const [agreeCheck, setAgreeCheck] = useState(false);
+    const [propertyDetails, setPropertyDetails] = useState({
+        name: '',
+        email: '',
+        contact: '',
+        address: '',
+        profileImg: '',
+        propertyType: '',
+        description: '',
+        region: '',
+        district: '',
+        town: '',
+        propertyImages: [],
+        price: '',
+        negotiationStatus: '',
+        dateUploaded: new Date(),
+        ad_status: '',
+        user_id: '',
+        username: ''
+    });
+
+    const {profileImg, propertyType, region, district, negotiationStatus, propertyImages} = propertyDetails;
+
+    const handleSubmit = event => {
+        event.preventDefault();
+
+        console.log(propertyDetails);
+    };
+
+    const handleChange = event => {
+        const {name, value} = event.target;
+        setPropertyDetails({
+            ...propertyDetails,
+            [name]: value,
+        });
+    };
+
+    const handleFileChange = event => {
+        const name = event.target.name;
+        const file = name === 'profileImg' ? event.target.files[0].name : Array.from(event.target.files).map((file) => file.name);
+        setPropertyDetails({...propertyDetails, [name]: file});
+    };
+
+    const handleAgree = () => {
+        setAgreeCheck(!agreeCheck);
+        setPropertyDetails({
+            ...propertyDetails,
+            ad_status: 'Pending',
+            user_id: currentUser.id,
+            username: currentUser.displayName
+        });
+    };
 
     return (
         <main className="container">
             <div className="row">
                 <div className="col-sm-12 offset-sm-0 col-md-8 offset-md-2 animated fadeIn delay-1s">
-                    <form className="custom-form form-horizontal">
+                    <form onSubmit={handleSubmit} className="custom-form form-horizontal" encType="multipart/form-data">
+
                         <h2>Provide The Details For Your Listing</h2>
                         <h4>Fill the form below with the details of the particular property you want to host. To
                             make
@@ -19,172 +81,200 @@ const ProvideSpace = () => {
                         </h4>
                         <h5 className="custom-form-subhead">1. Please enter your details</h5>
 
-                        <FormInputText type='text' name='name' id='name' label='Name' required/>
-                        <FormInputText type='email' name='email' id='email' label='Email' required/>
-                        <FormInputText type='tel' name='contact' id='contact' label='Contact' required/>
-                        <FormInputText type='text' name='address' id='address' label='Address' required/>
+                        <FormInputText handleChange={handleChange} type='text' name='name' id='name' label='Name'
+                                       required/>
+                        <FormInputText handleChange={handleChange} type='email' name='email' id='email' label='Email'
+                                       required/>
+                        <FormInputText handleChange={handleChange} type='tel' name='contact' id='contact'
+                                       label='Contact' required/>
+                        <FormInputText handleChange={handleChange} type='text' name='address' id='address'
+                                       label='Address' required/>
 
 
-                        <div className="form-group form-file-upload form-file-multiple">
-                            <input type="file" multiple="" className="inputFileHidden"/>
-                            <div className="row">
-                                <div className="col-md-12">
-                                    <div className="input-group">
-                                        <div className="input-group file-attachment">
-                                            <label className="bmd-label-floating"> Upload Profile</label>
-                                            <button id="profileUpBtn" type="button"
-                                                    className="btn btn-fab btn-round btn-primary">
-                                                <i className="material-icons">attach_file</i>
-                                            </button>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div id="profileAlert" className="alert alert-warning" style={{display: 'none'}}>
-                                    <button type="button" className="close"
-                                            data-dismiss="alert">&times;</button>
-                                    <strong>Required!</strong> Profile required to move on
-                                </div>
+                        <input onChange={handleFileChange} name="profileImg" type="file" id="single-file-upload"
+                               hidden="hidden"/>
+                        <label className="upload-button-label" htmlFor="single-file-upload">
+                            <div id="profileUpBtn" className="btn btn-fab btn-round btn-primary">
+                                <i className="material-icons">attach_file</i>
                             </div>
-                        </div>
+                            <div className="upload-text">Click here to upload a profile image</div>
+                        </label>
+                        {
+                            profileImg
+                                ? <div className="uploaded-images">
+                                    <h5>You uploaded:</h5>
+                                    <ul>
+                                        <li>{profileImg}</li>
+                                    </ul>
+                                </div>
+                                : <></>
+                        }
 
                         <h5 className="custom-form-subhead">2. Please provide the details of your listing</h5>
                         <h5 style={{fontWeight: 'bold'}}>Property type</h5>
                         <div className="form-check form-check-radio">
                             <label htmlFor="house" className="form-check-label">
-                                <input className="form-check-input" type="radio" name="type" id="house"
-                                       value="house"/>
+                                <input onChange={handleChange} className="form-check-input" type="radio"
+                                       name="propertyType" id="house"
+                                       value="House" checked={propertyType === "House"}/>
                                 House
                                 <span className="circle">
-                                            <span className="check"/>
-                                        </span>
+                                    <span className="check"/>
+                                </span>
                             </label>
                         </div>
                         <div className="form-check form-check-radio">
                             <label htmlFor="hotel" className="form-check-label">
-                                <input className="form-check-input" type="radio" name="type" id="hotel"
-                                       value="hotel"/>
+                                <input onChange={handleChange} className="form-check-input" type="radio"
+                                       name="propertyType" id="hotel"
+                                       value="Hotel" checked={propertyType === "Hotel"}/>
                                 Hotel
                                 <span className="circle">
-                                        <span className="check"/>
-                                    </span>
+                                    <span className="check"/>
+                                </span>
                             </label>
                         </div>
                         <div className="form-check form-check-radio">
                             <label htmlFor="guest-house" className="form-check-label">
-                                <input className="form-check-input" type="radio" name="type" id="guest-house"
-                                       value="guest-house"/>
+                                <input onChange={handleChange} className="form-check-input" type="radio"
+                                       name="propertyType" id="guest-house"
+                                       value="Guest House" checked={propertyType === "Guest House"}/>
                                 Guest House
                                 <span className="circle">
-                                            <span className="check"/>
-                                        </span>
+                                    <span className="check"/>
+                                </span>
                             </label>
                         </div>
                         <div className="form-check form-check-radio">
                             <label htmlFor="hostel" className="form-check-label">
-                                <input className="form-check-input" type="radio" name="type" id="hostel"
-                                       value="hostel"/>
+                                <input onChange={handleChange} className="form-check-input" type="radio"
+                                       name="propertyType" id="hostel"
+                                       value="Hostel" checked={propertyType === "Hostel"}/>
                                 Hostel
                                 <span className="circle">
-                                            <span className="check"/>
-                                        </span>
+                                    <span className="check"/>
+                                </span>
+                            </label>
+                        </div>
+                        <div className="form-check form-check-radio">
+                            <label htmlFor="apartment" className="form-check-label">
+                                <input onChange={handleChange} className="form-check-input" type="radio"
+                                       name="propertyType" id="apartment"
+                                       value="Apartment" checked={propertyType === "Apartment"}/>
+                                Apartment
+                                <span className="circle">
+                                    <span className="check"/>
+                                </span>
                             </label>
                         </div>
 
-                        <FormInputText type='textarea' name='description' id='description' label='Description' rows='3'
-                                       required/>
+                        <FormInputText handleChange={handleChange} type='textarea' name='description' id='description'
+                                       label='Description' rows='3' required/>
 
 
                         <div className="form-group">
                             <label style={{color: 'rgba(0,0,0,0.5)'}} htmlFor="region">Region</label>
-                            <select className="form-control" data-style="btn btn-link" id="region" name="region"
+                            <select value={region} onChange={handleChange} className="form-control"
+                                    data-style="btn btn-link" id="region" name="region"
                                     required>
                                 <option value>Select an option</option>
-                                <option value="AS">Ashanti</option>
-                                <option value="BA">Brong-Ahafo</option>
-                                <option value="CE">Central</option>
-                                <option value="EA">Eastern</option>
-                                <option value="GA">Greater Accra</option>
-                                <option value="NO">Northern</option>
-                                <option value="UE">Upper East</option>
-                                <option value="UW">Upper West</option>
-                                <option value="VO">Volta</option>
-                                <option value="WE">Western</option>
+                                {
+                                    regions.map((region, idx) => {
+                                        return (<option key={idx + 30} value={region}>{`${region} Region`}</option>);
+                                    })
+                                }
                             </select>
-                            <div id="regionAlert" className="alert alert-warning" style={{display: 'none'}}>
-                                <button type="button" className="close" data-dismiss="alert">&times;</button>
-                                <strong>Required!</strong> Region must be selected
-                            </div>
                         </div>
 
-                        <div className="form-group bmd-form-group">
-                            <label className="bmd-label-floating" htmlFor="host-address">District</label>
-                            <input list="district" className="form-control" name="District" autoComplete="off"/>
+                        <div className="form-group">
+                            <label htmlFor="district">District</label>
+                            <input value={district} onChange={handleChange} list="district" className="form-control"
+                                   name="district" autoComplete="off"/>
                             <datalist id="district">
-                                <option value="Adansi North District"/>
-                                <option value="Bekwai Municipal District"/>
-                                <option value="Tema Metropolitan District"/>
-                                <option value="Shai Osudoku"/>
-                                <option value="La Nkwantanang Madina Municipal District"/>
-                                <option value="Ga West Municipal District"/>
-                                <option value="Tolon District"/>
+                                {
+                                    districts.map((district, idx) => {
+                                        return (<option key={idx} value={district}/>);
+                                    })
+                                }
                             </datalist>
                         </div>
 
-                        <FormInputText type='text' name='town' id='town' label='Town' required/>
+                        <FormInputText handleChange={handleChange} type='text' name='town' id='town' label='Town'
+                                       required/>
 
 
-                        <div className="form-group form-file-upload form-file-multiple">
-                            <input type="file" multiple="" className="inputFileHidden"/>
-                            <div className="input-group file-attachment">
-                                <label className="bmd-label-floating"> Upload picture of property (Maximum of 5
-                                    pictures)</label>
-
-                                <button id="multUpBtn" type="button"
-                                        className="btn btn-fab btn-round btn-primary">
-                                    <i className="material-icons">layers</i>
-                                    <div className="ripple-container"/>
-                                </button>
+                        <input onChange={handleFileChange} name="propertyImages" type="file" id="multiple-file-upload"
+                               hidden="hidden"
+                               multiple/>
+                        <label className="upload-button-label" htmlFor="multiple-file-upload">
+                            <div id="propertiesUpBtn" className="btn btn-fab btn-round btn-primary">
+                                <i className="material-icons">layers</i>
                             </div>
-                        </div>
+                            <div className="upload-text">
+                                Click here to upload pictures of property (preferably 5 or less)
+                            </div>
+                        </label>
+                        {
+                            propertyImages
+                                ? <div className="uploaded-images">
+                                    <h5>You uploaded:</h5>
+                                    <ul>
+                                        {
+                                            propertyImages.map((image, idx) => {
+                                                return (<li key={idx + 100}>{image}</li>);
+                                            })
+                                        }
+                                    </ul>
+                                </div>
+                                : <></>
+                        }
 
-                        <FormInputText type='number' name='price' id='price' label='Price' required/>
+
+                        <FormInputText handleChange={handleChange} type='number' name='price' id='price' label='Price'
+                                       required/>
 
                         <h5 className="custom-form-subhead">4. Negotiation status</h5>
                         <div className="form-check form-check-radio">
                             <label className="form-check-label">
-                                <input className="form-check-input" type="radio" name="negotiation" id="negotiable"
-                                       value="negotiable" checked/>
+                                <input onChange={handleChange} className="form-check-input" type="radio"
+                                       name="negotiationStatus" id="negotiable"
+                                       value="Negotiable" checked={negotiationStatus === 'Negotiable'}/>
                                 Negotiable
                                 <span className="circle">
-                                            <span className="check"/>
-                                        </span>
+                                    <span className="check"/>
+                                </span>
                             </label>
                         </div>
                         <div className="form-check form-check-radio">
                             <label className="form-check-label">
-                                <input className="form-check-input" type="radio" name="negotiation"
-                                       id="non-negotiable" value="non-negotiable"/>
+                                <input onChange={handleChange} className="form-check-input" type="radio"
+                                       name="negotiationStatus"
+                                       id="non-negotiable" value="Non-negotiable"
+                                       checked={negotiationStatus === 'Non-negotiable'}/>
                                 Non-negotiable
                                 <span className="circle">
-                                            <span className="check"/>
-                                        </span>
+                                    <span className="check"/>
+                                </span>
                             </label>
                         </div>
+
+
                         <div style={{marginTop: '30px', marginBottom: '30px'}} className="form-check">
                             <label className="form-check-label">
-                                <input className="form-check-input" type="checkbox" value="" name="agree"/>
+                                <input onChange={handleAgree} className="form-check-input" type="checkbox"
+                                       checked={agreeCheck} name="agree"/>
                                 By checking this, you hereby agree with all the terms and conditions associated
                                 with using the
                                 Efiewura Platform
                                 <span className="form-check-sign">
-                                            <span className="check"/>
-                                        </span>
+                                    <span className="check"/>
+                                </span>
                             </label>
                         </div>
 
                         <CustomButtonsContainer>
-                            <CustomButton type='submit'>Send</CustomButton>
-                            <CustomButton type='reset' inverted>Reset</CustomButton>
+                            <CustomButton type='submit' disabled={!agreeCheck}>Send</CustomButton>
+                            <CustomButton type='reset' inverted="true">Reset</CustomButton>
                         </CustomButtonsContainer>
 
                     </form>
@@ -194,4 +284,9 @@ const ProvideSpace = () => {
     );
 };
 
-export default ProvideSpace;
+const mapStateToProps = createStructuredSelector({
+    currentUser: selectCurrentUser
+});
+
+
+export default connect(mapStateToProps)(ProvideSpace);

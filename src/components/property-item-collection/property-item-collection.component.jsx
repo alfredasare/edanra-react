@@ -13,7 +13,7 @@ const PropertyItemCollection = ({region, allProperties, isLoading}) => {
     // const [display, setDisplay] = useState('block');
 
     const filteredProperties = allProperties.filter((property) => {
-        return property.region === region;
+        return property.region === region && property.ad_status === 'Hosted';
     });
 
     const propertyItems = filteredProperties.slice(0, visible).map(({uid, ...otherPropertyProps}) => (
