@@ -38,26 +38,17 @@ const ViewSpace = ({property}) => {
 
 
             <section className="container animated fadeIn delay-1s" id="other-pics">
-                <div className="other-pic-item">
-                    <img className="img-raised rounded img-fluid" src={property.other_images_url[0].url} alt=""
-                         data-toggle="modal"
-                         data-target=".other-pic-1"/>
-                </div>
-                <div className="other-pic-item">
-                    <img className="img-raised rounded img-fluid" src={property.other_images_url[1].url} alt=""
-                         data-toggle="modal"
-                         data-target=".other-pic-2"/>
-                </div>
-                <div className="other-pic-item">
-                    <img className="img-raised rounded img-fluid" src={property.other_images_url[2].url} alt=""
-                         data-toggle="modal"
-                         data-target=".other-pic-3"/>
-                </div>
-                <div className="other-pic-item">
-                    <img className="img-raised rounded img-fluid" src={property.other_images_url[3].url} alt=""
-                         data-toggle="modal"
-                         data-target=".other-pic-4"/>
-                </div>
+                {
+                    property.other_images_url.map((image_url, idx) => {
+                        return (
+                            <div key={image_url.id+300} className="other-pic-item">
+                                <img className="img-raised rounded img-fluid" src={image_url.url} alt=""
+                                     data-toggle="modal"
+                                     data-target={`.other-pic-${idx}`}/>
+                            </div>
+                        );
+                    })
+                }
             </section>
 
 

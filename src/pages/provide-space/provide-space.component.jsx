@@ -8,8 +8,9 @@ import DISTRICTS from "./districts.data";
 import REGIONS from "./regions.data";
 import {createStructuredSelector} from "reselect";
 import {selectCurrentUser} from "../../redux/user/user.selectors";
+import {propertyStorageUploadStart} from "../../redux/property-upload/property-upload.actions";
 
-const ProvideSpace = ({currentUser}) => {
+const ProvideSpace = ({currentUser, propertyStorageUploadStart}) => {
 
     const districts = DISTRICTS;
     const regions = REGIONS;
@@ -20,27 +21,29 @@ const ProvideSpace = ({currentUser}) => {
         email: '',
         contact: '',
         address: '',
-        profileImg: '',
-        propertyType: '',
+        profile_img: '',
+        property_type: '',
         description: '',
         region: '',
         district: '',
         town: '',
-        propertyImages: [],
+        property_images: null,
         price: '',
-        negotiationStatus: '',
-        dateUploaded: new Date(),
+        negotiation_status: '',
+        date_uploaded: new Date(),
         ad_status: '',
         user_id: '',
-        username: ''
+        username: '',
+        other_images_url: null,
+        main_image_url: '',
     });
 
-    const {profileImg, propertyType, region, district, negotiationStatus, propertyImages} = propertyDetails;
+    const {profile_img, property_type, region, district, negotiation_status, property_images} = propertyDetails;
 
     const handleSubmit = event => {
         event.preventDefault();
 
-        console.log(propertyDetails);
+        propertyStorageUploadStart(propertyDetails);
     };
 
     const handleChange = event => {
@@ -53,8 +56,8 @@ const ProvideSpace = ({currentUser}) => {
 
     const handleFileChange = event => {
         const name = event.target.name;
-        const file = name === 'profileImg' ? event.target.files[0].name : Array.from(event.target.files).map((file) => file.name);
-        setPropertyDetails({...propertyDetails, [name]: file});
+        const file = name === 'profile_img' ? event.target.files[0] : event.target.files;
+        name === 'profile_img' ? setPropertyDetails({...propertyDetails, [name]: file}) : setPropertyDetails({...propertyDetails, [name]: Array.from(file)});
     };
 
     const handleAgree = () => {
@@ -91,7 +94,7 @@ const ProvideSpace = ({currentUser}) => {
                                        label='Address' required/>
 
 
-                        <input onChange={handleFileChange} name="profileImg" type="file" id="single-file-upload"
+                        <input onChange={handleFileChange} name="profile_img" type="file" id="single-file-upload"
                                hidden="hidden"/>
                         <label className="upload-button-label" htmlFor="single-file-upload">
                             <div id="profileUpBtn" className="btn btn-fab btn-round btn-primary">
@@ -100,11 +103,11 @@ const ProvideSpace = ({currentUser}) => {
                             <div className="upload-text">Click here to upload a profile image</div>
                         </label>
                         {
-                            profileImg
+                            profile_img
                                 ? <div className="uploaded-images">
                                     <h5>You uploaded:</h5>
                                     <ul>
-                                        <li>{profileImg}</li>
+                                        <li>{profile_img.name}</li>
                                     </ul>
                                 </div>
                                 : <></>
@@ -115,8 +118,8 @@ const ProvideSpace = ({currentUser}) => {
                         <div className="form-check form-check-radio">
                             <label htmlFor="house" className="form-check-label">
                                 <input onChange={handleChange} className="form-check-input" type="radio"
-                                       name="propertyType" id="house"
-                                       value="House" checked={propertyType === "House"}/>
+                                       name="property_type" id="house"
+                                       value="House" checked={property_type === "House"}/>
                                 House
                                 <span className="circle">
                                     <span className="check"/>
@@ -126,8 +129,8 @@ const ProvideSpace = ({currentUser}) => {
                         <div className="form-check form-check-radio">
                             <label htmlFor="hotel" className="form-check-label">
                                 <input onChange={handleChange} className="form-check-input" type="radio"
-                                       name="propertyType" id="hotel"
-                                       value="Hotel" checked={propertyType === "Hotel"}/>
+                                       name="property_type" id="hotel"
+                                       value="Hotel" checked={property_type === "Hotel"}/>
                                 Hotel
                                 <span className="circle">
                                     <span className="check"/>
@@ -137,8 +140,8 @@ const ProvideSpace = ({currentUser}) => {
                         <div className="form-check form-check-radio">
                             <label htmlFor="guest-house" className="form-check-label">
                                 <input onChange={handleChange} className="form-check-input" type="radio"
-                                       name="propertyType" id="guest-house"
-                                       value="Guest House" checked={propertyType === "Guest House"}/>
+                                       name="property_type" id="guest-house"
+                                       value="Guest House" checked={property_type === "Guest House"}/>
                                 Guest House
                                 <span className="circle">
                                     <span className="check"/>
@@ -148,8 +151,8 @@ const ProvideSpace = ({currentUser}) => {
                         <div className="form-check form-check-radio">
                             <label htmlFor="hostel" className="form-check-label">
                                 <input onChange={handleChange} className="form-check-input" type="radio"
-                                       name="propertyType" id="hostel"
-                                       value="Hostel" checked={propertyType === "Hostel"}/>
+                                       name="property_type" id="hostel"
+                                       value="Hostel" checked={property_type === "Hostel"}/>
                                 Hostel
                                 <span className="circle">
                                     <span className="check"/>
@@ -159,8 +162,8 @@ const ProvideSpace = ({currentUser}) => {
                         <div className="form-check form-check-radio">
                             <label htmlFor="apartment" className="form-check-label">
                                 <input onChange={handleChange} className="form-check-input" type="radio"
-                                       name="propertyType" id="apartment"
-                                       value="Apartment" checked={propertyType === "Apartment"}/>
+                                       name="property_type" id="apartment"
+                                       value="Apartment" checked={property_type === "Apartment"}/>
                                 Apartment
                                 <span className="circle">
                                     <span className="check"/>
@@ -203,7 +206,7 @@ const ProvideSpace = ({currentUser}) => {
                                        required/>
 
 
-                        <input onChange={handleFileChange} name="propertyImages" type="file" id="multiple-file-upload"
+                        <input onChange={handleFileChange} name="property_images" type="file" id="multiple-file-upload"
                                hidden="hidden"
                                multiple/>
                         <label className="upload-button-label" htmlFor="multiple-file-upload">
@@ -215,13 +218,13 @@ const ProvideSpace = ({currentUser}) => {
                             </div>
                         </label>
                         {
-                            propertyImages
+                            property_images
                                 ? <div className="uploaded-images">
                                     <h5>You uploaded:</h5>
                                     <ul>
                                         {
-                                            propertyImages.map((image, idx) => {
-                                                return (<li key={idx + 100}>{image}</li>);
+                                            property_images.map((image, idx) => {
+                                                return (<li key={idx + 100}>{image.name}</li>);
                                             })
                                         }
                                     </ul>
@@ -237,8 +240,8 @@ const ProvideSpace = ({currentUser}) => {
                         <div className="form-check form-check-radio">
                             <label className="form-check-label">
                                 <input onChange={handleChange} className="form-check-input" type="radio"
-                                       name="negotiationStatus" id="negotiable"
-                                       value="Negotiable" checked={negotiationStatus === 'Negotiable'}/>
+                                       name="negotiation_status" id="negotiable"
+                                       value="Negotiable" checked={negotiation_status === 'Negotiable'}/>
                                 Negotiable
                                 <span className="circle">
                                     <span className="check"/>
@@ -248,9 +251,9 @@ const ProvideSpace = ({currentUser}) => {
                         <div className="form-check form-check-radio">
                             <label className="form-check-label">
                                 <input onChange={handleChange} className="form-check-input" type="radio"
-                                       name="negotiationStatus"
+                                       name="negotiation_status"
                                        id="non-negotiable" value="Non-negotiable"
-                                       checked={negotiationStatus === 'Non-negotiable'}/>
+                                       checked={negotiation_status === 'Non-negotiable'}/>
                                 Non-negotiable
                                 <span className="circle">
                                     <span className="check"/>
@@ -273,7 +276,7 @@ const ProvideSpace = ({currentUser}) => {
                         </div>
 
                         <CustomButtonsContainer>
-                            <CustomButton type='submit' disabled={!agreeCheck}>Send</CustomButton>
+                            <CustomButton type='submit' disabled={!agreeCheck}>Host</CustomButton>
                             <CustomButton type='reset' inverted="true">Reset</CustomButton>
                         </CustomButtonsContainer>
 
@@ -288,5 +291,9 @@ const mapStateToProps = createStructuredSelector({
     currentUser: selectCurrentUser
 });
 
+const mapDispatchToProps = dispatch => ({
+    propertyStorageUploadStart: (propertyDetails) => dispatch(propertyStorageUploadStart(propertyDetails))
+});
 
-export default connect(mapStateToProps)(ProvideSpace);
+
+export default connect(mapStateToProps, mapDispatchToProps)(ProvideSpace);

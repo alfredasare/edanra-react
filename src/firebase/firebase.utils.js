@@ -67,7 +67,6 @@ export const convertPropertySnapshotToMap = (properties) => {
         accumulator[property.uid] = property;
         return accumulator;
     }, {});
-
 };
 
 // BULK UPLOAD OF PROPERTIES
