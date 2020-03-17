@@ -1,5 +1,5 @@
 import React from 'react';
-import { connect } from 'react-redux';
+import {connect} from 'react-redux';
 import './navbar.styles.scss';
 import {Link, NavLink} from "react-router-dom";
 import {createStructuredSelector} from "reselect";
@@ -22,9 +22,9 @@ const Navbar = ({currentUser, signOutStart}) => {
                     <button className="navbar-toggler" type="button" data-toggle="collapse" aria-expanded="false"
                             aria-label="Toggle navigation">
                         <span className="sr-only">Toggle navigation</span>
-                        <span className="navbar-toggler-icon"></span>
-                        <span className="navbar-toggler-icon"></span>
-                        <span className="navbar-toggler-icon"></span>
+                        <span className="navbar-toggler-icon"/>
+                        <span className="navbar-toggler-icon"/>
+                        <span className="navbar-toggler-icon"/>
                     </button>
                 </div>
                 <div className="collapse navbar-collapse">
@@ -54,6 +54,15 @@ const Navbar = ({currentUser, signOutStart}) => {
                                 Find Space
                             </NavLink>
                         </li>
+                        {
+                            currentUser ?
+                                <li className="nav-item">
+                                    <NavLink activeClassName="nav-active" className="nav-link" to="/dashboard">
+                                        Dashboard
+                                    </NavLink>
+                                </li> :
+                                <></>
+                        }
                         <li className="nav-item">
                             {
                                 currentUser ?

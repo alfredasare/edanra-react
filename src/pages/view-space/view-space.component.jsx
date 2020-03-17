@@ -1,9 +1,12 @@
 import React from "react";
 import {connect} from 'react-redux';
+import Viewer from 'react-viewer';
 import './view-space.styles.scss';
 import {selectProperty} from "../../redux/properties/properties.selectors";
 
 const ViewSpace = ({property}) => {
+
+    const [ visible, setVisible ] = React.useState(false);
 
     return (
         <>
@@ -33,95 +36,37 @@ const ViewSpace = ({property}) => {
             </section>
 
             <div style={{marginTop: '50px'}} className="container">
-                <h3>Click the other pictures of the listing to view them</h3>
+                <h3>Click on any of the images to open the image gallery</h3>
             </div>
 
 
             <section className="container animated fadeIn delay-1s" id="other-pics">
                 {
-                    property.other_images_url.map((image_url, idx) => {
+                    property.other_images_url.map((image_url) => {
                         return (
-                            <div key={image_url.id+300} className="other-pic-item">
-                                <img className="img-raised rounded img-fluid" src={image_url.url} alt=""
-                                     data-toggle="modal"
-                                     data-target={`.other-pic-${idx}`}/>
+                            <div onClick={() => { setVisible(true); } } key={image_url.id + 300} className="other-pic-item">
+                                <img className="img-raised rounded img-fluid" src={image_url.url}
+                                     alt={`Property at ${property.town}`}/>
                             </div>
                         );
                     })
                 }
             </section>
 
-
-            {/*<div className="modal fade other-pic-1" tabIndex="-1" role="dialog" aria-labelledby="other-pic-1"*/}
-            {/*     style={{display: 'none'}}*/}
-            {/*     aria-hidden="true">*/}
-            {/*    <div className="modal-dialog modal-lg">*/}
-            {/*        <div className="modal-content">*/}
-            {/*            <div className="modal-header">*/}
-            {/*                <button type="button" className="close" data-dismiss="modal" aria-label="Close">*/}
-            {/*                    <span aria-hidden="true">×</span>*/}
-            {/*                </button>*/}
-            {/*            </div>*/}
-            {/*            <div className="modal-body">*/}
-            {/*                <img className="img-fluid" src={require('../../assets/img/6.jpg')} alt=""/>*/}
-            {/*            </div>*/}
-            {/*        </div>*/}
-            {/*    </div>*/}
-            {/*</div>*/}
-
-            {/*<div className="modal fade other-pic-2" tabIndex="-1" role="dialog" aria-labelledby="other-pic-2"*/}
-            {/*     style={{display: 'none'}}*/}
-            {/*     aria-hidden="true">*/}
-            {/*    <div className="modal-dialog modal-lg">*/}
-            {/*        <div className="modal-content">*/}
-            {/*            <div className="modal-header">*/}
-            {/*                <button type="button" className="close" data-dismiss="modal" aria-label="Close">*/}
-            {/*                    <span aria-hidden="true">×</span>*/}
-            {/*                </button>*/}
-            {/*            </div>*/}
-            {/*            <div className="modal-body">*/}
-            {/*                <img className="img-fluid" src={require('../../assets/img/9.jpg')} alt=""/>*/}
-            {/*            </div>*/}
-            {/*        </div>*/}
-            {/*    </div>*/}
-            {/*</div>*/}
-
-
-            {/*<div className="modal fade other-pic-3" tabIndex="-1" role="dialog" aria-labelledby="other-pic-3"*/}
-            {/*     style={{display: 'none'}}*/}
-            {/*     aria-hidden="true">*/}
-            {/*    <div className="modal-dialog modal-lg">*/}
-            {/*        <div className="modal-content">*/}
-            {/*            <div className="modal-header">*/}
-            {/*                <button type="button" className="close" data-dismiss="modal" aria-label="Close">*/}
-            {/*                    <span aria-hidden="true">×</span>*/}
-            {/*                </button>*/}
-            {/*            </div>*/}
-            {/*            <div className="modal-body">*/}
-            {/*                <img className="img-fluid" src={require('../../assets/img/12.jpg')} alt=""/>*/}
-            {/*            </div>*/}
-            {/*        </div>*/}
-            {/*    </div>*/}
-            {/*</div>*/}
-
-
-            {/*<div className="modal fade other-pic-4" tabIndex="-1" role="dialog" aria-labelledby="other-pic-4"*/}
-            {/*     style={{display: 'none'}}*/}
-            {/*     aria-hidden="true">*/}
-            {/*    <div className="modal-dialog modal-lg">*/}
-            {/*        <div className="modal-content">*/}
-            {/*            <div className="modal-header">*/}
-            {/*                <button type="button" className="close" data-dismiss="modal" aria-label="Close">*/}
-            {/*                    <span aria-hidden="true">×</span>*/}
-            {/*                </button>*/}
-            {/*            </div>*/}
-            {/*            <div className="modal-body">*/}
-            {/*                <img className="img-fluid" src={require('../../assets/img/14.jpg')} alt=""/>*/}
-            {/*            </div>*/}
-            {/*        </div>*/}
-            {/*    </div>*/}
-            {/*</div>*/}
-
+            <div>
+                <Viewer
+                    visible={visible}
+                    onClose={() => { setVisible(false); } }
+                    images={
+                        property.other_images_url.map((image_url) => {
+                            return {
+                                src: image_url.url,
+                                alt: `${property.property_type} at ${property.town}`
+                            };
+                        })
+                    }
+                />
+            </div>
 
             <div style={{paddingTop: '150px', paddingBottom: '100px'}} className="container">
                 <h2 style={{textTransform: 'capitalize', textAlign: 'center', marginBottom: '40px'}}>Contact the host to
