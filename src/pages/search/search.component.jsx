@@ -6,8 +6,10 @@ import CustomButton from "../../components/custom-button/custom-button.component
 import CustomButtonsContainer from "../../components/custom-buttons-container/custom-buttons-container.component";
 import {createStructuredSelector} from "reselect";
 import {selectDistricts, selectRegions} from "../../redux/static-data/static-data.selectors";
+import {getResults} from "../../redux/search/search.actions";
+import {selectPropertiesForDisplay} from "../../redux/properties/properties.selectors";
 
-const SearchPage = ({districts, regions}) => {
+const SearchPage = ({districts, regions, getResults, history, allProperties}) => {
 
     const [filters, setFilters] = useState({
         town: "",
@@ -17,8 +19,8 @@ const SearchPage = ({districts, regions}) => {
 
     const handleSubmit = event => {
         event.preventDefault();
-
-        console.log(filters);
+        getResults({filters, allProperties});
+        history.push(`/search-results`);
     };
 
     const handleChange = event => {
@@ -84,7 +86,12 @@ const SearchPage = ({districts, regions}) => {
 
 const mapStateToProps = createStructuredSelector({
     districts: selectDistricts,
-    regions: selectRegions
+    regions: selectRegions,
+    allProperties: selectPropertiesForDisplay,
 });
 
-export default connect(mapStateToProps)(SearchPage);
+const mapDispatchToProps = dispatch => ({
+    getResults: (filters) => dispatch(getResults(filters))
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(SearchPage);
