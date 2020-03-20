@@ -1,16 +1,14 @@
-import React, {useState} from "react";
+import React, {useEffect, useState} from "react";
 import {connect} from 'react-redux';
 import {createStructuredSelector} from "reselect";
 import {selectIsPropertyFetching, selectPropertiesForDisplay} from "../../redux/properties/properties.selectors";
 import './property-item-collection.styes.scss';
 import PropertyItem from "../property-item/property-item.component";
 import LoadingContainer from "../loading-container/loading-container.component";
-// import PropertyItemContainer from "../property-item/property-item.container";
 
 const PropertyItemCollection = ({region, allProperties, isLoading}) => {
 
     const [visible, setVisible] = useState(3);
-    // const [display, setDisplay] = useState('block');
 
     const filteredProperties = allProperties.filter((property) => {
         return property.region === region && property.ad_status === 'Hosted';
@@ -27,9 +25,6 @@ const PropertyItemCollection = ({region, allProperties, isLoading}) => {
 
     const loadMore = () => {
         setVisible(visible => visible + 3);
-        // if (visible >= filteredProperties.length) {
-        //     setDisplay('none');
-        // }
     };
 
 
@@ -41,12 +36,9 @@ const PropertyItemCollection = ({region, allProperties, isLoading}) => {
                 </div> : <></>
             }
             <div className="row">
-
                 {
                     isLoading ? <LoadingContainer/> : propertyItems
                 }
-
-
             </div>
             <div className="row">
                 {
@@ -55,7 +47,6 @@ const PropertyItemCollection = ({region, allProperties, isLoading}) => {
                         : <></>
                 }
             </div>
-
         </div>
     );
 };

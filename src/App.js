@@ -5,7 +5,6 @@ import './App.css';
 import HomePage from "./pages/homepage/homepage.component";
 import AboutPage from "./pages/about/about.component";
 import ContactPage from "./pages/contact/contact.component";
-import Dashboard from "./pages/dashboard/dashboard.component";
 import ErrorPage from "./pages/error/error-page.component";
 import HostingComplete from "./pages/hosting-complete/hosting-complete.component";
 import LoginPage from "./pages/login/login.component";
@@ -21,6 +20,7 @@ import {selectCurrentUser} from "./redux/user/user.selectors";
 import {checkUserSession} from "./redux/user/user.actions";
 import ViewSpaceContainer from "./pages/view-space/view-space.container";
 import {fetchPropertiesStart} from "./redux/properties/properties.actions";
+import DashboardContainer from "./pages/dashboard/dashboard.container";
 
 const App = ({checkUserSession, currentUser, fetchPropertiesStart}) => {
 
@@ -36,7 +36,7 @@ const App = ({checkUserSession, currentUser, fetchPropertiesStart}) => {
                 <Route exact path='/' component={HomePage}/>
                 <Route path='/about' component={AboutPage}/>
                 <Route path='/contact' component={ContactPage}/>
-                <Route path='/dashboard' component={Dashboard}/>
+                <Route path='/dashboard' component={DashboardContainer}/>
                 <Route path='/done' component={HostingComplete}/>
                 <Route path='/login' render={() => currentUser ? (<Redirect to='/' />) : (<LoginPage/>)}/>
                 <Route path='/provide-space' component={ProvideSpace}/>

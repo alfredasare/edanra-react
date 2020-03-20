@@ -4,16 +4,12 @@ import './provide-space.styles.scss';
 import CustomButton from "../../components/custom-button/custom-button.component";
 import CustomButtonsContainer from "../../components/custom-buttons-container/custom-buttons-container.component";
 import FormInputText from "../../components/form-input-text/form-input-text.component";
-import DISTRICTS from "./districts.data";
-import REGIONS from "./regions.data";
 import {createStructuredSelector} from "reselect";
 import {selectCurrentUser} from "../../redux/user/user.selectors";
 import {propertyStorageUploadStart} from "../../redux/property-upload/property-upload.actions";
+import {selectDistricts, selectRegions} from "../../redux/static-data/static-data.selectors";
 
-const ProvideSpace = ({currentUser, propertyStorageUploadStart}) => {
-
-    const districts = DISTRICTS;
-    const regions = REGIONS;
+const ProvideSpace = ({currentUser, propertyStorageUploadStart, regions, districts}) => {
 
     const [agreeCheck, setAgreeCheck] = useState(false);
     const [propertyDetails, setPropertyDetails] = useState({
@@ -30,7 +26,7 @@ const ProvideSpace = ({currentUser, propertyStorageUploadStart}) => {
         property_images: null,
         price: '',
         negotiation_status: '',
-        date_uploaded: new Date(),
+        date_uploaded: new Date().toString(),
         ad_status: '',
         user_id: '',
         username: '',
@@ -288,11 +284,13 @@ const ProvideSpace = ({currentUser, propertyStorageUploadStart}) => {
 };
 
 const mapStateToProps = createStructuredSelector({
-    currentUser: selectCurrentUser
+    currentUser: selectCurrentUser,
+    districts: selectDistricts,
+    regions: selectRegions
 });
 
 const mapDispatchToProps = dispatch => ({
-    propertyStorageUploadStart: (propertyDetails) => dispatch(propertyStorageUploadStart(propertyDetails))
+    propertyStorageUploadStart: (propertyDetails) => dispatch(propertyStorageUploadStart(propertyDetails)),
 });
 
 

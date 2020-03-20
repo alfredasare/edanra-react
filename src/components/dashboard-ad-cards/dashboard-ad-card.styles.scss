@@ -1,0 +1,21 @@
+.options {
+  display: flex;
+  justify-content: space-between;
+  line-height: 10px;
+  padding-top: 10px;
+}
+
+.options-link {
+  color: #00695C;
+
+  &:hover {
+    color: #004D40;
+    text-decoration: none;
+  }
+}
+
+.list-group {
+  font-size: 1.2em;
+  font-weight: bold;
+  border-top: 1px rgba(0, 0, 0, 0.1) solid;
+}
