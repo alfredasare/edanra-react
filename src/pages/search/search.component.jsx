@@ -40,8 +40,7 @@ const SearchPage = ({districts, regions, getResults, history, allProperties}) =>
                     <form onSubmit={handleSubmit} className="custom-form animated fadeIn delay-1s">
                         <h2>Find a home in your preferred location</h2>
 
-                        <FormInputText handleChange={handleChange} type='text' name='town' id='town' label='Town'
-                                       required/>
+                        <FormInputText handleChange={handleChange} type='text' name='town' id='town' label='Town'/>
 
 
                         <h4 style={{fontWeight: 'bold'}}>Filters : </h4>

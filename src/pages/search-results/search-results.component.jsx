@@ -7,6 +7,7 @@ import {getResults} from "../../redux/search/search.actions";
 import CustomButton from "../../components/custom-button/custom-button.component";
 import {selectFilteredProperties} from "../../redux/search/search.selectors";
 import {selectPropertiesForDisplay} from "../../redux/properties/properties.selectors";
+import SearchItem from "../../components/search-item/search-item.component";
 
 const SearchResultsPage = ({regions, districts, getResults, results, allProperties}) => {
 
@@ -34,6 +35,12 @@ const SearchResultsPage = ({regions, districts, getResults, results, allProperti
     };
 
     const {region, district} = filters;
+
+    const searchItems = results.length > 0
+        ? results.map(({uid, ...otherProps}) => (
+            <SearchItem key={uid} {...otherProps}/>
+        ))
+        : <></>;
 
     return (
         <main className="container">
@@ -80,37 +87,28 @@ const SearchResultsPage = ({regions, districts, getResults, results, allProperti
                 </div>
             </form>
 
-            <h2 style={{marginBottom: '20px'}}>Search Results</h2>
-            <h3>We found the following listings for you</h3>
-            <p style={{fontWeight: 'bold', fontSize: '1.2em'}}>9 results found</p>
+            {
+
+                searchItems.length > 0 ? <>
+                    <h2 style={{marginBottom: '20px'}}>Search Results</h2>
+                    <h3>We found the following listings for you</h3>
+                    <p style={{fontWeight: 'bold', fontSize: '1.2em'}}>
+                        {searchItems.length !== 1 ? `${searchItems.length} results found` : `${searchItems.length} results found`}
+                    </p>
+                </> :
+                    <div style={{height: '45vh'}}>
+                        <h2>Your search did not match any listing</h2>
+                        <h3>Suggestions:</h3>
+                        <ul>
+                            <li>Try a different word</li>
+                            <li>Try general location names</li>
+                            <li>Make sure words are spelled directly</li>
+                        </ul>
+                    </div>
+            }
+
             <div id="search-images">
-                <div className="card">
-                    <img className="card-img-top" src={require('../../assets/img/21.jpg')} alt=""/>
-                    <div className="card-body">
-                        <p>Greater Accra Region &#9679; Tema</p>
-                        <p>Ghc 1300 per year</p>
-                        <a href="#">View Listing</a>
-                    </div>
-                </div>
-                <div className="card">
-                    <img className="card-img-top" src={require('../../assets/img/2.jpg')} alt=""/>
-                    <div className="card-body">
-                        <p>Eastern Region &#9679; Koforidua</p>
-                        <p>Ghc 1500 per year</p>
-                        <a href="#">View Listing</a>
-                    </div>
-                </div>
-                <div className="card">
-                    <img className="card-img-top" src={require('../../assets/img/3.jpg')} alt=""/>
-                    <div className="card-body">
-                        <p>Volta Region &#9679; Ho</p>
-                        <p>Ghc 1600 per year</p>
-                        <a href="#">View Listing</a>
-                    </div>
-                </div>
-
-
-
+                {searchItems}
             </div>
         </main>
     );

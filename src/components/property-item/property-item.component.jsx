@@ -9,7 +9,7 @@ const PropertyItem = ({routeName, main_image_url, town, region, username, price,
             <div className="slide-item">
                 <div className="item-image">
                     <img className="img-fluid" src={main_image_url}
-                         alt="house"/>
+                         alt={`${property_type} at ${region}`}/>
                 </div>
                 <div className="item-content">
                     <div className="item-location">{town} &#9679; {region}</div>
