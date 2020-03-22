@@ -26,6 +26,7 @@ const propertyUploadReducer = (state = INITIAL_STATE, action) => {
 
         case PropertyUploadTypes.PROPERTY_FIRESTORE_UPLOAD_FAILURE:
         case PropertyUploadTypes.PROPERTY_STORAGE_UPLOAD_FAILURE:
+        case PropertyUploadTypes.PROPERTY_EDIT_FAILURE:
             return {
                 ...state,
                 isUploading: false,

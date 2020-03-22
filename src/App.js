@@ -21,6 +21,7 @@ import {checkUserSession} from "./redux/user/user.actions";
 import ViewSpaceContainer from "./pages/view-space/view-space.container";
 import {fetchPropertiesStart} from "./redux/properties/properties.actions";
 import DashboardContainer from "./pages/dashboard/dashboard.container";
+import EditSpaceContainer from "./pages/edit-property/edit-space.container";
 
 const App = ({checkUserSession, currentUser, fetchPropertiesStart}) => {
 
@@ -40,6 +41,7 @@ const App = ({checkUserSession, currentUser, fetchPropertiesStart}) => {
                 <Route path='/done' component={HostingComplete}/>
                 <Route path='/login' render={() => currentUser ? (<Redirect to='/' />) : (<LoginPage/>)}/>
                 <Route path='/provide-space' component={ProvideSpace}/>
+                <Route path='/edit-space/:uid' component={EditSpaceContainer}/>
                 <Route path='/search' component={SearchPage}/>
                 <Route path='/search-results' component={SearchResultsPage}/>
                 <Route exact path='/signup' render={() => currentUser ? (<Redirect to='/' />) : (<SignUp/>)}/>

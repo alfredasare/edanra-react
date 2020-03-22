@@ -24,8 +24,8 @@ const DashboardCardCollection = ({currentUser, allProperties}) => {
 
 
     const dashboardCards = filterByUser.length > 0 ?
-        filterByUser.map(({uid, ...otherPropertyProps}) => (
-                <DashboardAdCard key={uid} {...otherPropertyProps}/>
+        filterByUser.map((property) => (
+                <DashboardAdCard key={property.uid} property={property}/>
             )
         ) :
         <div className="container" id="no-ads-msg">
@@ -37,15 +37,15 @@ const DashboardCardCollection = ({currentUser, allProperties}) => {
 
     return (
         <>
-        <div className="row">
-            <DashboardInfoCard title="Uploaded Ads" info={filterByUser.length}/>
-            <DashboardInfoCard title="Ads Hosted" info={filterByHosted}/>
-            <DashboardInfoCard title="Ads Pending" info={filterByPending}/>
-        </div>
-        <div className="row">
-            {dashboardCards}
-        </div>
-            </>
+            <div className="row">
+                <DashboardInfoCard title="Uploaded Ads" info={filterByUser.length}/>
+                <DashboardInfoCard title="Ads Hosted" info={filterByHosted}/>
+                <DashboardInfoCard title="Ads Pending" info={filterByPending}/>
+            </div>
+            <div className="row">
+                {dashboardCards}
+            </div>
+        </>
     );
 };
 

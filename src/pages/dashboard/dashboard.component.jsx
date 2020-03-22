@@ -4,6 +4,7 @@ import DashboardCardCollection from "../../components/dashboard-card-collection/
 
 const Dashboard = () => {
 
+
     return (
         <div id="dashboard" className="container">
             <h2>Manage all your ads from your dashboard</h2>
@@ -12,5 +13,7 @@ const Dashboard = () => {
         </div>
     );
 };
+
+
 
 export default Dashboard;

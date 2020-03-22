@@ -58,7 +58,9 @@ body {
   color: #fff;
 }
 
-
+.form-control:invalid {
+  background-image: linear-gradient(0deg, #004d40 2px,rgba(244,67,54,0) 0),linear-gradient(0deg,#d2d2d2 1px,hsla(0,0%,82%,0) 0);
+}
 
 
 .description {
@@ -204,5 +206,8 @@ a:hover, a:focus, a:visited {
   }
 }
 
+.badge.badge-success {
+  background-color: var(--teal);
+}
 
 /*DASHBOARD*/

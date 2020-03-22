@@ -18,4 +18,15 @@
   font-size: 1.2em;
   font-weight: bold;
   border-top: 1px rgba(0, 0, 0, 0.1) solid;
+
+  .badge-container {
+    width: 20%;
+    padding-left: 16px;
+    margin-bottom: 15px;
+  }
+
+  .badge {
+    font-size: 0.8em;
+  }
 }
+

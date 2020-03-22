@@ -1,7 +1,8 @@
 import PropertyActionTypes from "./properties.types";
+import {removeProperty} from "./properties.utils";
 
 const INITIAL_STATE = {
-    propertyItems: null,
+    propertyItems: [],
     isFetching: false,
     error: undefined
 };
@@ -26,6 +27,12 @@ const propertiesReducer = (state = INITIAL_STATE, action) => {
                 ...state,
                 isFetching: false,
                 error: action.payload
+            };
+
+        case PropertyActionTypes.REMOVE_PROPERTY:
+            return {
+                ...state,
+                propertyItems: removeProperty(action.payload)
             };
 
         default:

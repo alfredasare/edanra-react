@@ -29,3 +29,18 @@ export const propertyFirestoreUploadFailure = error => ({
     type: PropertyUploadTypes.PROPERTY_FIRESTORE_UPLOAD_FAILURE,
     payload: error
 });
+
+export const propertyEditStart = propertyDetails => ({
+    type: PropertyUploadTypes.PROPERTY_EDIT_START,
+    payload: propertyDetails
+});
+
+export const propertyEditSuccess = successMessage => ({
+    type: PropertyUploadTypes.PROPERTY_EDIT_SUCCESS,
+    payload: successMessage
+});
+
+export const propertyEditFailure = error => ({
+    type: PropertyUploadTypes.PROPERTY_EDIT_FAILURE,
+    payload: error
+});

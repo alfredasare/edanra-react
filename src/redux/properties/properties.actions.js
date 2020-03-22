@@ -13,3 +13,8 @@ export const fetchPropertiesFailure = error => ({
     type: PropertyActionTypes.FETCH_PROPERTIES_FAILURE,
     payload: error
 });
+
+export const removeProperty = property => ({
+    type: PropertyActionTypes.REMOVE_PROPERTY,
+    payload: property
+});
