@@ -22,6 +22,7 @@ const propertiesReducer = (state = INITIAL_STATE, action) => {
                 propertyItems: action.payload
             };
 
+        case PropertyActionTypes.REMOVE_PROPERTY_FAILURE:
         case PropertyActionTypes.FETCH_PROPERTIES_FAILURE:
             return {
                 ...state,
@@ -29,7 +30,7 @@ const propertiesReducer = (state = INITIAL_STATE, action) => {
                 error: action.payload
             };
 
-        case PropertyActionTypes.REMOVE_PROPERTY:
+        case PropertyActionTypes.REMOVE_PROPERTY_START:
             return {
                 ...state,
                 propertyItems: removeProperty(action.payload)

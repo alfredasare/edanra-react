@@ -14,7 +14,27 @@ export const fetchPropertiesFailure = error => ({
     payload: error
 });
 
-export const removeProperty = property => ({
-    type: PropertyActionTypes.REMOVE_PROPERTY,
+export const removePropertyStart = property => ({
+    type: PropertyActionTypes.REMOVE_PROPERTY_START,
     payload: property
+});
+
+export const removePropertySuccess = property => ({
+    type: PropertyActionTypes.REMOVE_PROPERTY_SUCCESS,
+    payload: property
+});
+
+export const removePropertyFailure = error => ({
+    type: PropertyActionTypes.REMOVE_PROPERTY_FAILURE,
+    payload: error
+});
+
+export const deleteFileFromServerSuccess = property => ({
+    type: PropertyActionTypes.DELETE_FILE_FROM_SERVER_SUCCESS,
+    payload: property
+});
+
+export const deleteFileFromServerFailure = error => ({
+    type: PropertyActionTypes.DELETE_FILE_FROM_SERVER_FAILURE,
+    payload: error
 });

@@ -2,11 +2,11 @@ import React, {useState} from "react";
 import {connect} from 'react-redux';
 import './dashboard-ad-card.styles.scss';
 import {Link} from "react-router-dom";
-import {removeProperty} from "../../redux/properties/properties.actions";
+import {removePropertyStart} from "../../redux/properties/properties.actions";
 import {createStructuredSelector} from "reselect";
 import {selectPropertiesForDisplay} from "../../redux/properties/properties.selectors";
 
-const DashboardAdCard = ({property, removeProperty, allProperties}) => {
+const DashboardAdCard = ({property, removePropertyStart, allProperties}) => {
 
     const {routeName,main_image_url, town, price, date_uploaded, ad_status} = property;
 
@@ -19,7 +19,7 @@ const DashboardAdCard = ({property, removeProperty, allProperties}) => {
 
     const handleDelete = event => {
         event.preventDefault();
-        removeProperty({allProperties, property})
+        removePropertyStart({allProperties, property})
     };
 
     return (
@@ -71,7 +71,7 @@ const mapStateToProps = createStructuredSelector({
 });
 
 const mapDispatchToProps = dispatch => ({
-    removeProperty: property => dispatch(removeProperty(property))
+    removePropertyStart: property => dispatch(removePropertyStart(property))
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(DashboardAdCard);
