@@ -1,0 +1,15 @@
+.loading-spinner {
+  font-size: 0;
+  width: 25px;
+  height: 25px;
+  border-radius: 50%;
+  animation: rotate 1.4s ease 0.5s infinite;
+  border: 3px solid var(--teal);
+  border-left-color: transparent;
+}
+
+@keyframes rotate {
+  0% {
+    transform: rotate(-360deg);
+  }
+}

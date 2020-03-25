@@ -6,10 +6,9 @@ import CustomButton from "../../components/custom-button/custom-button.component
 import {selectDistricts, selectRegions} from "../../redux/static-data/static-data.selectors";
 import {selectProperty} from "../../redux/properties/properties.selectors";
 import {propertyEditStart} from "../../redux/property-upload/property-upload.actions";
-import {fetchPropertiesStart} from "../../redux/properties/properties.actions";
 
 
-const EditSpace = ({regions, districts, property, history, propertyEditStart, fetchPropertiesStart}) => {
+const EditSpace = ({regions, districts, property, history, propertyEditStart}) => {
 
     const [propertyDetails, setPropertyDetails] = useState({
         uid: property.uid,
@@ -32,7 +31,6 @@ const EditSpace = ({regions, districts, property, history, propertyEditStart, fe
         event.preventDefault();
 
         propertyEditStart(propertyDetails);
-        fetchPropertiesStart();
         history.push(`/dashboard`);
     };
 
@@ -218,7 +216,6 @@ const mapStateToProps = (state, ownProps) => ({
 
 const mapDispatchToProps = dispatch => ({
     propertyEditStart: (editedDetails) => dispatch(propertyEditStart(editedDetails)),
-    fetchPropertiesStart: () => dispatch(fetchPropertiesStart())
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(EditSpace);

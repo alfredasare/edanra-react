@@ -3,11 +3,12 @@ import {connect} from 'react-redux';
 import './navbar.styles.scss';
 import {Link, NavLink} from "react-router-dom";
 import {createStructuredSelector} from "reselect";
-import {selectCurrentUser} from "../../redux/user/user.selectors";
+import {selectCurrentUser, selectLoadingUser} from "../../redux/user/user.selectors";
 import {signOutStart} from "../../redux/user/user.actions";
+import LoadingSpinner from "../loading-spinner/loading-spinner.component";
 
 
-const Navbar = ({currentUser, signOutStart}) => {
+const Navbar = ({currentUser, signOutStart, loader}) => {
 
     return (
         <nav className="navbar fixed-top navbar-expand-lg"
@@ -44,11 +45,15 @@ const Navbar = ({currentUser, signOutStart}) => {
                                 Contact
                             </NavLink>
                         </li>
-                        <li className="nav-item">
-                            <NavLink activeClassName="nav-active" className="nav-link" to="/provide-space">
-                                Provide space
-                            </NavLink>
-                        </li>
+                        {
+                            currentUser ?
+                                <li className="nav-item">
+                                    <NavLink activeClassName="nav-active" className="nav-link" to="/provide-space">
+                                        Provide space
+                                    </NavLink>
+                                </li> :
+                                <></>
+                        }
                         <li className="nav-item">
                             <NavLink activeClassName="nav-active" className="nav-link" to="/search">
                                 Find Space
@@ -67,7 +72,7 @@ const Navbar = ({currentUser, signOutStart}) => {
                             {
                                 currentUser ?
                                     <Link className="nav-link" onClick={signOutStart} to="/login">
-                                        Sign Out
+                                        {loader ? <LoadingSpinner/> : <>Sign Out</>}
                                     </Link>
                                     : <NavLink activeClassName="nav-active" className="nav-link" to="/login">
                                         Sign In
@@ -82,7 +87,8 @@ const Navbar = ({currentUser, signOutStart}) => {
 };
 
 const mapStateToProps = createStructuredSelector({
-    currentUser: selectCurrentUser
+    currentUser: selectCurrentUser,
+    loader: selectLoadingUser
 });
 
 const mapDispatchToProps = dispatch => ({

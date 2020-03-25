@@ -8,8 +8,10 @@ import {createStructuredSelector} from "reselect";
 import {selectCurrentUser} from "../../redux/user/user.selectors";
 import {propertyStorageUploadStart} from "../../redux/property-upload/property-upload.actions";
 import {selectDistricts, selectRegions} from "../../redux/static-data/static-data.selectors";
+import {selectIsUploading} from "../../redux/property-upload/property-upload.selectors";
+import LoadingSpinner from "../../components/loading-spinner/loading-spinner.component";
 
-const ProvideSpace = ({currentUser, propertyStorageUploadStart, regions, districts}) => {
+const ProvideSpace = ({currentUser, propertyStorageUploadStart, regions, districts, isUploading}) => {
 
     const [agreeCheck, setAgreeCheck] = useState(false);
     const [propertyDetails, setPropertyDetails] = useState({
@@ -53,7 +55,10 @@ const ProvideSpace = ({currentUser, propertyStorageUploadStart, regions, distric
     const handleFileChange = event => {
         const name = event.target.name;
         const file = name === 'profile_img' ? event.target.files[0] : event.target.files;
-        name === 'profile_img' ? setPropertyDetails({...propertyDetails, [name]: file}) : setPropertyDetails({...propertyDetails, [name]: Array.from(file)});
+        name === 'profile_img' ? setPropertyDetails({
+            ...propertyDetails,
+            [name]: file
+        }) : setPropertyDetails({...propertyDetails, [name]: Array.from(file)});
     };
 
     const handleAgree = () => {
@@ -276,9 +281,17 @@ const ProvideSpace = ({currentUser, propertyStorageUploadStart, regions, distric
                         </div>
 
                         <CustomButtonsContainer>
-                            <CustomButton type='submit' disabled={!agreeCheck}>Host</CustomButton>
+                            {
+                                isUploading ? <LoadingSpinner/> :
+                                    <CustomButton type='submit' disabled={!agreeCheck}>Host</CustomButton>
+                            }
                             <CustomButton type='reset' inverted="true">Reset</CustomButton>
                         </CustomButtonsContainer>
+                        {
+                            isUploading ?
+                                <h4 className="uploading-message">Please wait. We're uploading your ad and updating
+                                    your dashboard.</h4> : <></>
+                        }
 
                     </form>
                 </div>
@@ -290,7 +303,8 @@ const ProvideSpace = ({currentUser, propertyStorageUploadStart, regions, distric
 const mapStateToProps = createStructuredSelector({
     currentUser: selectCurrentUser,
     districts: selectDistricts,
-    regions: selectRegions
+    regions: selectRegions,
+    isUploading: selectIsUploading,
 });
 
 const mapDispatchToProps = dispatch => ({

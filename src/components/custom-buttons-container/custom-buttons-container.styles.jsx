@@ -7,4 +7,5 @@ export const CustomButtonsContainerStyled = styled.div`
     display: flex;
     flex-direction: row;
     justify-content: space-around;
+    align-items: center
 `;

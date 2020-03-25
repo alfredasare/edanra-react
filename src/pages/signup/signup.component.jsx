@@ -6,8 +6,11 @@ import CustomButton from "../../components/custom-button/custom-button.component
 import CustomButtonsContainer from "../../components/custom-buttons-container/custom-buttons-container.component";
 import FormInputText from "../../components/form-input-text/form-input-text.component";
 import {signUpStart} from "../../redux/user/user.actions";
+import {createStructuredSelector} from "reselect";
+import {selectError, selectLoadingUser} from "../../redux/user/user.selectors";
+import LoadingSpinner from "../../components/loading-spinner/loading-spinner.component";
 
-const SignUp = ({signUpStart}) => {
+const SignUp = ({signUpStart, error, loader}) => {
 
     const [userCredentials, setUserCredentials] = useState({
         displayName : '',
@@ -57,7 +60,9 @@ const SignUp = ({signUpStart}) => {
                     </div>
                     <form onSubmit={handleSubmit} style={{marginBottom: '70px'}} className="form-horizontal custom-form">
                         <h5 className="custom-form-subhead">Please enter your details</h5>
-
+                        {
+                            error ? <h5 style={{color: 'red'}}>Something went wrong. Make sure you typed in the right email and password</h5> : <></>
+                        }
                         <FormInputText handleChange={handleChange} type='text' name='displayName' id='displayName' label='Name' required/>
 
                         <FormInputText handleChange={handleChange} type='email' name='email' id='email' label='Email' required/>
@@ -72,7 +77,9 @@ const SignUp = ({signUpStart}) => {
                         <FormInputText handleChange={handleChange} type='text' name='address' id='address' label='Address' required/>
 
                         <CustomButtonsContainer>
-                            <CustomButton type='submit'>Sign Up</CustomButton>
+                            {
+                                loader ? <LoadingSpinner/> : <CustomButton type='submit'>Sign Up</CustomButton>
+                            }
                             <CustomButton type='reset' inverted="true">Reset</CustomButton>
                         </CustomButtonsContainer>
                     </form>
@@ -82,8 +89,13 @@ const SignUp = ({signUpStart}) => {
     );
 };
 
+const mapStateToProps = createStructuredSelector({
+    error: selectError,
+    loader: selectLoadingUser
+});
+
 const mapDispatchToProps = dispatch => ({
     signUpStart: (userCredentials) => dispatch(signUpStart(userCredentials))
 });
 
-export default connect(null, mapDispatchToProps)(SignUp);
+export default connect(mapStateToProps, mapDispatchToProps)(SignUp);
