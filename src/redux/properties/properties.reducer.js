@@ -3,7 +3,7 @@ import {removeProperty} from "./properties.utils";
 
 const INITIAL_STATE = {
     propertyItems: [],
-    isFetching: false,
+    isFetching: true,
     error: undefined
 };
 

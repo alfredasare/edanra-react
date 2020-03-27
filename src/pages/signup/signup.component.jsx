@@ -9,6 +9,13 @@ import {signUpStart} from "../../redux/user/user.actions";
 import {createStructuredSelector} from "reselect";
 import {selectError, selectLoadingUser} from "../../redux/user/user.selectors";
 import LoadingSpinner from "../../components/loading-spinner/loading-spinner.component";
+import {
+    errorObject, signUpValidate,
+    validateAddress,
+    validateConfirmPassword,
+    validateContact, validateImages, validateMail, validateName,
+    validateSpecialPassword
+} from "../../assets/js/validation";
 
 const SignUp = ({signUpStart, error, loader}) => {
 
@@ -18,26 +25,90 @@ const SignUp = ({signUpStart, error, loader}) => {
         password: '',
         confirmPassword: '',
         contact: '',
-        address: ''
+        address: '',
+        profile_img: ''
     });
 
-    const {displayName, email, password, confirmPassword, contact, address} = userCredentials;
+    const [errorMessages, setErrorMessages] = useState({
+        nameError: '',
+        mailError: '',
+        passwordError: '',
+        confirmPasswordError: '',
+        contactError: '',
+        addressError: '',
+    });
 
-    const handleSubmit = async event => {
+    const {displayName, email, password, confirmPassword, contact, address, profile_img} = userCredentials;
+
+    const setError = () => {
+        let error = errorObject.error;
+        let message = errorObject.message;
+        setErrorMessages({...errorMessages, [error]: message});
+    };
+
+    const validateSignUpName = event =>{
+        validateName(event);
+        setError();
+    };
+    const validateSignUpMail = event => {
+        validateMail(event);
+        setError();
+    };
+    const validateSignUpPassword = event => {
+        validateSpecialPassword(event);
+        setError();
+    };
+    const validateSignUpConfirmPassword = event => {
+        validateConfirmPassword(event);
+        setError();
+    };
+    const validateSignUpContact = event => {
+        validateContact(event);
+        setError();
+    };
+    const validateSignUpAddress = event => {
+        validateAddress(event);
+        setError();
+    };
+
+    const handleSubmit = event => {
         event.preventDefault();
+        const isValid = signUpValidate(event);
+        setError();
 
-        // Validation
-        if (password !== confirmPassword) {
-            alert("Passwords do not match");
-            return;
+        if (isValid) {
+            console.log(userCredentials);
+            // signUpStart({displayName, email, password, contact, address, profile_img});
         }
-
-        signUpStart({displayName, email, password, contact, address});
+        console.log(userCredentials);
     };
 
     const handleChange = event => {
         const {name, value} = event.target;
+        if (event.target.name === 'displayName'){
+            validateSignUpName(event);
+        }else if (event.target.name === 'email'){
+            validateSignUpMail(event);
+        }else if (event.target.name === 'password'){
+            validateSignUpPassword(event);
+        }else if (event.target.name === 'confirmPassword'){
+            validateSignUpConfirmPassword(event);
+        }else if (event.target.name === 'contact'){
+            validateSignUpContact(event);
+        }else if (event.target.name === 'address'){
+            validateSignUpAddress(event);
+        }
         setUserCredentials({...userCredentials, [name]: value});
+    };
+
+    const handleFileChange = event => {
+        const name = event.target.name;
+        const file = event.target.files[0];
+        setUserCredentials({
+            ...userCredentials,
+            [name]: file
+        });
+
     };
 
     return (
@@ -63,18 +134,43 @@ const SignUp = ({signUpStart, error, loader}) => {
                         {
                             error ? <h5 style={{color: 'red'}}>Something went wrong. Make sure you typed in the right email and password</h5> : <></>
                         }
-                        <FormInputText handleChange={handleChange} type='text' name='displayName' id='displayName' label='Name' required/>
+                        <FormInputText handleChange={handleChange} type='text' name='displayName' id='displayName' label='Name' onBlur={validateSignUpName}/>
+                        <p className='red o-100'>{errorMessages.nameError}</p>
 
-                        <FormInputText handleChange={handleChange} type='email' name='email' id='email' label='Email' required/>
+                        <FormInputText handleChange={handleChange} type='email' name='email' id='email' label='Email' onBlur={validateSignUpMail}/>
+                        <p className='red o-100'>{errorMessages.mailError}</p>
 
-                        <FormInputText handleChange={handleChange} type='password' name='password' id='password' label='Password' required/>
+                        <input onChange={handleFileChange} name="profile_img" type="file" id="single-file-upload"
+                               hidden="hidden" accept='image/*'/>
+                        <label className="upload-button-label" htmlFor="single-file-upload">
+                            <div id="profileUpBtn" className="btn btn-fab btn-round btn-primary">
+                                <i className="material-icons">attach_file</i>
+                            </div>
+                            <div className="upload-text">Click here to upload a profile image</div>
+                        </label>
+                        {
+                            profile_img
+                                ? <div className="uploaded-images">
+                                    <h5>You uploaded:</h5>
+                                    <ul>
+                                        <li>{profile_img.name}</li>
+                                    </ul>
+                                </div>
+                                : <></>
+                        }
+
+                        <FormInputText handleChange={handleChange} type='password' name='password' id='password' label='Password' onBlur={validateSignUpPassword}/>
+                        <p className='red o-100'>{errorMessages.passwordError}</p>
 
                         <FormInputText handleChange={handleChange} type='password' name='confirmPassword' id='confirmPassword'
-                                       label='Confirm Password' required/>
+                                       label='Confirm Password' onBlur={validateSignUpConfirmPassword}/>
+                        <p className='red o-100'>{errorMessages.confirmPasswordError}</p>
 
-                        <FormInputText handleChange={handleChange} type='tel' name='contact' id='contact' label='Contact' required/>
+                        <FormInputText handleChange={handleChange} type='tel' name='contact' id='contact' label='Contact' onBlur={validateSignUpContact}/>
+                        <p style={{color: 'red'}}>{errorMessages.contactError}</p>
 
-                        <FormInputText handleChange={handleChange} type='text' name='address' id='address' label='Address' required/>
+                        <FormInputText handleChange={handleChange} type='text' name='address' id='address' label='Address' onBlur={validateSignUpAddress}/>
+                        <p className='red o-100'>{errorMessages.addressError}</p>
 
                         <CustomButtonsContainer>
                             {

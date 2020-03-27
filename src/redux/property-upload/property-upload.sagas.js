@@ -9,8 +9,8 @@ import {
 } from "./property-upload.actions";
 
 export function* upload({payload}) {
-    const {profile_img, property_images} = payload;
-    const images = [profile_img, ...property_images];
+    const {property_images} = payload;
+    const images = [...property_images];
     const downloadUrls = [];
     try {
 
@@ -20,12 +20,10 @@ export function* upload({payload}) {
             const downloadUrl = yield uploadTask.ref.getDownloadURL();
             downloadUrls.push(downloadUrl);
         }
-        const [profileImgUrl, ...propertyImagesUrls] = downloadUrls;
 
         yield put(propertyStorageUploadSuccess({
             ...payload,
-            profile_img: profileImgUrl,
-            property_images: propertyImagesUrls
+            property_images: downloadUrls
         }))
     } catch (error) {
         yield put(propertyStorageUploadError(error));

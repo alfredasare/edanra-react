@@ -23,6 +23,33 @@ body {
   box-sizing: border-box;
 }
 
+@keyframes autofill {
+  0%,100% {
+    color: #666;
+    background: transparent;
+    border-bottom: 1px solid #d2d2d2;
+  }
+}
+
+input:-webkit-autofill {
+  -webkit-animation-delay: 1s; /* Safari support - any positive time runs instantly */
+  -webkit-animation-name: autofill;
+  -webkit-animation-fill-mode: both;
+}
+
+@-webkit-keyframes autofill {
+  0%,100% {
+    color: #666;
+    background: transparent;
+  }
+}
+
+input:-webkit-autofill {
+  -webkit-animation-delay: 1s; /* Safari support - any positive time runs instantly */
+  -webkit-animation-name: autofill;
+  -webkit-animation-fill-mode: both;
+}
+
 
 /*STYLE OVERRIDES*/
 

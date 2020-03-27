@@ -6,6 +6,15 @@ import CustomButton from "../../components/custom-button/custom-button.component
 import {selectDistricts, selectRegions} from "../../redux/static-data/static-data.selectors";
 import {selectProperty} from "../../redux/properties/properties.selectors";
 import {propertyEditStart} from "../../redux/property-upload/property-upload.actions";
+import {
+    editSpaceValidate,
+    errorObject, provideSpaceValidate,
+    validateAddress,
+    validateContact,
+    validateDescription,
+    validateMail,
+    validateName, validatePrice, validateTown
+} from "../../assets/js/validation";
 
 
 const EditSpace = ({regions, districts, property, history, propertyEditStart}) => {
@@ -25,13 +34,76 @@ const EditSpace = ({regions, districts, property, history, propertyEditStart}) =
         negotiation_status: property.negotiation_status,
     });
 
+    const [errorMessages, setErrorMessages] = useState({
+        nameError: '',
+        mailError: '',
+        contactError: '',
+        addressError: '',
+        descriptionError: '',
+        regionError: '',
+        townError: '',
+        priceError: '',
+    });
+
     const {property_type, region, district, negotiation_status, ...otherPropertyDetails} = propertyDetails;
+
+    const setError = () => {
+        let error = errorObject.error;
+        let message = errorObject.message;
+        setErrorMessages({...errorMessages, [error]: message});
+    };
+
+    const validatePropertyName = event => {
+        validateName(event);
+        setError();
+    };
+
+    const validatePropertyMail = event => {
+        validateMail(event);
+        setError();
+    };
+
+    const validatePropertyContact = event => {
+        validateContact(event);
+        setError();
+    };
+
+    const validatePropertyAddress = event => {
+        validateAddress(event);
+        setError();
+    };
+
+
+    const makeRegionValid = () => {
+        setErrorMessages({...errorMessages, regionError: ''});
+    };
+
+
+    const validatePropertyDescription = event => {
+        validateDescription(event);
+        setError();
+    };
+
+    const validatePropertyTown = event => {
+        validateTown(event);
+        setError();
+    };
+
+    const validatePropertyPrice = event => {
+        validatePrice(event);
+        setError();
+    };
 
     const handleSubmit = event => {
         event.preventDefault();
+        const isValid = editSpaceValidate(event);
+        setError();
 
-        propertyEditStart(propertyDetails);
-        history.push(`/dashboard`);
+        if (isValid) {
+            console.log(propertyDetails);
+            propertyEditStart(propertyDetails);
+            history.push(`/dashboard`);
+        }
     };
 
     const handleChange = event => {
@@ -40,6 +112,23 @@ const EditSpace = ({regions, districts, property, history, propertyEditStart}) =
             ...propertyDetails,
             [name]: value,
         });
+        if (event.target.name === 'name'){
+            validatePropertyName(event);
+        }else if (event.target.name === 'email'){
+            validatePropertyMail(event);
+        }else if (event.target.name === 'contact'){
+            validatePropertyContact(event);
+        }else if (event.target.name === 'address'){
+            validatePropertyAddress(event);
+        }else if (event.target.name === 'description'){
+            validatePropertyDescription(event);
+        }else if (event.target.name === 'town'){
+            validatePropertyTown(event);
+        }else if (event.target.name === 'price'){
+            validatePropertyPrice(event);
+        }else if (event.target.name === 'region'){
+            makeRegionValid();
+        }
     };
 
     return (
@@ -57,16 +146,23 @@ const EditSpace = ({regions, districts, property, history, propertyEditStart}) =
                         <h5 className="custom-form-subhead">1. Please enter your details</h5>
 
                         <FormInputText value={otherPropertyDetails.name} handleChange={handleChange} type='text'
-                                       name='name' id='name' label='Name'/>
+                                       name='name' id='name' label='Name' onBlur={validatePropertyName}/>
+                        <p className='red o-100'>{errorMessages.nameError}</p>
+
                         <FormInputText value={otherPropertyDetails.email} handleChange={handleChange} type='email'
                                        name='email' id='email' label='Email'
-                                       required/>
+                                       onBlur={validatePropertyMail}/>
+                        <p className='red o-100'>{errorMessages.mailError}</p>
+
                         <FormInputText value={otherPropertyDetails.contact} handleChange={handleChange} type='tel'
                                        name='contact' id='contact'
-                                       label='Contact' required/>
+                                       label='Contact' onBlur={validatePropertyContact}/>
+                        <p className='red o-100'>{errorMessages.contactError}</p>
+
                         <FormInputText value={otherPropertyDetails.address} handleChange={handleChange} type='text'
                                        name='address' id='address'
-                                       label='Address' required/>
+                                       label='Address' onBlur={validatePropertyAddress}/>
+                        <p className='red o-100'>{errorMessages.addressError}</p>
 
 
                         <h5 className="custom-form-subhead">2. Please provide the details of your listing</h5>
@@ -133,7 +229,7 @@ const EditSpace = ({regions, districts, property, history, propertyEditStart}) =
                             <textarea value={otherPropertyDetails.description} onChange={handleChange}
                                       className="form-control" id="description" rows="2" name='description'/>
                         </div>
-
+                        <p className='red o-100'>{errorMessages.descriptionError}</p>
 
                         <div className="form-group">
                             <label style={{color: 'rgba(0,0,0,0.5)'}} htmlFor="region">Region</label>
@@ -148,6 +244,7 @@ const EditSpace = ({regions, districts, property, history, propertyEditStart}) =
                                 }
                             </select>
                         </div>
+                        <p className='red o-100'>{errorMessages.regionError}</p>
 
                         <div className="form-group">
                             <label htmlFor="district">District</label>
@@ -164,11 +261,14 @@ const EditSpace = ({regions, districts, property, history, propertyEditStart}) =
 
                         <FormInputText value={otherPropertyDetails.town} handleChange={handleChange} type='text'
                                        name='town' id='town' label='Town'
-                                       required/>
+                                       />
+                        <p className='red o-100'>{errorMessages.townError}</p>
+
 
                         <FormInputText value={otherPropertyDetails.price} handleChange={handleChange} type='number'
                                        name='price' id='price' label='Price'
-                                       required/>
+                                       />
+                        <p className='red o-100'>{errorMessages.priceError}</p>
 
                         <h5 className="custom-form-subhead">4. Negotiation status</h5>
                         <div className="form-check form-check-radio">

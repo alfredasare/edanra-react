@@ -26,4 +26,3 @@ export const selectIsPropertiesLoaded = createSelector(
     [selectProperties],
     properties => !!properties.propertyItems
 );
-

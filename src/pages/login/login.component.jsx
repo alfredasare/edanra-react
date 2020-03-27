@@ -8,20 +8,51 @@ import {emailSignInStart, googleSignInStart} from "../../redux/user/user.actions
 import {createStructuredSelector} from "reselect";
 import {selectError, selectLoadingUser} from "../../redux/user/user.selectors";
 import LoadingSpinner from "../../components/loading-spinner/loading-spinner.component";
+import {errorObject, loginValidate, validateMail, validatePassword} from "../../assets/js/validation";
 
 const LoginPage = ({googleSignInStart, emailSignInStart, error, loader}) => {
 
-    const [userCredentials, setCredentials] = useState({email: '', password: ''});
+    const [userCredentials, setCredentials] = useState({email: '', password: '',});
+
+    const [errorMessages, setErrorMessages] = useState({mailError: '', passwordError: ''});
 
     const {email, password} = userCredentials;
 
+    const setError = () => {
+        let error = errorObject.error;
+        let message = errorObject.message;
+        setErrorMessages({...errorMessages, [error]: message});
+    };
+
+    // validation begin
+
+    const validateLoginEmail = event => {
+        validateMail(event);
+        setError();
+    };
+
+    const validateLoginPassword = event => {
+        validatePassword(event);
+        setError();
+    };
+
     const handleSubmit = async event => {
         event.preventDefault();
-        emailSignInStart(email, password);
+        const isValid = loginValidate(event);
+        setError();
+
+        if (isValid) {
+            emailSignInStart(email, password);
+        }
     };
 
     const handleChange = event => {
         const {value, name} = event.target;
+        if (event.target.name === 'email'){
+            validateLoginEmail(event);
+        }else if (event.target.name === 'password'){
+            validateLoginPassword(event);
+        }
         setCredentials({...userCredentials, [name]: value});
     };
 
@@ -38,8 +69,12 @@ const LoginPage = ({googleSignInStart, emailSignInStart, error, loader}) => {
                             error ? <h5 style={{color: 'red'}}>Something went wrong. Make sure you typed in the right email and password</h5> : <></>
                         }
                         <form onSubmit={handleSubmit}>
-                            <FormInputText handleChange={handleChange} type='email' name='email' id='email' label='Email' required/>
-                            <FormInputText handleChange={handleChange} type='password' name='password' id='password' label='Password' required/>
+                            <FormInputText handleChange={handleChange} type='email' name='email' id='email' label='Email' onBlur={validateLoginEmail} />
+                            <p className='red o-100'>{errorMessages.mailError}</p>
+
+                            <FormInputText handleChange={handleChange} type='password' name='password' id='password' label='Password' onBlur={validateLoginPassword}/>
+                            <p className='red o-100'>{errorMessages.passwordError}</p>
+
 
 
 
