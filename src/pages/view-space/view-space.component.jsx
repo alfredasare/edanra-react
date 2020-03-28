@@ -1,15 +1,14 @@
-import React, {useEffect, useState} from "react";
+import React, {useState} from "react";
 import {connect} from 'react-redux';
 import Viewer from 'react-viewer';
 import './view-space.styles.scss';
 import {selectProperty} from "../../redux/properties/properties.selectors";
-import {selectCurrentUser, selectLoadingUser} from "../../redux/user/user.selectors";
 
-const ViewSpace = ({property, currentUser, isUserLoading}) => {
+const ViewSpace = ({property}) => {
 
     const [visible, setVisible] = useState(false);
     const defaultProfile = 'https://firebasestorage.googleapis.com/v0/b/efiewura-db-60044.appspot.com/o/site-images%2Favatar-placeholder_v0ecjm.png?alt=media&token=ec952423-c148-409e-ab6e-15bf295424bd';
-    const profile_img = isUserLoading ? defaultProfile : currentUser.profile_img;
+    const profile_img = property.profile_img ? property.profile_img : defaultProfile;
 
     return (
         <>
@@ -90,7 +89,7 @@ const ViewSpace = ({property, currentUser, isUserLoading}) => {
                             <div className="profile-top">
                                 <div className="profile-img">
                                     <img className="img-fluid"
-                                         src={profile_img ? profile_img : defaultProfile}
+                                         src={profile_img}
                                          alt={`${property.username}'s profile`}/>
                                 </div>
                                 <div className="profile-username">
@@ -125,8 +124,6 @@ const ViewSpace = ({property, currentUser, isUserLoading}) => {
 
 const mapStateToProps = (state, ownProps) => ({
     property: selectProperty(ownProps.match.params.uid)(state),
-    currentUser: selectCurrentUser(state),
-    isUserLoading: selectLoadingUser(state)
 });
 
 export default connect(mapStateToProps)(ViewSpace);

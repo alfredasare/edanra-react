@@ -44,6 +44,7 @@ const ProvideSpace = ({currentUser, propertyStorageUploadStart, regions, distric
         username: null,
         other_images_url: null,
         main_image_url: '',
+        profile_img: ''
     });
 
     const [errorMessages, setErrorMessages] = useState({
@@ -125,8 +126,9 @@ const ProvideSpace = ({currentUser, propertyStorageUploadStart, regions, distric
             setError();
 
             if (isValid) {
-                history.push('/uploading-space');
-                propertyStorageUploadStart(propertyDetails);
+                // history.push('/uploading-space');
+                // propertyStorageUploadStart(propertyDetails);
+                console.log(propertyDetails);
             } else {
                 alert('something is wrong');
             }
@@ -140,6 +142,7 @@ const ProvideSpace = ({currentUser, propertyStorageUploadStart, regions, distric
             [name]: value,
             user_id: currentUser && currentUser.id,
             username: currentUser && currentUser.displayName,
+            profile_img: currentUser && currentUser.profile_img
         });
         if (event.target.name === 'name'){
             validatePropertyName(event);
@@ -335,6 +338,11 @@ const ProvideSpace = ({currentUser, propertyStorageUploadStart, regions, distric
                                             })
                                         }
                                     </ul>
+                                    {/*{property_images.map((image, idx) => {*/}
+                                    {/*    return (*/}
+                                    {/*        <img key={idx+1000} src={URL.createObjectURL(image)} alt=""/>*/}
+                                    {/*    );*/}
+                                    {/*})}*/}
                                 </div>
                                 : <></>
                         }
@@ -410,6 +418,7 @@ const mapStateToProps = createStructuredSelector({
     districts: selectDistricts,
     regions: selectRegions,
     isUploading: selectIsUploading,
+
 });
 
 const mapDispatchToProps = dispatch => ({
