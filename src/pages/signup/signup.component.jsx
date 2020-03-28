@@ -77,10 +77,9 @@ const SignUp = ({signUpStart, error, loader}) => {
         setError();
 
         if (isValid) {
-            console.log(userCredentials);
-            // signUpStart({displayName, email, password, contact, address, profile_img});
+            console.log({displayName, email, password, contact, address, profile_img});
         }
-        console.log({displayName, email, password, contact, address, profile_img});
+        signUpStart({displayName, email, password, contact, address, profile_img});
     };
 
     const handleChange = event => {

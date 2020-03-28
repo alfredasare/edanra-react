@@ -183,11 +183,12 @@ a:hover, a:focus, a:visited {
   display: block;
   background-color: #fff;
   border-radius: 50%;
-  padding: 2px;
 }
 
 .profile-img img{
   border-radius: 50%;
+  width: 150px;
+  height: 150px;
 }
 
 .profile-username p{

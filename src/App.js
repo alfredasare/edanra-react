@@ -50,7 +50,6 @@ const App = ({checkUserSession, currentUser, fetchPropertiesStart, isPropertyUpl
                 <Route exact path='/signup' render={() => currentUser ? (<Redirect to='/dashboard' />) : (<SignUp/>)}/>
                 <Route path='/terms' component={TermsPage}/>
                 <Route path='/properties/:uid' component={ViewSpaceContainer}/>
-                {/*<Route path='/properties/:uid' component={ViewSpaceContainer}/>*/}
                 <Route component={ErrorPage}/>
             </Switch>
             <Footer/>

@@ -23,7 +23,7 @@ export const createUserProfileDocument = async (userAuth, additionalData) => {
 
     //  Check if snapshot data does not exist in the database
     if (!snapshot.exists) {
-        const {displayName, email} = userAuth;
+        const {displayName, email, photoURL} = userAuth;
         const createdAt = new Date();
 
         try {
@@ -31,6 +31,7 @@ export const createUserProfileDocument = async (userAuth, additionalData) => {
                 displayName,
                 email,
                 createdAt,
+                profile_img: photoURL,
                 ...additionalData
             });
         } catch (e) {
