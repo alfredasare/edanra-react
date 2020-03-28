@@ -8,7 +8,7 @@ import {
     signUpFailure,
     signUpSuccess
 } from "./user.actions";
-import {auth, createUserProfileDocument, getCurrentUser, googleProvider} from "../../firebase/firebase.utils";
+import {auth, createUserProfileDocument, getCurrentUser, googleProvider, storage} from "../../firebase/firebase.utils";
 
 export function* getSnapshotFromUserAuth(userAuth, additionalData) {
     try {
@@ -85,10 +85,13 @@ export function* onCheckUserSession() {
 }
 
 // SIGN UP
-export function* signUp({payload: {displayName, email, password, contact, address}}) {
+export function* signUp({payload: {displayName, email, password, contact, address, profile_img}}) {
     try {
         const {user} = yield auth.createUserWithEmailAndPassword(email, password);
-        yield put(signUpSuccess({user, additionalData: {displayName, contact, address}}));
+        const storageRef = storage.ref(`profile-images/${Date.now()}_${profile_img.name}`);
+        const uploadTask = yield storageRef.put(profile_img);
+        const downloadUrl = yield uploadTask.ref.getDownloadURL();
+        yield put(signUpSuccess({user, additionalData: {displayName, contact, address, profile_img: downloadUrl  }}));
     } catch (error) {
         yield put(signUpFailure(error));
     }

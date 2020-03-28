@@ -80,7 +80,7 @@ const SignUp = ({signUpStart, error, loader}) => {
             console.log(userCredentials);
             // signUpStart({displayName, email, password, contact, address, profile_img});
         }
-        console.log(userCredentials);
+        console.log({displayName, email, password, contact, address, profile_img});
     };
 
     const handleChange = event => {
