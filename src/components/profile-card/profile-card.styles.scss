@@ -1,3 +1,13 @@
 .dash-profile-card {
-  padding: 20px;
+  padding: 10px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-evenly;
+  cursor: pointer;
+
+  .profile-img {
+    width: 70px;
+    height: 70px;
+  }
 }

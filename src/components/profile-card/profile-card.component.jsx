@@ -4,13 +4,13 @@ import './profile-card.styles.scss';
 const ProfileCard = () => {
 
     return (
-        <div className='col-sm-12 col-md-4'>
+        <div style={{paddingLeft: '0'}} className='col-sm-12 col-md-6'>
             <div className="card dash-profile-card">
                 <div className="dash-profile-image">
-
+                    <img className="img-fluid profile-img" src="https://image.shutterstock.com/image-photo/portrait-smiling-red-haired-millennial-600w-1194497251.jpg" alt=""/>
                 </div>
                 <div className="dash-profile-name">
-                    Alfred Asare Amoah
+                    <h4>Alfred Asare Amoah</h4>
                 </div>
             </div>
         </div>

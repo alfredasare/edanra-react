@@ -16,6 +16,12 @@ const userReducer = (state = INITIAL_STATE, action) => {
                 loadingUser: true
             };
 
+        case UserActionTypes.CHECK_USER_SESSION:
+            return {
+                ...state,
+                loadingUser: false
+            };
+
         case UserActionTypes.SIGN_IN_SUCCESS:
             return {
                 ...state,
