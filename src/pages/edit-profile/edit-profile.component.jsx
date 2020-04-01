@@ -5,15 +5,18 @@ import CustomButtonsContainer from "../../components/custom-buttons-container/cu
 import CustomButton from "../../components/custom-button/custom-button.component";
 import {createStructuredSelector} from "reselect";
 import {selectCurrentUser, selectError} from "../../redux/user/user.selectors";
+import './edit-profile.styles.scss';
 
 const EditProfile = ({currentUser, error}) => {
+
+    const default_img = 'https://firebasestorage.googleapis.com/v0/b/efiewura-db-60044.appspot.com/o/site-images%2Favatar-placeholder_v0ecjm.png?alt=media&token=ec952423-c148-409e-ab6e-15bf295424bd';
 
     const [userCredentials, setUserCredentials] = useState({
         displayName: currentUser.displayName,
         email: currentUser.email,
-        contact: currentUser.contact,
-        address: currentUser.address,
-        profile_img: currentUser.profile_img
+        contact: currentUser.contact ? currentUser.contact : '',
+        address: currentUser.address ? currentUser.address : '',
+        profile_img: currentUser.profile_img ? currentUser.profile_img : default_img
     });
 
     const {displayName, email, contact, address, profile_img} = userCredentials;
@@ -58,7 +61,7 @@ const EditProfile = ({currentUser, error}) => {
                         }
 
                         <div className="img-edit-preview">
-                            <img className="img-fluid" src={profile_img} alt=""/>
+                            <img className="img-fluid rounded-img rounded-circle" src={typeof profile_img === 'object' ? URL.createObjectURL(profile_img) : profile_img} alt=""/>
                         </div>
                         <FormInputText value={displayName} handleChange={handleChange} type='text' name='displayName'
                                        id='displayName' label='Name'/>
@@ -94,7 +97,7 @@ const EditProfile = ({currentUser, error}) => {
 
 
                         <CustomButtonsContainer>
-                            <CustomButton type='submit'>Sign Up</CustomButton>
+                            <CustomButton type='submit'>Update</CustomButton>
                             <CustomButton type='reset' inverted="true">Reset</CustomButton>
                             {/*    {*/}
                             {/*        loader ? <LoadingSpinner/> : <CustomButton type='submit'>Sign Up</CustomButton>*/}
