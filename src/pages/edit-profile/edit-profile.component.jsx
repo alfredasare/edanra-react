@@ -16,14 +16,15 @@ const EditProfile = ({currentUser, error}) => {
         email: currentUser.email,
         contact: currentUser.contact ? currentUser.contact : '',
         address: currentUser.address ? currentUser.address : '',
-        profile_img: currentUser.profile_img ? currentUser.profile_img : default_img
+        profile_img: currentUser.profile_img ? currentUser.profile_img : default_img,
+        id: currentUser.id
     });
 
-    const {displayName, email, contact, address, profile_img} = userCredentials;
+    const {displayName, email, contact, address, profile_img, id} = userCredentials;
 
     const handleSubmit = event => {
         event.preventDefault();
-        console.log({displayName, email, contact, address, profile_img});
+        console.log({displayName, email, contact, address, profile_img, id});
     };
 
     const handleChange = event => {
@@ -67,7 +68,7 @@ const EditProfile = ({currentUser, error}) => {
                                        id='displayName' label='Name'/>
 
                         <FormInputText value={email} handleChange={handleChange} type='email' name='email' id='email'
-                                       label='Email'/>
+                                       label='Contact Email'/>
 
                         <input onChange={handleFileChange} name="profile_img" type="file" id="single-file-upload"
                                hidden="hidden" accept='image/*'/>

@@ -50,3 +50,33 @@ export const signUpFailure = error => ({
     type: UserActionTypes.SIGN_UP_FAILURE,
     payload: error
 });
+
+export const editUserStart = (userDetails) => ({
+    type: UserActionTypes.EDIT_USER_PROFILE_START,
+    payload: userDetails
+});
+
+export const editUserSuccess = (userDetails) => ({
+    type: UserActionTypes.EDIT_USER_PROFILE_SUCCESS,
+    payload: userDetails
+});
+
+export const editUserFailure = error => ({
+    type: UserActionTypes.EDIT_USER_PROFILE_FAILURE,
+    payload: error
+});
+
+export const deleteProfileImageStart = (profileUrl) => ({
+    type: UserActionTypes.DELETE_USER_PROFILE_IMAGE_START,
+    payload: profileUrl
+});
+
+export const deleteProfileImageSuccess = successMessage => ({
+    type: UserActionTypes.DELETE_USER_PROFILE_IMAGE_START,
+    payload: successMessage
+});
+
+export const deleteProfileImageFailure = error => ({
+    type: UserActionTypes.DELETE_USER_PROFILE_IMAGE_START,
+    payload: error
+});

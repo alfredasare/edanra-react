@@ -5,10 +5,11 @@
   flex-direction: row;
   justify-content: center;
 
-  .rounded-img {
-    width: 120px;
-    height: 120px;
-    object-fit: cover;
-    object-position: center;
-  }
+}
+
+.rounded-img {
+  width: 120px;
+  height: 120px;
+  object-fit: cover;
+  object-position: center;
 }

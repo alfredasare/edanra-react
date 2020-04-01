@@ -3,7 +3,8 @@ import UserActionTypes from "./user.types";
 const INITIAL_STATE = {
     currentUser: null,
     error: null,
-    loadingUser: true
+    loadingUser: true,
+    updatingUser: false
 };
 
 const userReducer = (state = INITIAL_STATE, action) => {
@@ -45,6 +46,25 @@ const userReducer = (state = INITIAL_STATE, action) => {
                 ...state,
                 error: action.payload,
                 loadingUser: false
+            };
+
+        case UserActionTypes.EDIT_USER_PROFILE_START:
+            return {
+                ...state,
+                updatingUser: true
+            };
+
+        case UserActionTypes.EDIT_USER_PROFILE_SUCCESS:
+            return {
+                ...state,
+                updatingUser: false
+            };
+
+        case UserActionTypes.EDIT_USER_PROFILE_FAILURE:
+            return {
+                ...state,
+                error: action.payload,
+                updatingUser: false
             };
 
         default:

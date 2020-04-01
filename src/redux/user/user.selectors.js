@@ -16,3 +16,8 @@ export const selectLoadingUser = createSelector(
     [selectUser],
     user => user.loadingUser
 );
+
+export const selectUpdatingUser = createSelector(
+    [selectUser],
+    user => user.updatingUser
+);
