@@ -121,17 +121,21 @@ export function* onSignUpSuccess () {
 // EDIT USER PROFILE
 export function* editProfile ({payload: {displayName, email, contact, address, profile_img, id}}) {
 
+    let downloadUrl = '';
+
     try {
-        const storageRef = storage.ref(`profile-images/${Date.now()}_${profile_img.name}`);
-        const uploadTask = yield storageRef.put(profile_img);
-        const downloadUrl = yield uploadTask.ref.getDownloadURL();
+        if (typeof profile_img === 'object') {
+            const storageRef = storage.ref(`profile-images/${Date.now()}_${profile_img.name}`);
+            const uploadTask = yield storageRef.put(profile_img);
+            downloadUrl = yield uploadTask.ref.getDownloadURL();
+        }
 
         const response = yield firestore.collection("users").doc(id).update({
             displayName,
             email,
             contact,
             address,
-            profile_img: downloadUrl
+            profile_img: downloadUrl ? downloadUrl : profile_img
         });
         yield put(editUserSuccess(response));
     } catch (error) {
