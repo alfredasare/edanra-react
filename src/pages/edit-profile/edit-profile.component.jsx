@@ -1,22 +1,26 @@
 import React, {useState} from "react";
 import {connect} from 'react-redux';
+import {withRouter} from 'react-router-dom';
 import FormInputText from "../../components/form-input-text/form-input-text.component";
 import CustomButtonsContainer from "../../components/custom-buttons-container/custom-buttons-container.component";
 import CustomButton from "../../components/custom-button/custom-button.component";
 import {createStructuredSelector} from "reselect";
-import {selectCurrentUser, selectError} from "../../redux/user/user.selectors";
+import {selectCurrentUser, selectError, selectUpdatingUser} from "../../redux/user/user.selectors";
 import './edit-profile.styles.scss';
+import {deleteProfileImageStart, editUserStart} from "../../redux/user/user.actions";
+import LoadingSpinner from "../../components/loading-spinner/loading-spinner.component";
 
-const EditProfile = ({currentUser, error}) => {
+const EditProfile = ({currentUser, error, isUpdating, updateProfileStart, deleteProfileImageStart, history}) => {
 
     const default_img = 'https://firebasestorage.googleapis.com/v0/b/efiewura-db-60044.appspot.com/o/site-images%2Favatar-placeholder_v0ecjm.png?alt=media&token=ec952423-c148-409e-ab6e-15bf295424bd';
+    const temp_profile_image = currentUser.profile_img ? currentUser.profile_img : default_img;
 
     const [userCredentials, setUserCredentials] = useState({
         displayName: currentUser.displayName,
         email: currentUser.email,
         contact: currentUser.contact ? currentUser.contact : '',
         address: currentUser.address ? currentUser.address : '',
-        profile_img: currentUser.profile_img ? currentUser.profile_img : default_img,
+        profile_img: temp_profile_image,
         id: currentUser.id
     });
 
@@ -24,6 +28,15 @@ const EditProfile = ({currentUser, error}) => {
 
     const handleSubmit = event => {
         event.preventDefault();
+
+        if (typeof profile_img === "object") {
+            deleteProfileImageStart(temp_profile_image);
+        }
+
+        updateProfileStart({displayName, email, contact, address, profile_img, id});
+
+        setTimeout(() => {history.push(`/dashboard`);},2000);
+
         console.log({displayName, email, contact, address, profile_img, id});
     };
 
@@ -76,18 +89,9 @@ const EditProfile = ({currentUser, error}) => {
                             <div id="profileUpBtn" className="btn btn-fab btn-round btn-primary">
                                 <i className="material-icons">attach_file</i>
                             </div>
-                            <div className="upload-text">Click here to upload a profile image</div>
+                            <div className="upload-text">Click here to update profile image</div>
                         </label>
-                        {
-                            profile_img
-                                ? <div className="uploaded-images">
-                                    <h5>You uploaded:</h5>
-                                    <ul>
-                                        <li>{profile_img.name}</li>
-                                    </ul>
-                                </div>
-                                : <></>
-                        }
+
 
                         <FormInputText value={contact} handleChange={handleChange} type='tel' name='contact'
                                        id='contact' label='Contact'/>
@@ -98,12 +102,10 @@ const EditProfile = ({currentUser, error}) => {
 
 
                         <CustomButtonsContainer>
-                            <CustomButton type='submit'>Update</CustomButton>
+                                {
+                                    isUpdating ? <LoadingSpinner/> : <CustomButton type='submit'>Update</CustomButton>
+                                }
                             <CustomButton type='reset' inverted="true">Reset</CustomButton>
-                            {/*    {*/}
-                            {/*        loader ? <LoadingSpinner/> : <CustomButton type='submit'>Sign Up</CustomButton>*/}
-                            {/*    }*/}
-                            {/*    <CustomButton type='reset' inverted="true">Reset</CustomButton>*/}
                         </CustomButtonsContainer>
                     </form>
                 </div>
@@ -115,6 +117,12 @@ const EditProfile = ({currentUser, error}) => {
 const mapStateToProps = createStructuredSelector({
     currentUser: selectCurrentUser,
     error: selectError,
+    isUpdating: selectUpdatingUser,
 });
 
-export default connect(mapStateToProps)(EditProfile);
+const mapDispatchToProps = dispatch => ({
+    updateProfileStart: userDetails => dispatch(editUserStart(userDetails)),
+    deleteProfileImageStart: imageUrl => dispatch(deleteProfileImageStart(imageUrl)),
+});
+
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(EditProfile));

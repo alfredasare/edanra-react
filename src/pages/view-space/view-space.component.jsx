@@ -88,7 +88,7 @@ const ViewSpace = ({property}) => {
                         <div className="profile">
                             <div className="profile-top">
                                 <div className="profile-img">
-                                    <img className="img-fluid"
+                                    <img className="img-fluid rounded-img"
                                          src={profile_img}
                                          alt={`${property.username}'s profile`}/>
                                 </div>

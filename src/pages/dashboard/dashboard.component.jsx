@@ -7,10 +7,12 @@ import {createStructuredSelector} from "reselect";
 import {selectIsPropertyEdited} from "../../redux/property-upload/property-upload.selectors";
 import ProfileCard from "../../components/profile-card/profile-card.component";
 import {selectCurrentUser} from "../../redux/user/user.selectors";
+import {checkUserSession} from "../../redux/user/user.actions";
 
-const Dashboard = ({fetchPropertiesStart, isPropertyEdited, currentUser}) => {
+const Dashboard = ({fetchPropertiesStart, isPropertyEdited, currentUser, checkUserSession}) => {
 
     useEffect(() => {
+        checkUserSession();
         fetchPropertiesStart()
     }, [isPropertyEdited]);
 
@@ -30,7 +32,8 @@ const mapStateToProps = createStructuredSelector({
 });
 
 const mapDispatchToProps = dispatch => ({
-    fetchPropertiesStart: () => dispatch(fetchPropertiesStart())
+    fetchPropertiesStart: () => dispatch(fetchPropertiesStart()),
+    checkUserSession: () => dispatch(checkUserSession()),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Dashboard);
