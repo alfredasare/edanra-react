@@ -107,7 +107,6 @@ const SignUp = ({signUpStart, error, loader}) => {
             ...userCredentials,
             [name]: file
         });
-
     };
 
     return (

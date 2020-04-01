@@ -24,6 +24,7 @@ import DashboardContainer from "./pages/dashboard/dashboard.container";
 import EditSpaceContainer from "./pages/edit-property/edit-space.container";
 import {selectIsPropertyUploaded} from "./redux/property-upload/property-upload.selectors";
 import 'tachyons';
+import EditProfile from "./pages/edit-profile/edit-profile.component";
 
 const App = ({checkUserSession, currentUser, fetchPropertiesStart, isPropertyUploaded}) => {
 
@@ -50,6 +51,7 @@ const App = ({checkUserSession, currentUser, fetchPropertiesStart, isPropertyUpl
                 <Route exact path='/signup' render={() => currentUser ? (<Redirect to='/dashboard' />) : (<SignUp/>)}/>
                 <Route path='/terms' component={TermsPage}/>
                 <Route path='/properties/:uid' component={ViewSpaceContainer}/>
+                <Route path='/edit-profile/:id' render={() => currentUser ? (<EditProfile/>) : (<LoginPage/>)}/>
                 <Route component={ErrorPage}/>
             </Switch>
             <Footer/>
