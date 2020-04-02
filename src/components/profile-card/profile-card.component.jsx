@@ -10,7 +10,7 @@ const ProfileCard = ({currentUser: {displayName, email, profile_img, id}}) => {
         <div style={{paddingLeft: '0', marginTop: '8.5em'}} className='col-sm-12 col-md-5'>
             <div className="card dash-profile-card">
                 <div className="dash-profile-image">
-                    <img className="img-fluid profile-img" src={profile_img ? profile_img : default_img} alt=""/>
+                    <img className="img-fluid rounded-circle rounded-img" src={profile_img ? profile_img : default_img} alt=""/>
                 </div>
                 <div className="dash-profile-name">
                     <h4>{displayName}</h4>

@@ -137,7 +137,7 @@ export function* editProfile ({payload: {displayName, email, contact, address, p
             address,
             profile_img: downloadUrl ? downloadUrl : profile_img
         });
-        yield put(editUserSuccess(response));
+        yield put(editUserSuccess("Updated Successfully"));
     } catch (error) {
         yield put(editUserFailure(error));
     }

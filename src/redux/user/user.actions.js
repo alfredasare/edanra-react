@@ -72,11 +72,11 @@ export const deleteProfileImageStart = (profileUrl) => ({
 });
 
 export const deleteProfileImageSuccess = successMessage => ({
-    type: UserActionTypes.DELETE_USER_PROFILE_IMAGE_START,
+    type: UserActionTypes.DELETE_USER_PROFILE_IMAGE_SUCCESS,
     payload: successMessage
 });
 
 export const deleteProfileImageFailure = error => ({
-    type: UserActionTypes.DELETE_USER_PROFILE_IMAGE_START,
+    type: UserActionTypes.DELETE_USER_PROFILE_IMAGE_FAILURE,
     payload: error
 });

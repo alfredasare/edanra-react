@@ -3,6 +3,8 @@ import {connect} from 'react-redux';
 import Viewer from 'react-viewer';
 import './view-space.styles.scss';
 import {selectProperty} from "../../redux/properties/properties.selectors";
+import Navbar from "../../components/navbar/navbar.component";
+import Footer from "../../components/footer/footer.component";
 
 const ViewSpace = ({property}) => {
 
@@ -12,6 +14,7 @@ const ViewSpace = ({property}) => {
 
     return (
         <>
+            <Navbar/>
             <section className="container" id="view-listing-head">
                 <div className="main-pic animated fadeIn delay-1s">
                     <img className="img-raised rounded img-fluid" src={property.main_image_url}
@@ -88,7 +91,7 @@ const ViewSpace = ({property}) => {
                         <div className="profile">
                             <div className="profile-top">
                                 <div className="profile-img">
-                                    <img className="img-fluid"
+                                    <img className="img-fluid rounded-img"
                                          src={profile_img}
                                          alt={`${property.username}'s profile`}/>
                                 </div>
@@ -118,6 +121,7 @@ const ViewSpace = ({property}) => {
                     </div>
                 </div>
             </div>
+            <Footer/>
         </>
     );
 };

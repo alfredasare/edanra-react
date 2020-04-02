@@ -1,12 +1,15 @@
 import React from "react";
 import './homepage.styles.scss';
 import PropertyItemCollection from "../../components/property-item-collection/property-item-collection.component";
+import Navbar from "../../components/navbar/navbar.component";
+import Footer from "../../components/footer/footer.component";
 
 
 const HomePage = () => {
 
     return (
         <>
+            <Navbar/>
             <header className="wow fadeIn" id="hero" data-wow-delay="0.1s">
                 <div id="hero-message" className="animated fadeIn" style={{height: '30vh'}}>
                     <h1>Welcome To EFIEWURA</h1>
@@ -77,6 +80,7 @@ const HomePage = () => {
             <PropertyItemCollection region="Western"/>
             <PropertyItemCollection region="Western North"/>
             <PropertyItemCollection region="Volta"/>
+            <Footer/>
         </>
     );
 };

@@ -1,14 +1,73 @@
-.form-head {
-  margin-top: 2em;
-  margin-bottom: 1em;
+.cover-img{
+  background-image: url("../../assets/img/phone.jpg");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  height: 65vh;
+  width: 100%;
+  margin-top: 60px ;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  text-align: center;
+  padding: 20px;
 }
-
-#contact-form {
-  width: 50%;
+.cover-img h2{
+  font-weight: bold;
+  color: white;
+  letter-spacing: 3px;
+  margin-bottom: 30px;
 }
-
-@media screen and (max-width: 1024px) {
-  #contact-form {
-    width: 90%;
-  }
+.cover-img p{
+  font-size: 1em;
+}
+.contact-row{
+  text-align: center;
+  justify-content: center;
+}
+.card-container{
+  position: absolute;
+  top: calc(65% + 20px);
+  z-index: 2;
+}
+.card-container .card{
+  margin: 20px;
+  padding: 20px 30px;
+}
+.card-container .fa{
+  font-size: 50px;
+  color: #004D40;
+}
+.card-container .card h5{
+  font-weight: bold;
+}
+.social{
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+}
+.social .fa{
+  font-size: 30px;
+  margin: 0 15px;
+  cursor: pointer;
+}
+.social .fa:hover{
+  color: rgba(0, 77, 64, 0.70);
+}
+.location p{
+  margin: 0;
+}
+.call-header .fa-phone{
+  font-size: 20px;
+  margin-left: 10px;
+}
+.call-header{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.bolden{
+  font-weight: 500;
+  color: #004D40;
 }

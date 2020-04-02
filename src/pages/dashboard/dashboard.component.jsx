@@ -7,20 +7,28 @@ import {createStructuredSelector} from "reselect";
 import {selectIsPropertyEdited} from "../../redux/property-upload/property-upload.selectors";
 import ProfileCard from "../../components/profile-card/profile-card.component";
 import {selectCurrentUser} from "../../redux/user/user.selectors";
+import {checkUserSession} from "../../redux/user/user.actions";
+import Navbar from "../../components/navbar/navbar.component";
+import Footer from "../../components/footer/footer.component";
 
-const Dashboard = ({fetchPropertiesStart, isPropertyEdited, currentUser}) => {
+const Dashboard = ({fetchPropertiesStart, isPropertyEdited, currentUser, checkUserSession}) => {
 
     useEffect(() => {
+        checkUserSession();
         fetchPropertiesStart()
     }, [isPropertyEdited]);
 
     return (
-        <div id="dashboard" className="container">
-            <ProfileCard currentUser={currentUser}/>
-            <h2 style={{marginTop: '2em'}}>Manage all your ads from your dashboard</h2>
-            <h2 style={{marginTop: '20px'}}>Uploaded Ads</h2>
-            <DashboardCardCollection/>
-        </div>
+        <>
+            <Navbar/>
+            <div id="dashboard" className="container">
+                <ProfileCard currentUser={currentUser}/>
+                <h2 style={{marginTop: '2em'}}>Manage all your ads from your dashboard</h2>
+                <h2 style={{marginTop: '20px'}}>Uploaded Ads</h2>
+                <DashboardCardCollection/>
+            </div>
+            <Footer/>
+        </>
     );
 };
 
@@ -30,7 +38,8 @@ const mapStateToProps = createStructuredSelector({
 });
 
 const mapDispatchToProps = dispatch => ({
-    fetchPropertiesStart: () => dispatch(fetchPropertiesStart())
+    fetchPropertiesStart: () => dispatch(fetchPropertiesStart()),
+    checkUserSession: () => dispatch(checkUserSession()),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Dashboard);
