@@ -26,16 +26,9 @@ import {
     validateName
 } from "../../assets/js/validation";
 
-<<<<<<< HEAD
 const EditProfile = ({currentUser, error, isUpdating, updateProfileStart, deleteProfileImageStart, history, successMessage}) => {
 
     const oldProfileImage = currentUser.profile_img;
-=======
-const EditProfile = ({currentUser, error, isUpdating, updateProfileStart, deleteProfileImageStart, history}) => {
-
-    const default_img = 'https://firebasestorage.googleapis.com/v0/b/efiewura-db-60044.appspot.com/o/site-images%2Favatar-placeholder_v0ecjm.png?alt=media&token=ec952423-c148-409e-ab6e-15bf295424bd';
-    const temp_profile_image = currentUser.profile_img ? currentUser.profile_img : default_img;
->>>>>>> 27968a9feb5a1ce7f2f2b158ebc3c229c0457ef9
 
     const [userCredentials, setUserCredentials] = useState({
         displayName: currentUser.displayName,
@@ -86,7 +79,6 @@ const EditProfile = ({currentUser, error, isUpdating, updateProfileStart, delete
 
         const isValid = editProfileValidate(event);
         setError();
-<<<<<<< HEAD
 
         if (isValid) {
             if (typeof profile_img === "object") {
@@ -97,25 +89,6 @@ const EditProfile = ({currentUser, error, isUpdating, updateProfileStart, delete
 
             console.log({displayName, email, contact, address, profile_img, id});
         }
-=======
-
-        if (isValid) {
-            if (typeof profile_img === "object") {
-                deleteProfileImageStart(temp_profile_image);
-            }
-
-            updateProfileStart({displayName, email, contact, address, profile_img, id});
-
-            setTimeout(() => {
-                history.push(`/dashboard`);
-            }, 2000);
-
-            console.log({displayName, email, contact, address, profile_img, id});
-        } else {
-            alert('something is wrong');
-        }
-
->>>>>>> 27968a9feb5a1ce7f2f2b158ebc3c229c0457ef9
     };
 
     const handleChange = event => {
@@ -160,17 +133,11 @@ const EditProfile = ({currentUser, error, isUpdating, updateProfileStart, delete
                               className="form-horizontal custom-form" noValidate>
                             {
                                 error ?
-<<<<<<< HEAD
                                     <h5 className="update-message" style={{color: 'red'}}>Something went wrong. Check your internet connect</h5> : <></>
                             }
                             {
                                 successMessage ?
                                     <h5 className="update-message" style={{color: 'teal'}}>{successMessage}</h5> : <></>
-=======
-                                    <h5 style={{color: 'red'}}>Something went wrong. Make sure you typed in the right
-                                        email
-                                        and password</h5> : <></>
->>>>>>> 27968a9feb5a1ce7f2f2b158ebc3c229c0457ef9
                             }
 
                             <div className="img-edit-preview">
@@ -212,13 +179,10 @@ const EditProfile = ({currentUser, error, isUpdating, updateProfileStart, delete
                                 }
                                 <CustomButton type='reset' inverted="true">Reset</CustomButton>
                             </CustomButtonsContainer>
-<<<<<<< HEAD
 
                             <div className="dashboard-link">
                                 <Link to={'/dashboard'}>Back To Dashboard</Link>
                             </div>
-=======
->>>>>>> 27968a9feb5a1ce7f2f2b158ebc3c229c0457ef9
                         </form>
                     </div>
                 </div>
