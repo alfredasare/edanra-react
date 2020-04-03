@@ -184,6 +184,7 @@ export function* updateProfileImagesUrls({payload: {id, downloadUrl}}) {
         for (let doc of snapshot.docs) {
             const propertyRef = firestore.collection('properties').doc(doc.id);
             yield batch.update(propertyRef, {profile_img: downloadUrl});
+            yield batch.commit();
         }
         // snapshot.forEach((propertyDoc) => {
         //     propertyDoc.id.update({

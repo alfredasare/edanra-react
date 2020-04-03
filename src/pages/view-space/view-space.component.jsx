@@ -90,7 +90,7 @@ const ViewSpace = ({property}) => {
                             <div className="profile-top">
                                 <div className="profile-img">
                                     <img className="img-fluid rounded-img"
-                                         src={property.profile_img.profile_img}
+                                         src={property.profile_img}
                                          alt={`${property.username}'s profile`}/>
                                 </div>
                                 <div className="profile-username">
