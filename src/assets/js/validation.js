@@ -1,11 +1,10 @@
 let message = '';
 let errorReturn = '';
 let proof_password;
-let confirm_pass;
 let focusable = false;
 
 const checkFocus = field => {
-    if (focusable){
+    if (focusable) {
         field.focus();
         field.blur();
     }
@@ -36,15 +35,21 @@ const setValid = (field, error) => {
 };
 
 
-export const validateName = (event, mainEvent) => {
+export const validateName = (event, mainEvent, name) => {
     let error = 'nameError';
     let username;
     let field;
+    let item;
     // for onSubmit
     if (event === undefined) {
-        username = mainEvent.value;
-        field = mainEvent;
-        focusable = true;
+        for (item of mainEvent.target) {
+            if (item.name === name) {
+                mainEvent = item;
+                username = mainEvent.value;
+                field = mainEvent;
+                focusable = true;
+            }
+        }
         //    for other validations
     } else if (mainEvent === undefined) {
         username = event.target.value;
@@ -55,7 +60,7 @@ export const validateName = (event, mainEvent) => {
         setInvalid(field, 'Please do not leave blank', error);
         return false;
     } else if (notOnlyLetters(field)) {
-        setInvalid(field, 'Name should not contain numbers', error);
+        setInvalid(field, 'Name should only contain letters', error);
         return false;
     } else if (username.length < 2) {
         setInvalid(field, 'Invalid input', error);
@@ -66,14 +71,20 @@ export const validateName = (event, mainEvent) => {
     }
 };
 
-export const validateMail = (event, mainEvent) => {
+export const validateMail = (event, mainEvent, name) => {
     let error = 'mailError';
     let mail;
     let field;
+    let item;
     if (event === undefined) {
-        mail = mainEvent.value;
-        field = mainEvent;
-        focusable = true;
+        for (item of mainEvent.target) {
+            if (item.name === name) {
+                mainEvent = item;
+                mail = mainEvent.value;
+                field = mainEvent;
+                focusable = true;
+            }
+        }
         //    for other validations
     } else if (mainEvent === undefined) {
         mail = event.target.value;
@@ -90,70 +101,75 @@ export const validateMail = (event, mainEvent) => {
         return true;
     }
 };
+//
+// export const validateSubject = (event, mainEvent) => {
+//     let error = 'subjectError';
+//     let field;
+//     let subject;
+//     if (event === undefined) {
+//         subject = mainEvent.value;
+//         field = mainEvent;
+//         focusable = true;
+//         //    for other validations
+//     } else if (mainEvent === undefined) {
+//         subject = event.target.value;
+//         field = event.target;
+//         focusable = false;
+//     }
+//     if (subject.trim() === '') {
+//         setInvalid(field, 'Please do not leave blank', error);
+//         return false;
+//     } else if (subject.length > 50) {
+//         setInvalid(field, 'Subject should not exceed 50 characters', error);
+//         return false;
+//     } else {
+//         setValid(field, error);
+//         return true;
+//     }
+// };
+//
+// export const validateMessage = (event, mainEvent) => {
+//     let error = 'messageError';
+//     let field;
+//     let message;
+//
+//     if (event === undefined) {
+//         message = mainEvent.value;
+//         field = mainEvent;
+//         focusable = true;
+//         //    for other validations
+//     } else if (mainEvent === undefined) {
+//         message = event.target.value;
+//         field = event.target;
+//         focusable = false;
+//     }
+//     if (message.trim() === '') {
+//         setInvalid(field, 'Please do not leave blank', error);
+//         return false;
+//     } else if (message.length > 200) {
+//         setInvalid(field, 'Message should not exceed 200 characters', error);
+//         return false;
+//     } else {
+//         setValid(field, error);
+//         return true;
+//     }
+// };
 
-export const validateSubject = (event, mainEvent) => {
-    let error = 'subjectError';
-    let field;
-    let subject;
-    if (event === undefined) {
-        subject = mainEvent.value;
-        field = mainEvent;
-        focusable = true;
-        //    for other validations
-    } else if (mainEvent === undefined) {
-        subject = event.target.value;
-        field = event.target;
-        focusable = false;
-    }
-    if (subject.trim() === '') {
-        setInvalid(field, 'Please do not leave blank', error);
-        return false;
-    } else if (subject.length > 50) {
-        setInvalid(field, 'Subject should not exceed 50 characters', error);
-        return false;
-    } else {
-        setValid(field, error);
-        return true;
-    }
-};
-
-export const validateMessage = (event, mainEvent) => {
-    let error = 'messageError';
-    let field;
-    let message;
-
-    if (event === undefined) {
-        message = mainEvent.value;
-        field = mainEvent;
-        focusable = true;
-        //    for other validations
-    } else if (mainEvent === undefined) {
-        message = event.target.value;
-        field = event.target;
-        focusable = false;
-    }
-    if (message.trim() === '') {
-        setInvalid(field, 'Please do not leave blank', error);
-        return false;
-    } else if (message.length > 200) {
-        setInvalid(field, 'Message should not exceed 200 characters', error);
-        return false;
-    } else {
-        setValid(field, error);
-        return true;
-    }
-};
-
-export const validatePassword = (event, mainEvent) => {
+export const validatePassword = (event, mainEvent, name) => {
     let error = 'passwordError';
     let field;
     let password;
+    let item;
 
     if (event === undefined) {
-        password = mainEvent.value;
-        field = mainEvent;
-        focusable = true;
-
+        for (item of mainEvent.target) {
+            if (item.name === name) {
+                mainEvent = item;
+                password = mainEvent.value;
+                field = mainEvent;
+                focusable = true;
+            }
+        }
         //    for other validations
     } else if (mainEvent === undefined) {
         password = event.target.value;
@@ -169,17 +185,23 @@ export const validatePassword = (event, mainEvent) => {
     }
 };
 
-export const validateSpecialPassword = (event, mainEvent) => {
+export const validateSpecialPassword = (event, mainEvent, name) => {
     let error = 'passwordError';
     let field;
     let password;
+    let item;
 
     if (event === undefined) {
-        password = mainEvent.value;
-        field = mainEvent;
-        focusable = true;
+        for (item of mainEvent.target) {
+            if (item.name === name) {
+                mainEvent = item;
+                password = mainEvent.value;
+                field = mainEvent;
+                focusable = true;
+            }
+        }
         //    for other validations
-    } else if (mainEvent === undefined) {
+    }else if (mainEvent === undefined) {
         password = event.target.value;
         field = event.target;
         focusable = false;
@@ -190,7 +212,7 @@ export const validateSpecialPassword = (event, mainEvent) => {
     } else if (!containsCharacters(field, 2, error)) {
         return false;
     } else if (password.length < 7) {
-        setInvalid(field, 'Password should be at least 6 characters', error);
+        setInvalid(field, 'Password should be at least 7 characters', error);
         return false;
     } else {
         setValid(field, error);
@@ -199,15 +221,21 @@ export const validateSpecialPassword = (event, mainEvent) => {
     }
 };
 
-export const validateConfirmPassword = (event, mainEvent) => {
+export const validateConfirmPassword = (event, mainEvent, name) => {
     let error = 'confirmPasswordError';
     let field;
     let confirmPassword;
+    let item;
 
     if (event === undefined) {
-        confirmPassword = mainEvent.value;
-        field = mainEvent;
-        focusable = true;
+        for (item of mainEvent.target) {
+            if (item.name === name) {
+                mainEvent = item;
+                confirmPassword = mainEvent.value;
+                field = mainEvent;
+                focusable = true;
+            }
+        }
         //    for other validations
     } else if (mainEvent === undefined) {
         confirmPassword = event.target.value;
@@ -216,28 +244,31 @@ export const validateConfirmPassword = (event, mainEvent) => {
     }
     if (confirmPassword.trim() === '') {
         setInvalid(field, 'Please enter password', error);
-        confirm_pass = confirmPassword;
         return false;
     } else if (confirmPassword !== proof_password) {
         setInvalid(field, 'Passwords do not match', error);
-        confirm_pass = confirmPassword;
         return false;
     } else {
         setValid(field, error);
-        confirm_pass = confirmPassword;
         return true;
     }
 };
 
-export const validateContact = (event, mainEvent) => {
+export const validateContact = (event, mainEvent, name) => {
     let error = 'contactError';
     let field;
     let contact;
+    let item;
 
     if (event === undefined) {
-        contact = mainEvent.value;
-        field = mainEvent;
-        focusable = true;
+        for (item of mainEvent.target) {
+            if (item.name === name) {
+                mainEvent = item;
+                contact = mainEvent.value;
+                field = mainEvent;
+                focusable = true;
+            }
+        }
         //    for other validations
     } else if (mainEvent === undefined) {
         contact = event.target.value;
@@ -259,15 +290,22 @@ export const validateContact = (event, mainEvent) => {
     }
 };
 
-export const validateAddress = (event, mainEvent) => {
+export const validateAddress = (event, mainEvent, name) => {
     let error = 'addressError';
     let address;
     let field;
+    let item;
+
     // for onSubmit
     if (event === undefined) {
-        address = mainEvent.value;
-        field = mainEvent;
-        focusable = true;
+        for (item of mainEvent.target) {
+            if (item.name === name) {
+                mainEvent = item;
+                address = mainEvent.value;
+                field = mainEvent;
+                focusable = true;
+            }
+        }
         //    for other validations
     } else if (mainEvent === undefined) {
         address = event.target.value;
@@ -500,26 +538,20 @@ const notOnlyLetters = (field) => {
 
 // MAIN VALIDATORS
 
-export const contactValidate = event => {
-    // use undefined to cancel out responsive validation effect and target for onSubmit field values
-    return validateName(undefined, event.target[0]) && validateMail(undefined, event.target[1]) &&
-        validateSubject(undefined, event.target[2]) && validateMessage(undefined, event.target[3]);
-};
-
 export const loginValidate = event => {
-    return validateMail(undefined, event.target[0]) && validatePassword(undefined, event.target[1]);
+    return validateMail(undefined, event, 'email') && validatePassword(undefined, event, 'password');
 };
 
 export const signUpValidate = event => {
-    return validateName(undefined, event.target[0]) && validateMail(undefined, event.target[1]) &&
-        validatePassword(undefined, event.target[2]) && validateConfirmPassword(undefined, event.target[3])
-        && validateContact(undefined, event.target[4]) && validateAddress(undefined, event.target[5]);
+    return validateName(undefined, event, 'displayName') && validateMail(undefined, event, 'email') &&
+        validateSpecialPassword(undefined, event, 'password') && validateConfirmPassword(undefined, event, 'confirmPassword')
+        && validateContact(undefined, event, 'contact') && validateAddress(undefined, event, 'address');
 };
 
 
 export const provideSpaceValidate = event => {
-    return validateName(undefined, event.target[0]) && validateMail(undefined, event.target[1])
-        && validateContact(undefined, event.target[2]) && validateAddress(undefined, event.target[3])
+    return validateName(undefined, event, 'name') && validateMail(undefined, event, 'email')
+        && validateContact(undefined, event, 'contact') && validateAddress(undefined, event, 'address')
         && validateRadioButtons(event, 'property_type', 'propertyError') &&
         validateDescription(undefined, event, 'description')
         && validateRegion(event, 'region') && validateTown(undefined, event, 'town') &&
@@ -529,10 +561,15 @@ export const provideSpaceValidate = event => {
 };
 
 export const editSpaceValidate = event => {
-    return validateName(undefined, event.target[0]) && validateMail(undefined, event.target[1])
-        && validateContact(undefined, event.target[2]) && validateAddress(undefined, event.target[3])
+    return validateName(undefined, event, 'name') && validateMail(undefined, event, 'email')
+        && validateContact(undefined, event, 'contact') && validateAddress(undefined, event, 'address')
         && validateDescription(undefined, event, 'description')
         && validateRegion(event, 'region') && validateTown(undefined, event, 'town') &&
         validatePrice(undefined, event, 'price') &&
         validateRadioButtons(event, 'negotiation_status', 'negotiationError');
+};
+
+export const editProfileValidate = event => {
+    return validateName(undefined, event, 'displayName') && validateMail(undefined, event, 'email')
+        && validateContact(undefined, event, 'contact') && validateAddress(undefined, event, 'address');
 };

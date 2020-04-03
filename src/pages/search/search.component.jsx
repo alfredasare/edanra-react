@@ -8,6 +8,8 @@ import {createStructuredSelector} from "reselect";
 import {selectDistricts, selectRegions} from "../../redux/static-data/static-data.selectors";
 import {getResults} from "../../redux/search/search.actions";
 import {selectPropertiesForDisplay} from "../../redux/properties/properties.selectors";
+import Navbar from "../../components/navbar/navbar.component";
+import Footer from "../../components/footer/footer.component";
 
 const SearchPage = ({districts, regions, getResults, history, allProperties}) => {
 
@@ -34,52 +36,58 @@ const SearchPage = ({districts, regions, getResults, history, allProperties}) =>
     const {region, district} = filters;
 
     return (
-        <main className="container">
-            <div className="row">
-                <div className="col-sm-12 offset-sm-0 col-md-8 offset-md-2">
-                    <form style={{marginBottom: '6em'}} onSubmit={handleSubmit} className="custom-form animated fadeIn delay-1s">
-                        <h2>Find a home in your preferred location</h2>
+        <>
+            <Navbar/>
+            <main className="container">
+                <div className="row">
+                    <div className="col-sm-12 offset-sm-0 col-md-8 offset-md-2">
+                        <form style={{marginBottom: '6em'}} onSubmit={handleSubmit}
+                              className="custom-form animated fadeIn delay-1s">
+                            <h2>Find a home in your preferred location</h2>
 
-                        <FormInputText handleChange={handleChange} type='text' name='town' id='town' label='Town'/>
+                            <FormInputText handleChange={handleChange} type='text' name='town' id='town' label='Town'/>
 
 
-                        <h4 style={{fontWeight: 'bold'}}>Filters : </h4>
+                            <h4 style={{fontWeight: 'bold'}}>Filters : </h4>
 
-                        <div className="form-group">
-                            <label style={{color: 'rgba(0,0,0,0.5)'}} htmlFor="region">Region</label>
-                            <select value={region} onChange={handleChange} className="form-control"
-                                    data-style="btn btn-link" id="region" name="region"
-                                    required>
-                                <option value>Select an option</option>
-                                {
-                                    regions.map((region, idx) => {
-                                        return (<option key={idx + 30} value={region}>{`${region} Region`}</option>);
-                                    })
-                                }
-                            </select>
-                        </div>
+                            <div className="form-group">
+                                <label style={{color: 'rgba(0,0,0,0.5)'}} htmlFor="region">Region</label>
+                                <select value={region} onChange={handleChange} className="form-control"
+                                        data-style="btn btn-link" id="region" name="region"
+                                        required>
+                                    <option value>Select an option</option>
+                                    {
+                                        regions.map((region, idx) => {
+                                            return (
+                                                <option key={idx + 30} value={region}>{`${region} Region`}</option>);
+                                        })
+                                    }
+                                </select>
+                            </div>
 
-                        <div className="form-group">
-                            <label htmlFor="district">District</label>
-                            <input value={district} onChange={handleChange} list="district" className="form-control"
-                                   name="district" autoComplete="off"/>
-                            <datalist id="district">
-                                {
-                                    districts.map((district, idx) => {
-                                        return (<option key={idx} value={district}/>);
-                                    })
-                                }
-                            </datalist>
-                        </div>
+                            <div className="form-group">
+                                <label htmlFor="district">District</label>
+                                <input value={district} onChange={handleChange} list="district" className="form-control"
+                                       name="district" autoComplete="off"/>
+                                <datalist id="district">
+                                    {
+                                        districts.map((district, idx) => {
+                                            return (<option key={idx} value={district}/>);
+                                        })
+                                    }
+                                </datalist>
+                            </div>
 
-                        <CustomButtonsContainer>
-                            <CustomButton type='submit'>Search</CustomButton>
-                            <CustomButton type='reset' inverted="true">Reset</CustomButton>
-                        </CustomButtonsContainer>
-                    </form>
+                            <CustomButtonsContainer>
+                                <CustomButton type='submit'>Search</CustomButton>
+                                <CustomButton type='reset' inverted="true">Reset</CustomButton>
+                            </CustomButtonsContainer>
+                        </form>
+                    </div>
                 </div>
-            </div>
-        </main>
+            </main>
+            <Footer/>
+        </>
     );
 };
 

@@ -1,6 +1,8 @@
 import React from "react";
 import './terms.styles.scss';
 import Header from "../../components/header/header.component";
+import Navbar from "../../components/navbar/navbar.component";
+import Footer from "../../components/footer/footer.component";
 
 const TermsPage = () => {
 
@@ -8,6 +10,7 @@ const TermsPage = () => {
 
     return (
         <>
+            <Navbar/>
             <Header title="Terms & Conditions" imageUrl={url}/>
 
             <main className="container">
@@ -235,6 +238,7 @@ const TermsPage = () => {
                     </div>
                 </div>
             </main>
+            <Footer/>
         </>
     );
 };

@@ -12,6 +12,11 @@ export const selectError = createSelector(
     user => !!user.error
 );
 
+export const selectSuccessMessage = createSelector(
+    [selectUser],
+    user => user.successMessage
+);
+
 export const selectLoadingUser = createSelector(
     [selectUser],
     user => user.loadingUser

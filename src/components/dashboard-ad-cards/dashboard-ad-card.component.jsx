@@ -13,7 +13,7 @@ const DashboardAdCard = ({property, removePropertyStart, allProperties}) => {
     // date calculator //
     const daysBetween = (date1, date2) => {
         //Get 1 day in milliseconds
-        let one_day = 1000 * 60 * 60 * 24;
+        // let one_day = 1000 * 60 * 60 * 24;
 
         // Convert both dates to milliseconds
         let date1_ms = date1.getTime();
@@ -23,11 +23,11 @@ const DashboardAdCard = ({property, removePropertyStart, allProperties}) => {
         let difference_ms = date2_ms - date1_ms;
         //take out milliseconds
         difference_ms = difference_ms / 1000;
-        let seconds = Math.floor(difference_ms % 60);
+        // let seconds = Math.floor(difference_ms % 60);
         difference_ms = difference_ms / 60;
-        let minutes = Math.floor(difference_ms % 60);
+        // let minutes = Math.floor(difference_ms % 60);
         difference_ms = difference_ms / 60;
-        let hours = Math.floor(difference_ms % 24);
+        // let hours = Math.floor(difference_ms % 24);
         // return days + ' days, ' + hours + ' hours, ' + minutes + ' minutes, and ' + seconds + ' seconds';
         return Math.floor(difference_ms / 24) + 1;
     //    add one up to round up the remaining hours and minutes ...
@@ -45,7 +45,7 @@ const DashboardAdCard = ({property, removePropertyStart, allProperties}) => {
     // get day for upload date
     const upload_day = date.getDate();
     // add 30 days to the upload date;
-    date.setDate(upload_day + 30);
+    date.setDate(upload_day + 150);
     const newDate = date.toDateString();
 
     const daysRemaining = daysBetween(todayDate, new Date(newDate));
@@ -106,7 +106,7 @@ const DashboardAdCard = ({property, removePropertyStart, allProperties}) => {
                                     <span className="badge badge-pill badge-warning">Pending</span>
                             }
                         </div>
-                        <span style={{paddingRight: 16}}>Days remaining:  <span style={{color: "teal"}}>{daysRemaining}</span></span>
+                        <span style={{paddingRight: 16}}>Days remaining:  <span style={{color: "#004D44"}}>{daysRemaining}</span></span>
                     </div>
                 </ul>
             </div>

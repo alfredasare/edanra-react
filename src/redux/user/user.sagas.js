@@ -95,11 +95,17 @@ export function* onCheckUserSession() {
 
 // SIGN UP
 export function* signUp({payload: {displayName, email, password, contact, address, profile_img}}) {
+    let downloadUrl = '';
     try {
         const {user} = yield auth.createUserWithEmailAndPassword(email, password);
-        const storageRef = storage.ref(`profile-images/${Date.now()}_${profile_img.name}`);
-        const uploadTask = yield storageRef.put(profile_img);
-        const downloadUrl = yield uploadTask.ref.getDownloadURL();
+        const storageRef = storage.ref(`profile-images/${Date.now()}_${displayName}`);
+        if (typeof profile_img === 'object') {
+            const uploadTask = yield storageRef.put(profile_img);
+            downloadUrl = yield uploadTask.ref.getDownloadURL();
+        } else {
+            const uploadTask = yield storageRef.putString(profile_img, 'base64');
+            downloadUrl = yield uploadTask.ref.getDownloadURL();
+        }
         yield put(signUpSuccess({user, additionalData: {displayName, contact, address, profile_img: downloadUrl  }}));
     } catch (error) {
         yield put(signUpFailure(error));
@@ -137,7 +143,7 @@ export function* editProfile ({payload: {displayName, email, contact, address, p
             address,
             profile_img: downloadUrl ? downloadUrl : profile_img
         });
-        yield put(editUserSuccess("Updated Successfully"));
+        yield put(editUserSuccess("Profile updated successfully"));
     } catch (error) {
         yield put(editUserFailure(error));
     }

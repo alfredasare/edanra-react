@@ -1,107 +1,55 @@
-import React, {useState} from "react";
+import React from "react";
 import './contact.styles.scss';
-import Header from "../../components/header/header.component";
-import FormInputText from "../../components/form-input-text/form-input-text.component";
+import './animate.css';
 import CustomButton from "../../components/custom-button/custom-button.component";
-import CustomButtonsContainer from "../../components/custom-buttons-container/custom-buttons-container.component";
-import {
-    contactValidate,
-    errorObject,
-    validateMail,
-    validateMessage,
-    validateName,
-    validateSubject
-} from "../../assets/js/validation";
+import Navbar from "../../components/navbar/navbar.component";
 
 const ContactPage = () => {
 
-    const [errorMessages, setErrorMessages] = useState({
-        nameError: '',
-        mailError: '',
-        subjectError: '',
-        messageError: '',
-    });
-
-    const validateContactName = event =>{
-        validateName(event);
-        let error = errorObject.error;
-        let message = errorObject.message;
-        setErrorMessages({...errorMessages, [error]: message});
-    };
-    const validateContactMail = event => {
-        validateMail(event);
-        let error = errorObject.error;
-        let message = errorObject.message;
-        setErrorMessages({...errorMessages, [error]: message});
-    };
-    const validateContactSubject = event => {
-        validateSubject(event);
-        let error = errorObject.error;
-        let message = errorObject.message;
-        setErrorMessages({...errorMessages, [error]: message});
-    };
-    const validateContactMessage = event =>{
-        validateMessage(event);
-        let error = errorObject.error;
-        let message = errorObject.message;
-        setErrorMessages({...errorMessages, [error]: message});
-    };
-
-    // Validation start
-    const handleSubmit = async event => {
-        event.preventDefault();
-        const isValid = contactValidate(event);
-        let error = errorObject.error;
-        let message = errorObject.message;
-        setErrorMessages({...errorMessages, [error]: message});
-
-        if (isValid) {
-            alert('send message');
-            //send message
-        }else{
-            alert('something wrong!');
-        }
-    };
-    // validation end
-
-    const url = "https://firebasestorage.googleapis.com/v0/b/efiewura-db-60044.appspot.com/o/site-images%2Ftelephone.jpg?alt=media&token=971ee471-8371-42a6-bfda-0e7e880bad08";
 
     return (
         <>
-            <Header title="Contact EFIEWURA" imageUrl={url}/>
-
-            <section className="container animated fadeIn">
+            <Navbar/>
+            <div className='cover-img'>
                 <div>
-                    <h2 className="form-head">We would love to hear from you</h2>
-                    <p style={{fontSize: '1.2em', lineHeight: '1.5em'}}>EFIEWURA would love to hear any suggestions or
-                        any
-                        feedback you
-                        would like to give. Your contributions would really help make the platform better for everyone.
-                        Thank you
-                        very much</p>
+                    <h2>Contact Us</h2>
+                    <p>Want to get in touch? We'd love to hear from you. Here's how you can reach us... </p>
                 </div>
-                <div>
-                    <form id="contact-form" className="custom-form" action="" noValidate onSubmit={handleSubmit}>
-                        <FormInputText type='text' name='username' id='username' label='Name'
-                                       onChange={validateContactName} onBlur={validateContactName}/>
-                        <p className='red o-100'>{errorMessages.nameError}</p>
-                        <FormInputText type='email' name='email' id='email' label='Email'
-                                       onChange={validateContactMail} onBlur={validateContactMail}/>
-                        <p className='red o-100'>{errorMessages.mailError}</p>
-                        <FormInputText type='text' name='subject' id='subject' label='Subject'
-                                       onChange={validateContactSubject} onBlur={validateContactSubject}/>
-                        <p className='red o-100'>{errorMessages.subjectError}</p>
-                        <FormInputText type='textarea' name='message' id='message' label='Message'
-                                       onChange={validateContactMessage} onBlur={validateContactMessage}/>
-                        <p className='red o-100'>{errorMessages.messageError}</p>
 
-                        <CustomButtonsContainer>
-                            <CustomButton type='submit'>Send</CustomButton>
-                            <CustomButton type='reset' inverted="true">Reset</CustomButton>
-                        </CustomButtonsContainer>
-                    </form>
+            </div>
+            <div className='container-fluid card-container'>
+                <div className='row contact-row'>
+                    <div className='col-xs-12 col-sm-12 col-md-4 col-lg-3 card'>
+                        <i className='fa fa-envelope animated jello'/>
+                        <h5>Mail Efiewura</h5>
+                        <p>Want to send us feedback? Just send a mail to Efiewura and we will respond as soon as
+                            possible.</p>
+                        <a href="mailto:efiewura18@gmail.com" target='_blank' rel="noopener noreferrer"><CustomButton>send mail</CustomButton></a>
+                    </div>
+                    <div className='col-xs-12 col-sm-12 col-md-4 col-lg-3 card'>
+                        <i className='fa fa-comments animated jello delay-1s'/>
+                        <h5>Reach us on social media</h5>
+                        <p>Follow, send messages, comment and like our social media pages.</p>
+                        <div className='social'>
+                            <a href="#"><i className='fa fa-facebook'/></a>
+                            <a href="#"><i className='fa fa-instagram'/></a>
+                            <a href="#"><i className='fa fa-twitter'/></a>
+                        </div>
+                    </div>
+                    <div className='col-xs-12 col-sm-12 col-md-4 col-lg-3 card location'>
+                        <i className='fa fa-map-marker animated jello delay-2s'/>
+                        <h5>Locate Efiewura</h5>
+                        <p>Tema Community 12</p>
+                        <p>Peregrino Aryee street</p>
+                        <p>House no. 12</p>
+                        <div className='call-header'>
+                            <h6> Or call</h6>
+                            <i className='fa fa-phone'/>
+                        </div>
+                        <p className='bolden'>+233 233 233 233</p>
+                    </div>
                 </div>
-            </section>
+            </div>
         </>
     );
 };

@@ -3,15 +3,16 @@ import {connect} from 'react-redux';
 import Viewer from 'react-viewer';
 import './view-space.styles.scss';
 import {selectProperty} from "../../redux/properties/properties.selectors";
+import Navbar from "../../components/navbar/navbar.component";
+import Footer from "../../components/footer/footer.component";
 
 const ViewSpace = ({property}) => {
 
     const [visible, setVisible] = useState(false);
-    const defaultProfile = 'https://firebasestorage.googleapis.com/v0/b/efiewura-db-60044.appspot.com/o/site-images%2Favatar-placeholder_v0ecjm.png?alt=media&token=ec952423-c148-409e-ab6e-15bf295424bd';
-    const profile_img = property.profile_img ? property.profile_img : defaultProfile;
 
     return (
         <>
+            <Navbar/>
             <section className="container" id="view-listing-head">
                 <div className="main-pic animated fadeIn delay-1s">
                     <img className="img-raised rounded img-fluid" src={property.main_image_url}
@@ -89,7 +90,7 @@ const ViewSpace = ({property}) => {
                             <div className="profile-top">
                                 <div className="profile-img">
                                     <img className="img-fluid rounded-img"
-                                         src={profile_img}
+                                         src={property.profile_img.profile_img}
                                          alt={`${property.username}'s profile`}/>
                                 </div>
                                 <div className="profile-username">
@@ -118,6 +119,7 @@ const ViewSpace = ({property}) => {
                     </div>
                 </div>
             </div>
+            <Footer/>
         </>
     );
 };

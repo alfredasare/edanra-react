@@ -4,7 +4,8 @@ const INITIAL_STATE = {
     currentUser: null,
     error: null,
     loadingUser: true,
-    updatingUser: false
+    updatingUser: false,
+    successMessage: null
 };
 
 const userReducer = (state = INITIAL_STATE, action) => {
@@ -57,7 +58,8 @@ const userReducer = (state = INITIAL_STATE, action) => {
         case UserActionTypes.EDIT_USER_PROFILE_SUCCESS:
             return {
                 ...state,
-                updatingUser: false
+                updatingUser: false,
+                successMessage: action.payload
             };
 
         case UserActionTypes.EDIT_USER_PROFILE_FAILURE:

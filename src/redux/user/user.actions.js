@@ -56,9 +56,9 @@ export const editUserStart = (userDetails) => ({
     payload: userDetails
 });
 
-export const editUserSuccess = (userDetails) => ({
+export const editUserSuccess = (successMessage) => ({
     type: UserActionTypes.EDIT_USER_PROFILE_SUCCESS,
-    payload: userDetails
+    payload: successMessage
 });
 
 export const editUserFailure = error => ({
@@ -78,5 +78,20 @@ export const deleteProfileImageSuccess = successMessage => ({
 
 export const deleteProfileImageFailure = error => ({
     type: UserActionTypes.DELETE_USER_PROFILE_IMAGE_FAILURE,
+    payload: error
+});
+
+export const updateProfileImagesStart = profileUrl => ({
+    type: UserActionTypes.UPDATE_PROPERTY_PROFILE_IMAGES_START,
+    payload: profileUrl
+});
+
+export const updateProfileImagesSuccess = successMessage => ({
+    type: UserActionTypes.UPDATE_PROPERTY_PROFILE_IMAGES_SUCCESS,
+    payload: successMessage
+});
+
+export const updateProfileImagesEnd = error => ({
+    type: UserActionTypes.UPDATE_PROPERTY_PROFILE_IMAGES_FAILURE,
     payload: error
 });

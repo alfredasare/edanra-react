@@ -12,8 +12,6 @@ import ProvideSpace from "./pages/provide-space/provide-space.component";
 import SearchPage from "./pages/search/search.component";
 import SignUp from "./pages/signup/signup.component";
 import TermsPage from "./pages/terms/terms.component";
-import Navbar from "./components/navbar/navbar.component";
-import Footer from "./components/footer/footer.component";
 import SearchResultsPage from "./pages/search-results/search-results.component";
 import {createStructuredSelector} from "reselect";
 import {selectCurrentUser} from "./redux/user/user.selectors";
@@ -23,7 +21,6 @@ import {fetchPropertiesStart} from "./redux/properties/properties.actions";
 import DashboardContainer from "./pages/dashboard/dashboard.container";
 import EditSpaceContainer from "./pages/edit-property/edit-space.container";
 import {selectIsPropertyUploaded} from "./redux/property-upload/property-upload.selectors";
-import 'tachyons';
 import EditProfile from "./pages/edit-profile/edit-profile.component";
 
 const App = ({checkUserSession, currentUser, fetchPropertiesStart, isPropertyUploaded}) => {
@@ -35,7 +32,6 @@ const App = ({checkUserSession, currentUser, fetchPropertiesStart, isPropertyUpl
 
     return (
         <div className="App">
-            <Navbar/>
             <Switch>
                 <Route exact path='/' component={HomePage}/>
                 <Route path='/about' component={AboutPage}/>
@@ -54,7 +50,6 @@ const App = ({checkUserSession, currentUser, fetchPropertiesStart, isPropertyUpl
                 <Route path='/edit-profile/:id' render={() => currentUser ? (<EditProfile/>) : (<LoginPage/>)}/>
                 <Route component={ErrorPage}/>
             </Switch>
-            <Footer/>
         </div>
     );
 };
