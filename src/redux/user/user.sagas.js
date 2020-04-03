@@ -8,7 +8,7 @@ import {
     signOutFailure,
     signOutSuccess,
     signUpFailure,
-    signUpSuccess
+    signUpSuccess, updateProfileImagesFailure, updateProfileImagesStart, updateProfileImagesSuccess
 } from "./user.actions";
 import {
     auth,
@@ -144,6 +144,9 @@ export function* editProfile ({payload: {displayName, email, contact, address, p
             profile_img: downloadUrl ? downloadUrl : profile_img
         });
         yield put(editUserSuccess("Profile updated successfully"));
+        if (downloadUrl) {
+            yield put(updateProfileImagesStart({id, downloadUrl}));
+        }
     } catch (error) {
         yield put(editUserFailure(error));
     }
@@ -168,6 +171,36 @@ export function* onUserProfileImageDeleteStart() {
     yield takeLatest(UserActionTypes.DELETE_USER_PROFILE_IMAGE_START, deleteProfileImage);
 }
 
+//  UPDATE URLS
+export function* updateProfileImagesUrls({payload: {id, downloadUrl}}) {
+    try {
+        let batch = firestore.batch();
+        const propertiesRef = firestore.collection('properties');
+        const snapshot = yield propertiesRef.where("user_id", "==", id).get();
+        // snapshot.docs.forEach((propertyDoc) => {
+        //         //     const propertyRef = firestore.collection('properties').doc(propertyDoc.id);
+        //         //     batch.update(propertyRef, {profile_img: downloadUrl});
+        //         // });
+        for (let doc of snapshot.docs) {
+            const propertyRef = firestore.collection('properties').doc(doc.id);
+            yield batch.update(propertyRef, {profile_img: downloadUrl});
+        }
+        // snapshot.forEach((propertyDoc) => {
+        //     propertyDoc.id.update({
+        //         profile_img: downloadUrl
+        //     });
+        //     console.log(propertyDoc.id.docs);
+        // });
+        yield put(updateProfileImagesSuccess("Urls changed successfully"));
+    } catch (error) {
+        yield put(updateProfileImagesFailure(error));
+    }
+}
+
+export function* onUpdateUrls() {
+    yield takeLatest(UserActionTypes.UPDATE_PROPERTY_PROFILE_IMAGES_START, updateProfileImagesUrls);
+}
+
 
 export function* userSagas() {
     yield all([
@@ -178,6 +211,7 @@ export function* userSagas() {
         call(onSignUpStart),
         call(onSignUpSuccess),
         call(onEditUserProfileStart),
-        call(onUserProfileImageDeleteStart)
+        call(onUserProfileImageDeleteStart),
+        call(onUpdateUrls)
     ]);
 }

@@ -81,9 +81,9 @@ export const deleteProfileImageFailure = error => ({
     payload: error
 });
 
-export const updateProfileImagesStart = profileUrl => ({
+export const updateProfileImagesStart = (profileInfo) => ({
     type: UserActionTypes.UPDATE_PROPERTY_PROFILE_IMAGES_START,
-    payload: profileUrl
+    payload: profileInfo
 });
 
 export const updateProfileImagesSuccess = successMessage => ({
@@ -91,7 +91,7 @@ export const updateProfileImagesSuccess = successMessage => ({
     payload: successMessage
 });
 
-export const updateProfileImagesEnd = error => ({
+export const updateProfileImagesFailure = error => ({
     type: UserActionTypes.UPDATE_PROPERTY_PROFILE_IMAGES_FAILURE,
     payload: error
 });
