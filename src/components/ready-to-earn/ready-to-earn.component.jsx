@@ -10,7 +10,7 @@ const ReadyToEarn = () => {
                 <div className="misc-content">
                     <h2>Want to start hosting ads? </h2>
                     <div className="get-started">
-                        <Link to="/provide-space">Get started</Link>
+                        <Link to="/signup">Get started</Link>
                     </div>
                 </div>
             </div>

@@ -81,7 +81,7 @@ const Navbar = ({currentUser, signOutStart, loader}) => {
                         </li>
                         {
                             currentUser ? <></> : <li className="nav-item">
-                                <NavLink className="nav-link get-started-link" exact={true} to="/provide-space">
+                                <NavLink className="nav-link get-started-link" to="/signup">
                                     Get Started
                                 </NavLink>
                             </li>
