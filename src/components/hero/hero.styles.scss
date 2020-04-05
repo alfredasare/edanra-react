@@ -27,15 +27,24 @@
 
   #hero-message {
     width: 50%;
+    height: 30vh;
 
     h1 {
       font-size: 2.5em;
+
+      @media screen and (max-width: 480px){
+        font-size: 1.6em;
+      }
     }
 
     p {
       font-size: 1.5em;
       margin-top: 45px;
       line-height: 2em;
+
+      @media screen and (max-width: 480px){
+        font-size: 1.2em;
+      }
     }
   }
 }
