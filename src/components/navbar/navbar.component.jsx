@@ -14,7 +14,7 @@ const Navbar = ({currentUser, signOutStart, loader}) => {
         <nav className="navbar fixed-top navbar-expand-lg"
              color-on-scroll="100"
              id="sectionsNav">
-            <div className="container">
+            <div style={{paddingLeft: '40px', paddingRight: '40px'}} className="container-fluid">
                 <div className="navbar-translate">
                     <Link className="navbar-brand" to="/">
                         <img src={require("../../assets/img/efiewura.png")} alt="" className="img-fluid logo"/>
