@@ -16,9 +16,9 @@ const HostingComplete = () => {
                         <div className="profile">
                             <div className="profile-top">
                                 <div className="profile-img">
-                                    <img className="img-fluid"
-                                         src="https://firebasestorage.googleapis.com/v0/b/efiewura-db.appspot.com/o/property_images%2Fusers_profiles%2Fprofile.png?alt=media&token=5ca1731c-0b3a-49a9-bc0f-5e970caec199"
-                                         alt="alfred's profile"/>
+                                    {/*<img className="img-fluid"*/}
+                                    {/*     src="https://firebasestorage.googleapis.com/v0/b/efiewura-db.appspot.com/o/property_images%2Fusers_profiles%2Fprofile.png?alt=media&token=5ca1731c-0b3a-49a9-bc0f-5e970caec199"*/}
+                                    {/*     alt="alfred's profile"/>*/}
                                 </div>
                                 <div className="profile-username">
                                     <p>John Doe</p>
@@ -71,10 +71,10 @@ const HostingComplete = () => {
                             </p>
                         </div>
                         <h3>Main Image</h3>
-                        <div style={{marginTop: '20px'}} className="main-pic animated fadeIn delay-1s">
-                            <img className="img-raised rounded img-fluid" src={require('../../assets/img/22.jpg')}
-                                 alt=""/>
-                        </div>
+                        {/*<div style={{marginTop: '20px'}} className="main-pic animated fadeIn delay-1s">*/}
+                        {/*    <img className="img-raised rounded img-fluid" src={require('../../assets/img/22.jpg')}*/}
+                        {/*         alt=""/>*/}
+                        {/*</div>*/}
                     </div>
                 </div>
             </section>
@@ -83,99 +83,31 @@ const HostingComplete = () => {
                 <h3>Click the other pictures of the listing to view them</h3>
             </div>
 
-            <section className="container animated fadeIn delay-1s" id="other-pics">
-                <div className="other-pic-item">
-                    <img className="img-raised rounded img-fluid" src={require('../../assets/img/6.jpg')} alt=""
-                         data-toggle="modal"
-                         data-target=".other-pic-1"/>
-                </div>
-                <div className="other-pic-item">
-                    <img className="img-raised rounded img-fluid" src={require('../../assets/img/9.jpg')} alt=""
-                         data-toggle="modal"
-                         data-target=".other-pic-2"/>
-                </div>
-                <div className="other-pic-item">
-                    <img className="img-raised rounded img-fluid" src={require('../../assets/img/12.jpg')} alt=""
-                         data-toggle="modal"
-                         data-target=".other-pic-3"/>
-                </div>
-                <div className="other-pic-item">
-                    <img className="img-raised rounded img-fluid" src={require('../../assets/img/14.jpg')} alt=""
-                         data-toggle="modal"
-                         data-target=".other-pic-4"/>
-                </div>
-            </section>
+            {/*<section className="container animated fadeIn delay-1s" id="other-pics">*/}
+            {/*    <div className="other-pic-item">*/}
+            {/*        <img className="img-raised rounded img-fluid" src={require('../../assets/img/6.jpg')} alt=""*/}
+            {/*             data-toggle="modal"*/}
+            {/*             data-target=".other-pic-1"/>*/}
+            {/*    </div>*/}
+            {/*    <div className="other-pic-item">*/}
+            {/*        <img className="img-raised rounded img-fluid" src={require('../../assets/img/9.jpg')} alt=""*/}
+            {/*             data-toggle="modal"*/}
+            {/*             data-target=".other-pic-2"/>*/}
+            {/*    </div>*/}
+            {/*    <div className="other-pic-item">*/}
+            {/*        <img className="img-raised rounded img-fluid" src={require('../../assets/img/12.jpg')} alt=""*/}
+            {/*             data-toggle="modal"*/}
+            {/*             data-target=".other-pic-3"/>*/}
+            {/*    </div>*/}
+            {/*    <div className="other-pic-item">*/}
+            {/*        <img className="img-raised rounded img-fluid" src={require('../../assets/img/14.jpg')} alt=""*/}
+            {/*             data-toggle="modal"*/}
+            {/*             data-target=".other-pic-4"/>*/}
+            {/*    </div>*/}
+            {/*</section>*/}
 
 
-            <div className="modal fade other-pic-1" tabIndex="-1" role="dialog" aria-labelledby="other-pic-1"
-                 style={{display: 'none'}}
-                 aria-hidden="true">
-                <div className="modal-dialog modal-lg">
-                    <div className="modal-content">
-                        <div className="modal-header">
-                            <button type="button" className="close" data-dismiss="modal" aria-label="Close">
-                                <span aria-hidden="true">×</span>
-                            </button>
-                        </div>
-                        <div className="modal-body">
-                            <img className="img-fluid" src={require('../../assets/img/6.jpg')} alt=""/>
-                        </div>
-                    </div>
-                </div>
-            </div>
 
-            <div className="modal fade other-pic-2" tabIndex="-1" role="dialog" aria-labelledby="other-pic-2"
-                 style={{display: 'none'}}
-                 aria-hidden="true">
-                <div className="modal-dialog modal-lg">
-                    <div className="modal-content">
-                        <div className="modal-header">
-                            <button type="button" className="close" data-dismiss="modal" aria-label="Close">
-                                <span aria-hidden="true">×</span>
-                            </button>
-                        </div>
-                        <div className="modal-body">
-                            <img className="img-fluid" src={require('../../assets/img/9.jpg')} alt=""/>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-
-            <div className="modal fade other-pic-3" tabIndex="-1" role="dialog" aria-labelledby="other-pic-3"
-                 style={{display: 'none'}}
-                 aria-hidden="true">
-                <div className="modal-dialog modal-lg">
-                    <div className="modal-content">
-                        <div className="modal-header">
-                            <button type="button" className="close" data-dismiss="modal" aria-label="Close">
-                                <span aria-hidden="true">×</span>
-                            </button>
-                        </div>
-                        <div className="modal-body">
-                            <img className="img-fluid" src={require('../../assets/img/12.jpg')} alt=""/>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-
-            <div className="modal fade other-pic-4" tabIndex="-1" role="dialog" aria-labelledby="other-pic-4"
-                 style={{display: 'none'}}
-                 aria-hidden="true">
-                <div className="modal-dialog modal-lg">
-                    <div className="modal-content">
-                        <div className="modal-header">
-                            <button type="button" className="close" data-dismiss="modal" aria-label="Close">
-                                <span aria-hidden="true">×</span>
-                            </button>
-                        </div>
-                        <div className="modal-body">
-                            <img className="img-fluid" src={require('../../assets/img/14.jpg')} alt=""/>
-                        </div>
-                    </div>
-                </div>
-            </div>
             <Footer/>
         </>
     );

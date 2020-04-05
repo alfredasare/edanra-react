@@ -13,7 +13,7 @@ const Hero = () => {
             </div>
             <div id="hero-social-container">
                 <div id="hero-social-icons" className="animated fadeIn delay-1s">
-                    <a rel="noopener noreferrer" data-placement="bottom" href="https://twitter.com/Efiewura"
+                    <a rel="noopener noreferrer" data-placement="bottom" href="https://twitter.com/efiawura"
                        target="_blank">
                         <i className="fa fa-twitter"/>
                     </a>
