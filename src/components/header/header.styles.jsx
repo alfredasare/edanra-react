@@ -6,8 +6,7 @@ export const HeaderContainer = styled.header`
   color: var(--color-white);
   display: flex;
   flex-flow: row nowrap;
-  justify-content: flex-start;
-  padding-left: 10%;
+  justify-content: center;
   align-items: center;
   background: ${({imageUrl}) => `url(${imageUrl})`} no-repeat center center fixed;
   background-size: cover;
