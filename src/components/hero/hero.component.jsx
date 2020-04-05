@@ -21,7 +21,7 @@ const Hero = () => {
                        target="_blank">
                         <i className="fa fa-facebook-square"/>
                     </a>
-                    <a rel="noopener noreferrer" data-placement="bottom" href="https://www.instagram.com/Efiewura"
+                    <a rel="noopener noreferrer" data-placement="bottom" href="https://www.instagram.com/efiawura/"
                        target="_blank">
                         <i className="fa fa-instagram"/>
                     </a>

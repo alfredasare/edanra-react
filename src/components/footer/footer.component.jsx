@@ -24,7 +24,7 @@ const Footer = () => {
                             <a rel="noopener noreferrer" href="https://www.facebook.com/Efiewura" target="_blank">
                                 <i className="fa fa-facebook-square"/>
                             </a>
-                            <a rel="noopener noreferrer" href="https://www.instagram.com/Efiewura" target="_blank">
+                            <a rel="noopener noreferrer" href="https://www.instagram.com/efiawura/" target="_blank">
                                 <i className="fa fa-instagram"/>
                             </a>
                         </div>
