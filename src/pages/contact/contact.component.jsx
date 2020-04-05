@@ -1,6 +1,5 @@
 import React from "react";
 import './contact.styles.scss';
-import './animate.css';
 import CustomButton from "../../components/custom-button/custom-button.component";
 import Navbar from "../../components/navbar/navbar.component";
 
@@ -31,9 +30,9 @@ const ContactPage = () => {
                         <h5>Reach us on social media</h5>
                         <p>Follow, send messages, comment and like our social media pages.</p>
                         <div className='social'>
-                            <a href="#"><i className='fa fa-facebook'/></a>
-                            <a href="#"><i className='fa fa-instagram'/></a>
-                            <a href="#"><i className='fa fa-twitter'/></a>
+                            <a href="/#"><i className='fa fa-facebook'/></a>
+                            <a href="/#"><i className='fa fa-instagram'/></a>
+                            <a href="/#"><i className='fa fa-twitter'/></a>
                         </div>
                     </div>
                     <div className='col-xs-12 col-sm-12 col-md-4 col-lg-3 card location'>

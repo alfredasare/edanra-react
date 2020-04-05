@@ -1,0 +1,38 @@
+.misc-content-bg {
+  background-image: url("../../assets/img/brickwall.jpg");
+  background-size: cover ;
+  background-position: center;
+  height: 440px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+
+  @media screen and (max-width: 768px) {
+    height: 480px;
+  }
+
+  .misc-content {
+
+    color: var(--color-white);
+    padding: 30px 5em;
+    display: flex;
+    flex-direction: column;
+
+
+    h2 {
+      font-weight: 700;
+      font-size: 3.5em;
+    }
+
+    .get-started {
+      margin-top: 30px;
+
+      a {
+        background-color: white;
+        padding: 15px 20px;
+        border-radius: 5px;
+        font-weight: bold;
+      }
+    }
+  }
+}

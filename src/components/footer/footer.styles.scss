@@ -15,6 +15,13 @@ footer {
   justify-content: space-evenly;
   a {
     color: var(--grey-link);
+    opacity: 0.8;
+    transition: opacity 0.3s ease-in;
+
+    &:hover {
+      opacity: 1.0;
+    }
   }
+
 }
 

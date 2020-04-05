@@ -1,0 +1,41 @@
+#hero {
+  display: flex;
+  flex-flow: row nowrap;
+  align-items: center;
+  justify-content: space-around;
+  height: 100vh;
+  background: url("https://firebasestorage.googleapis.com/v0/b/efiewura-db-60044.appspot.com/o/site-images%2F4-cover.jpg?alt=media&token=b1be349d-b4d1-42d8-9cc7-d395f6cc56b6") no-repeat center center fixed;
+  background-size: cover;
+  color: rgba(255, 255, 255, 1.00);
+
+  #hero-social-icons {
+    display: flex;
+    flex-flow: column nowrap;
+    font-size: 1.5em;
+
+    a {
+      color: var(--color-white);
+      margin-top: 25px;
+      opacity: 0.6;
+      transition: opacity 0.3s ease-in;
+
+      &:hover {
+        opacity: 1.0;
+      }
+    }
+  }
+
+  #hero-message {
+    width: 50%;
+
+    h1 {
+      font-size: 2.5em;
+    }
+
+    p {
+      font-size: 1.5em;
+      margin-top: 45px;
+      line-height: 2em;
+    }
+  }
+}

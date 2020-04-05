@@ -136,7 +136,7 @@ export function* editProfile ({payload: {displayName, email, contact, address, p
             downloadUrl = yield uploadTask.ref.getDownloadURL();
         }
 
-        const response = yield firestore.collection("users").doc(id).update({
+        yield firestore.collection("users").doc(id).update({
             displayName,
             email,
             contact,
@@ -177,21 +177,11 @@ export function* updateProfileImagesUrls({payload: {id, downloadUrl}}) {
         let batch = firestore.batch();
         const propertiesRef = firestore.collection('properties');
         const snapshot = yield propertiesRef.where("user_id", "==", id).get();
-        // snapshot.docs.forEach((propertyDoc) => {
-        //         //     const propertyRef = firestore.collection('properties').doc(propertyDoc.id);
-        //         //     batch.update(propertyRef, {profile_img: downloadUrl});
-        //         // });
         for (let doc of snapshot.docs) {
             const propertyRef = firestore.collection('properties').doc(doc.id);
             yield batch.update(propertyRef, {profile_img: downloadUrl});
             yield batch.commit();
         }
-        // snapshot.forEach((propertyDoc) => {
-        //     propertyDoc.id.update({
-        //         profile_img: downloadUrl
-        //     });
-        //     console.log(propertyDoc.id.docs);
-        // });
         yield put(updateProfileImagesSuccess("Urls changed successfully"));
     } catch (error) {
         yield put(updateProfileImagesFailure(error));

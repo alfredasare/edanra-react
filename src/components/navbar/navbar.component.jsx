@@ -79,6 +79,13 @@ const Navbar = ({currentUser, signOutStart, loader}) => {
                                     </NavLink>
                             }
                         </li>
+                        {
+                            currentUser ? <></> : <li className="nav-item">
+                                <NavLink className="nav-link get-started-link" exact={true} to="/provide-space">
+                                    Get Started
+                                </NavLink>
+                            </li>
+                        }
                     </ul>
                 </div>
             </div>

@@ -16,7 +16,7 @@ const Dashboard = ({fetchPropertiesStart, isPropertyEdited, currentUser, checkUs
     useEffect(() => {
         checkUserSession();
         fetchPropertiesStart()
-    }, [isPropertyEdited]);
+    }, [isPropertyEdited, checkUserSession, fetchPropertiesStart]);
 
     return (
         <>

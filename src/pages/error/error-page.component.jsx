@@ -1,6 +1,5 @@
 import React from "react";
 import './error-page.styles.scss';
-import '../contact/animate.css';
 
 const ErrorPage = () => {
 

@@ -1,6 +1,6 @@
 import React, {useState} from "react";
 import {connect} from 'react-redux';
-import {Link, withRouter} from 'react-router-dom';
+import {Link} from 'react-router-dom';
 import FormInputText from "../../components/form-input-text/form-input-text.component";
 import CustomButtonsContainer from "../../components/custom-buttons-container/custom-buttons-container.component";
 import CustomButton from "../../components/custom-button/custom-button.component";
@@ -19,16 +19,17 @@ import Footer from "../../components/footer/footer.component";
 import {
     editProfileValidate,
     errorObject,
-    provideSpaceValidate,
     validateAddress,
     validateContact,
     validateMail,
     validateName
 } from "../../assets/js/validation";
+import SuccessTick from "../../components/success-tick/success-tick.component";
 
-const EditProfile = ({currentUser, error, isUpdating, updateProfileStart, deleteProfileImageStart, history, successMessage}) => {
+const EditProfile = ({currentUser, error, isUpdating, updateProfileStart, deleteProfileImageStart, successMessage}) => {
 
     const oldProfileImage = currentUser.profile_img;
+    const [updateButtonVisibility, setUpdateButtonVisibility] = useState(true);
 
     const [userCredentials, setUserCredentials] = useState({
         displayName: currentUser.displayName,
@@ -76,6 +77,7 @@ const EditProfile = ({currentUser, error, isUpdating, updateProfileStart, delete
 
     const handleSubmit = event => {
         event.preventDefault();
+        setUpdateButtonVisibility(false);
 
         const isValid = editProfileValidate(event);
         setError();
@@ -94,6 +96,7 @@ const EditProfile = ({currentUser, error, isUpdating, updateProfileStart, delete
     const handleChange = event => {
         const {name, value} = event.target;
         setUserCredentials({...userCredentials, [name]: value});
+        setUpdateButtonVisibility(true);
 
         if (event.target.name === 'displayName') {
             validatePropertyName(event);
@@ -113,6 +116,7 @@ const EditProfile = ({currentUser, error, isUpdating, updateProfileStart, delete
             ...userCredentials,
             [name]: file
         });
+        setUpdateButtonVisibility(true);
     };
 
     return (
@@ -175,7 +179,7 @@ const EditProfile = ({currentUser, error, isUpdating, updateProfileStart, delete
 
                             <CustomButtonsContainer>
                                 {
-                                    isUpdating ? <LoadingSpinner/> : <CustomButton type='submit'>Update</CustomButton>
+                                    isUpdating ? <LoadingSpinner/> : updateButtonVisibility ? <CustomButton type='submit'>Update</CustomButton> : <SuccessTick/>
                                 }
                                 <CustomButton type='reset' inverted="true">Reset</CustomButton>
                             </CustomButtonsContainer>
@@ -204,4 +208,4 @@ const mapDispatchToProps = dispatch => ({
     deleteProfileImageStart: imageUrl => dispatch(deleteProfileImageStart(imageUrl)),
 });
 
-export default withRouter(connect(mapStateToProps, mapDispatchToProps)(EditProfile));
+export default connect(mapStateToProps, mapDispatchToProps)(EditProfile);
