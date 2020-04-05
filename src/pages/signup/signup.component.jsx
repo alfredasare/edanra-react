@@ -82,7 +82,6 @@ const SignUp = ({signUpStart, error, loader}) => {
         setError();
 
         if (isValid) {
-            console.log({displayName, email, password, contact, address, profile_img});
             signUpStart({displayName, email, password, contact, address, profile_img});
         }
     };

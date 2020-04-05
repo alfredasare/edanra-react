@@ -88,8 +88,6 @@ const EditProfile = ({currentUser, error, isUpdating, updateProfileStart, delete
             }
 
             updateProfileStart({displayName, email, contact, address, profile_img, id});
-
-            console.log({displayName, email, contact, address, profile_img, id});
         }
     };
 

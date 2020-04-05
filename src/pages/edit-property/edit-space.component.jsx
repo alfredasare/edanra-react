@@ -102,7 +102,6 @@ const EditSpace = ({regions, districts, property, history, propertyEditStart}) =
         setError();
 
         if (isValid) {
-            console.log(propertyDetails);
             propertyEditStart(propertyDetails);
             history.push(`/dashboard`);
         }

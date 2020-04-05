@@ -14,7 +14,6 @@ import Footer from "../../components/footer/footer.component";
 const SearchResultsPage = ({regions, districts, getResults, results, allProperties}) => {
 
     useEffect(() => {
-        console.log(results);
     }, [results]);
 
     const [filters, setFilters] = useState({
