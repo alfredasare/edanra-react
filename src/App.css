@@ -54,6 +54,10 @@ input:-webkit-autofill {
 /*STYLE OVERRIDES*/
 
 @media (min-width: 992px){
+  button.navbar-toggler {
+    display: none !important;
+  }
+
   .navbar-expand-lg .navbar-toggler {
     display: block;
   }
