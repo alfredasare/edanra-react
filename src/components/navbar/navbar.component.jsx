@@ -82,7 +82,7 @@ const Navbar = ({currentUser, signOutStart, loader}) => {
                         {
                             currentUser ? <></> : <li className="nav-item">
                                 <NavLink className="nav-link get-started-link" to="/signup">
-                                    Get Started
+                                    Put up an ad
                                 </NavLink>
                             </li>
                         }
