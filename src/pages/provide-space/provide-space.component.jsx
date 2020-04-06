@@ -60,6 +60,7 @@ const ProvideSpace = ({currentUser, propertyStorageUploadStart, regions, distric
         townError: '',
         imageError: '',
         priceError: '',
+        adTypeError: '',
         negotiationError: '',
     });
 
@@ -103,6 +104,10 @@ const ProvideSpace = ({currentUser, propertyStorageUploadStart, regions, distric
 
     const makeNegotiationValid = () => {
         setErrorMessages({...errorMessages, negotiationError: ''});
+    };
+
+    const makeAdTypeValid = () => {
+        setErrorMessages({...errorMessages, adTypeError: ''});
     };
 
     const validatePropertyDescription = event => {
@@ -359,7 +364,7 @@ const ProvideSpace = ({currentUser, propertyStorageUploadStart, regions, distric
                                 <label htmlFor="sale" className="form-check-label">
                                     <input onChange={handleChange} className="form-check-input" type="radio"
                                            name="ad_type" id="sale"
-                                           value="Sale" checked={ad_type === "Sale"}/>
+                                           value="Sale" checked={ad_type === "Sale"} onClick={makeAdTypeValid}/>
                                     Sale
                                     <span className="circle">
                                     <span className="check"/>
@@ -370,13 +375,15 @@ const ProvideSpace = ({currentUser, propertyStorageUploadStart, regions, distric
                                 <label htmlFor="rent" className="form-check-label">
                                     <input onChange={handleChange} className="form-check-input" type="radio"
                                            name="ad_type" id="rent"
-                                           value="Rent" checked={ad_type === "Rent"}/>
+                                           value="Rent" checked={ad_type === "Rent"} onClick={makeAdTypeValid}/>
                                     Rent
                                     <span className="circle">
                                     <span className="check"/>
                                 </span>
                                 </label>
                             </div>
+                            <p className='red o-100'>{errorMessages.adTypeError}</p>
+
 
                             <FormInputText handleChange={handleChange} type='number' name='price' id='price'
                                            label={`Price ${ad_type === 'Rent' ? 'per month': ''}`}

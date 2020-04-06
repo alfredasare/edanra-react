@@ -31,38 +31,44 @@ const Navbar = ({currentUser, signOutStart, loader}) => {
                 <div className="collapse navbar-collapse">
                     <ul className="navbar-nav ml-auto">
                         <li className="nav-item">
-                            <NavLink activeClassName="nav-active" className="nav-link" exact={true} to="/">
+                            <NavLink activeClassName="nav-active" className="nav-link"
+                                     data-toggle="collapse" exact={true} to="/">
                                 Home
                             </NavLink>
                         </li>
                         <li className="nav-item">
-                            <NavLink activeClassName="nav-active" className="nav-link" to="/about">
+                            <NavLink activeClassName="nav-active" className="nav-link"
+                                     data-toggle="collapse" to="/about">
                                 About
                             </NavLink>
                         </li>
                         <li className="nav-item">
-                            <NavLink activeClassName="nav-active" className="nav-link" to="/contact">
+                            <NavLink activeClassName="nav-active" className="nav-link"
+                                     data-toggle="collapse" to="/contact">
                                 Contact
                             </NavLink>
                         </li>
                         {
                             currentUser ?
                                 <li className="nav-item">
-                                    <NavLink activeClassName="nav-active" className="nav-link" to="/provide-space">
+                                    <NavLink activeClassName="nav-active" className="nav-link"
+                                             data-toggle="collapse" to="/provide-space">
                                         Provide space
                                     </NavLink>
                                 </li> :
                                 <></>
                         }
                         <li className="nav-item">
-                            <NavLink activeClassName="nav-active" className="nav-link" to="/search">
+                            <NavLink activeClassName="nav-active" className="nav-link"
+                                     data-toggle="collapse" to="/search">
                                 Find Space
                             </NavLink>
                         </li>
                         {
                             currentUser ?
                                 <li className="nav-item">
-                                    <NavLink activeClassName="nav-active" className="nav-link" to="/dashboard">
+                                    <NavLink activeClassName="nav-active" className="nav-link"
+                                             data-toggle="collapse" to="/dashboard">
                                         Dashboard
                                     </NavLink>
                                 </li> :
@@ -71,17 +77,20 @@ const Navbar = ({currentUser, signOutStart, loader}) => {
                         <li className="nav-item">
                             {
                                 currentUser ?
-                                    <Link className="nav-link" onClick={signOutStart} to="/login">
+                                    <Link className="nav-link" onClick={signOutStart}
+                                          data-toggle="collapse" to="/login">
                                         {loader ? <LoadingSpinner/> : <>Sign Out</>}
                                     </Link>
-                                    : <NavLink activeClassName="nav-active" className="nav-link" to="/login">
+                                    : <NavLink activeClassName="nav-active" className="nav-link"
+                                               data-toggle="collapse" to="/login">
                                         Sign In
                                     </NavLink>
                             }
                         </li>
                         {
                             currentUser ? <></> : <li className="nav-item">
-                                <NavLink className="nav-link get-started-link" to="/signup">
+                                <NavLink className="nav-link get-started-link"
+                                         data-toggle="collapse" to="/signup">
                                     Put up an ad
                                 </NavLink>
                             </li>

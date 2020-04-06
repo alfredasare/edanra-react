@@ -11,6 +11,7 @@ import LoadingSpinner from "../../components/loading-spinner/loading-spinner.com
 import {errorObject, loginValidate, validateMail, validatePassword} from "../../assets/js/validation";
 import Navbar from "../../components/navbar/navbar.component";
 import Footer from "../../components/footer/footer.component";
+import PasswordToggle from "../../components/passwordToggle/passwordToggle.component";
 
 const LoginPage = ({googleSignInStart, emailSignInStart, error, loader}) => {
 
@@ -58,6 +59,20 @@ const LoginPage = ({googleSignInStart, emailSignInStart, error, loader}) => {
         setCredentials({...userCredentials, [name]: value});
     };
 
+    const showPass = (event) => {
+        let pass;
+        if (event.target.name === 'password'){
+            pass = document.getElementById('password');
+        }else if(event.target.name === 'confirmPassword'){
+            pass = document.getElementById('confirmPassword');
+        }
+        if (pass.type === 'password'){
+            pass.type = 'text';
+        }else{
+            pass.type = 'password';
+        }
+    };
+
 
     return (
         <>
@@ -82,6 +97,9 @@ const LoginPage = ({googleSignInStart, emailSignInStart, error, loader}) => {
                                 <FormInputText handleChange={handleChange} type='password' name='password' id='password'
                                                label='Password' onBlur={validateLoginPassword}/>
                                 <p className='red o-100'>{errorMessages.passwordError}</p>
+                                <div style={{marginBottom:'20px'}}>
+                                    <PasswordToggle unHide={showPass} toggleName='password'/>
+                                </div>
 
 
                                 <div style={{display: 'flex', justifyContent: 'space-around', alignItems: 'center'}}>

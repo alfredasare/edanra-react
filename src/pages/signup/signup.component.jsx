@@ -19,6 +19,7 @@ import {
 } from "../../assets/js/validation";
 import Navbar from "../../components/navbar/navbar.component";
 import Footer from "../../components/footer/footer.component";
+import PasswordToggle from "../../components/passwordToggle/passwordToggle.component";
 
 const SignUp = ({signUpStart, error, loader}) => {
 
@@ -98,6 +99,20 @@ const SignUp = ({signUpStart, error, loader}) => {
         });
     };
 
+    const showPass = (event) => {
+        let pass;
+        if (event.target.name === 'password'){
+            pass = document.getElementById('password');
+        }else if(event.target.name === 'confirmPassword'){
+            pass = document.getElementById('confirmPassword');
+        }
+        if (pass.type === 'password'){
+            pass.type = 'text';
+        }else{
+            pass.type = 'password';
+        }
+    };
+
     return (
         <>
             <Navbar/>
@@ -157,11 +172,13 @@ const SignUp = ({signUpStart, error, loader}) => {
                             <FormInputText handleChange={handleChange} type='password' name='password' id='password'
                                            label='Password' onBlur={validateSignUpPassword}/>
                             <p className='red o-100'>{errorMessages.passwordError}</p>
+                            <PasswordToggle unHide={showPass} toggleName='password'/>
 
                             <FormInputText handleChange={handleChange} type='password' name='confirmPassword'
                                            id='confirmPassword'
                                            label='Confirm Password' onBlur={validateSignUpConfirmPassword}/>
                             <p className='red o-100'>{errorMessages.confirmPasswordError}</p>
+                            <PasswordToggle unHide={showPass} toggleName='confirmPassword'/>
 
                             <CustomButtonsContainer>
                                 {

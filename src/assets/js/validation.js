@@ -209,9 +209,7 @@ export const validateSpecialPassword = (event, mainEvent, name) => {
     if (password.trim() === '') {
         setInvalid(field, 'Please enter password', error);
         return false;
-    } else if (!containsCharacters(field, 2, error)) {
-        return false;
-    } else if (password.length < 7) {
+    }else if (password.length < 7) {
         setInvalid(field, 'Password should be at least 7 characters', error);
         return false;
     } else {
@@ -555,6 +553,7 @@ export const provideSpaceValidate = event => {
         validateDescription(undefined, event, 'description')
         && validateRegion(event, 'region') && validateTown(undefined, event, 'town') &&
         validateImages(undefined, event, 'property_images') &&
+        validateRadioButtons(event, 'ad_type', 'adTypeError') &&
         validatePrice(undefined, event, 'price') &&
         validateRadioButtons(event, 'negotiation_status', 'negotiationError');
 };
