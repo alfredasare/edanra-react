@@ -32,6 +32,7 @@ const EditSpace = ({regions, districts, property, history, propertyEditStart}) =
         region: property.region,
         district: property.district,
         town: property.town,
+        ad_type: property.ad_type,
         price: property.price,
         negotiation_status: property.negotiation_status,
     });
@@ -47,7 +48,7 @@ const EditSpace = ({regions, districts, property, history, propertyEditStart}) =
         priceError: '',
     });
 
-    const {property_type, region, district, negotiation_status, ...otherPropertyDetails} = propertyDetails;
+    const {property_type, ad_type,region, district, negotiation_status, ...otherPropertyDetails} = propertyDetails;
 
     const setError = () => {
         let error = errorObject.error;
@@ -231,7 +232,7 @@ const EditSpace = ({regions, districts, property, history, propertyEditStart}) =
                             <div className="form-group">
                                 <label htmlFor="description">Description</label>
                                 <textarea value={otherPropertyDetails.description} onChange={handleChange}
-                                          className="form-control" id="description" rows="2" name='description'/>
+                                          className="form-control" id="description" rows="3" name='description'/>
                             </div>
                             <p className='red o-100'>{errorMessages.descriptionError}</p>
 
@@ -270,8 +271,33 @@ const EditSpace = ({regions, districts, property, history, propertyEditStart}) =
                             <p className='red o-100'>{errorMessages.townError}</p>
 
 
+                            <h5 style={{fontWeight: 'bold', marginTop: '15px', marginBottom: '10px'}}>Ad type</h5>
+                            <div style={{marginTop: '10px'}} className="form-check form-check-radio">
+                                <label htmlFor="sale" className="form-check-label">
+                                    <input onChange={handleChange} className="form-check-input" type="radio"
+                                           name="ad_type" id="sale"
+                                           value="Sale" checked={ad_type === "Sale"}/>
+                                    Sale
+                                    <span className="circle">
+                                    <span className="check"/>
+                                </span>
+                                </label>
+                            </div>
+                            <div className="form-check form-check-radio">
+                                <label htmlFor="rent" className="form-check-label">
+                                    <input onChange={handleChange} className="form-check-input" type="radio"
+                                           name="ad_type" id="rent"
+                                           value="Rent" checked={ad_type === "Rent"}/>
+                                    Rent
+                                    <span className="circle">
+                                    <span className="check"/>
+                                </span>
+                                </label>
+                            </div>
+
+
                             <FormInputText value={otherPropertyDetails.price} handleChange={handleChange} type='number'
-                                           name='price' id='price' label='Price'
+                                           name='price' id='price' label={`Price ${ad_type === 'Rent' ? 'per month': ''}`}
                             />
                             <p className='red o-100'>{errorMessages.priceError}</p>
 

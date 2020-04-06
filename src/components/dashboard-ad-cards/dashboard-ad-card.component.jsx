@@ -8,7 +8,7 @@ import {selectPropertiesForDisplay} from "../../redux/properties/properties.sele
 
 const DashboardAdCard = ({property, removePropertyStart, allProperties}) => {
 
-    const {routeName, main_image_url, town, price, date_uploaded, ad_status} = property;
+    const {routeName, main_image_url, town, price, date_uploaded, ad_status, ad_type} = property;
 
     // date calculator //
     const daysBetween = (date1, date2) => {
@@ -97,7 +97,7 @@ const DashboardAdCard = ({property, removePropertyStart, allProperties}) => {
                         <li className="list-group-item">Ghs {price}</li>
                     </div>
                     <li className="list-group-item">Uploaded on {formattedDate}</li>
-                    <li className="list-group-item">Ad is {ad_status}</li>
+                    <li className="list-group-item">For {ad_type}</li>
                     <div style={{display: 'flex', justifyContent: 'space-between'}}>
                         <div className="badge-container">
                             {
@@ -108,6 +108,9 @@ const DashboardAdCard = ({property, removePropertyStart, allProperties}) => {
                         </div>
                         <span style={{paddingRight: 16}}>Days remaining:  <span style={{color: "#004D44"}}>{daysRemaining}</span></span>
                     </div>
+                    <li className="list-group-item ad-view-link">
+                        <Link to={`properties/${routeName}`}>View ad</Link>
+                    </li>
                 </ul>
             </div>
         </div>

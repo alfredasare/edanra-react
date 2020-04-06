@@ -32,7 +32,7 @@ const ContactPage = () => {
                         <div className='social'>
                             <a href="/#"><i className='fa fa-facebook'/></a>
                             <a rel="noopener noreferrer" href="https://www.instagram.com/efiawura/" target="_blank"><i className='fa fa-instagram'/></a>
-                            <a rel="noopener noreferrer" href="https://twitter.com/efiawura" target="_blank"><i className='fa fa-twitter'/></a>
+                            <a rel="noopener noreferrer" href="https://twitter.com/efiewuragh" target="_blank"><i className='fa fa-twitter'/></a>
                         </div>
                     </div>
                     <div className='col-xs-12 col-sm-12 col-md-4 col-lg-3 card location'>

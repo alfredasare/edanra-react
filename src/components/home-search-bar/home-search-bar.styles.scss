@@ -1,0 +1,70 @@
+#motto {
+  font-size: 2.8em;
+  font-weight: 300;
+  margin: 60px 0;
+  color: #484848;
+  line-height: 1em;
+  padding: 20px;
+
+  @media screen and (max-width: 480px) {
+    font-size: 2em;
+    padding: 10px;
+  }
+}
+
+#motto span {
+  color: var(--teal) !important;
+  font-weight: 700;
+}
+
+#searchbar {
+  width: 100%;
+  height: auto;
+  display: flex;
+  justify-content: center;
+  flex-direction: row;
+
+  @media screen and (max-width: 480px){
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+  }
+  input {
+    font-size: 19px;
+    outline: none;
+    padding: 19px 15px;
+    width: 73%;
+    display: inline-block;
+    border: 1px solid #ccc;
+
+    @media screen and (max-width: 480px) {
+      display: block;
+      width: 90%;
+      margin-left: 5%;
+    }
+  }
+  button {
+    width: 17%;
+    margin-left: 3%;
+    display: inline-block;
+    padding: 20px 0;
+    border: none;
+    color: #fff;
+    background-color: var(--teal);
+    cursor: pointer;
+    transition: all 0.3s ease;
+    -webkit-transition: all 0.3s ease;
+    -moz-transition: all 0.3s ease;
+    -o-transition: all 0.3s ease;
+    &:hover {
+      background-color: var(--teal-hover);
+    }
+
+    @media screen and (max-width: 480px) {
+      display: block;
+      margin-top: 20px;
+      width: 90%;
+      margin-left: 5%;
+    }
+  }
+}

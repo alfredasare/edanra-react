@@ -28,5 +28,20 @@
   .badge {
     font-size: 0.8em;
   }
+
+}
+
+.ad-view-link {
+  border-top: 1px rgba(0, 0, 0, 0.1) solid;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  opacity: 0.9;
+  transition: opacity 0.3s linear;
+  font-weight: normal;
+
+  &:hover {
+    opacity: 1.0;
+  }
 }
 

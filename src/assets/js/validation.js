@@ -545,7 +545,6 @@ export const loginValidate = event => {
 export const signUpValidate = event => {
     return validateName(undefined, event, 'displayName') && validateMail(undefined, event, 'email') &&
         validateSpecialPassword(undefined, event, 'password') && validateConfirmPassword(undefined, event, 'confirmPassword')
-        && validateContact(undefined, event, 'contact') && validateAddress(undefined, event, 'address');
 };
 
 
@@ -570,6 +569,5 @@ export const editSpaceValidate = event => {
 };
 
 export const editProfileValidate = event => {
-    return validateName(undefined, event, 'displayName') && validateMail(undefined, event, 'email')
-        && validateContact(undefined, event, 'contact') && validateAddress(undefined, event, 'address');
+    return validateName(undefined, event, 'displayName') && validateMail(undefined, event, 'email');
 };

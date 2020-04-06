@@ -25,8 +25,7 @@ const ViewSpace = ({property}) => {
                     <p style={{fontSize: '1.1em'}}><span
                         style={{fontWeight: '400'}}>District :</span> {property.district}</p>
                     <p style={{fontSize: '1.1em'}}><span
-                        style={{fontWeight: '400'}}>Price :</span> Ghc {property.price} &#9679;
-                        {property.negotiation_status}</p>
+                        style={{fontWeight: '400'}}>Price :</span> Ghc {property.price} &#9679; {property.ad_type} &#9679;{property.negotiation_status}</p>
                     <h3>Description</h3>
                     <p style={{fontSize: '1.1em'}}>
                         {

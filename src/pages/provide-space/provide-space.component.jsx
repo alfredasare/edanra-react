@@ -38,6 +38,7 @@ const ProvideSpace = ({currentUser, propertyStorageUploadStart, regions, distric
         town: '',
         property_images: null,
         price: '',
+        ad_type: '',
         negotiation_status: '',
         date_uploaded: new Date().toString(),
         ad_status: 'Hosted',
@@ -62,7 +63,7 @@ const ProvideSpace = ({currentUser, propertyStorageUploadStart, regions, distric
         negotiationError: '',
     });
 
-    const {property_type, region, district, negotiation_status, property_images} = propertyDetails;
+    const {property_type, ad_type, region, district, negotiation_status, property_images} = propertyDetails;
 
 
     const setError = () => {
@@ -281,7 +282,7 @@ const ProvideSpace = ({currentUser, propertyStorageUploadStart, regions, distric
                             <div className="form-group">
                                 <label htmlFor="description">Description</label>
                                 <textarea onChange={handleChange}
-                                          className="form-control" id="description" rows="2" name='description'
+                                          className="form-control" id="description" rows="3" name='description'
                                           onBlur={validatePropertyDescription}/>
                             </div>
                             <p className='red o-100'>{errorMessages.descriptionError}</p>
@@ -353,8 +354,32 @@ const ProvideSpace = ({currentUser, propertyStorageUploadStart, regions, distric
                             }
                             <p className='red o-100' tabIndex='-1' id='image'>{errorMessages.imageError}</p>
 
+                            <h5 style={{fontWeight: 'bold', marginTop: '15px', marginBottom: '10px'}}>Ad type</h5>
+                            <div style={{marginTop: '10px'}} className="form-check form-check-radio">
+                                <label htmlFor="sale" className="form-check-label">
+                                    <input onChange={handleChange} className="form-check-input" type="radio"
+                                           name="ad_type" id="sale"
+                                           value="Sale" checked={ad_type === "Sale"}/>
+                                    Sale
+                                    <span className="circle">
+                                    <span className="check"/>
+                                </span>
+                                </label>
+                            </div>
+                            <div className="form-check form-check-radio">
+                                <label htmlFor="rent" className="form-check-label">
+                                    <input onChange={handleChange} className="form-check-input" type="radio"
+                                           name="ad_type" id="rent"
+                                           value="Rent" checked={ad_type === "Rent"}/>
+                                    Rent
+                                    <span className="circle">
+                                    <span className="check"/>
+                                </span>
+                                </label>
+                            </div>
+
                             <FormInputText handleChange={handleChange} type='number' name='price' id='price'
-                                           label='Price'
+                                           label={`Price ${ad_type === 'Rent' ? 'per month': ''}`}
                                            onBlur={validatePropertyPrice}/>
                             <p className='red o-100'>{errorMessages.priceError}</p>
 

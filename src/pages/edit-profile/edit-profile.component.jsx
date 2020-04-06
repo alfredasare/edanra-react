@@ -19,8 +19,6 @@ import Footer from "../../components/footer/footer.component";
 import {
     editProfileValidate,
     errorObject,
-    validateAddress,
-    validateContact,
     validateMail,
     validateName
 } from "../../assets/js/validation";
@@ -34,8 +32,6 @@ const EditProfile = ({currentUser, error, isUpdating, updateProfileStart, delete
     const [userCredentials, setUserCredentials] = useState({
         displayName: currentUser.displayName,
         email: currentUser.email,
-        contact: currentUser.contact ? currentUser.contact : '',
-        address: currentUser.address ? currentUser.address : '',
         profile_img: currentUser.profile_img,
         id: currentUser.id
     });
@@ -43,11 +39,9 @@ const EditProfile = ({currentUser, error, isUpdating, updateProfileStart, delete
     const [errorMessages, setErrorMessages] = useState({
         nameError: '',
         mailError: '',
-        contactError: '',
-        addressError: '',
     });
 
-    const {displayName, email, contact, address, profile_img, id} = userCredentials;
+    const {displayName, email, profile_img, id} = userCredentials;
 
     const setError = () => {
         let error = errorObject.error;
@@ -65,16 +59,6 @@ const EditProfile = ({currentUser, error, isUpdating, updateProfileStart, delete
         setError();
     };
 
-    const validatePropertyContact = event => {
-        validateContact(event);
-        setError();
-    };
-
-    const validatePropertyAddress = event => {
-        validateAddress(event);
-        setError();
-    };
-
     const handleSubmit = event => {
         event.preventDefault();
         setUpdateButtonVisibility(false);
@@ -87,7 +71,7 @@ const EditProfile = ({currentUser, error, isUpdating, updateProfileStart, delete
                 deleteProfileImageStart(oldProfileImage);
             }
 
-            updateProfileStart({displayName, email, contact, address, profile_img, id});
+            updateProfileStart({displayName, email, profile_img, id});
         }
     };
 
@@ -100,10 +84,6 @@ const EditProfile = ({currentUser, error, isUpdating, updateProfileStart, delete
             validatePropertyName(event);
         } else if (event.target.name === 'email') {
             validatePropertyMail(event);
-        } else if (event.target.name === 'contact') {
-            validatePropertyContact(event);
-        } else if (event.target.name === 'address') {
-            validatePropertyAddress(event);
         }
     };
 
@@ -165,15 +145,6 @@ const EditProfile = ({currentUser, error, isUpdating, updateProfileStart, delete
                                 </div>
                                 <div className="upload-text">Click here to update profile image</div>
                             </label>
-
-
-                            <FormInputText value={contact} handleChange={handleChange} type='tel' name='contact'
-                                           id='contact' label='Contact' onBlur={validatePropertyContact}/>
-                            <p className='red o-100'>{errorMessages.contactError}</p>
-
-                            <FormInputText value={address} handleChange={handleChange} type='text' name='address'
-                                           id='address' label='Address' onBlur={validatePropertyAddress}/>
-                            <p className='red o-100'>{errorMessages.addressError}</p>
 
                             <CustomButtonsContainer>
                                 {

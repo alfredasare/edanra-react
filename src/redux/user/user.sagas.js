@@ -94,7 +94,7 @@ export function* onCheckUserSession() {
 }
 
 // SIGN UP
-export function* signUp({payload: {displayName, email, password, contact, address, profile_img}}) {
+export function* signUp({payload: {displayName, email, password, profile_img}}) {
     let downloadUrl = '';
     try {
         const {user} = yield auth.createUserWithEmailAndPassword(email, password);
@@ -106,7 +106,7 @@ export function* signUp({payload: {displayName, email, password, contact, addres
             const uploadTask = yield storageRef.putString(profile_img, 'base64');
             downloadUrl = yield uploadTask.ref.getDownloadURL();
         }
-        yield put(signUpSuccess({user, additionalData: {displayName, contact, address, profile_img: downloadUrl  }}));
+        yield put(signUpSuccess({user, additionalData: {displayName, profile_img: downloadUrl  }}));
     } catch (error) {
         yield put(signUpFailure(error));
     }
@@ -125,7 +125,7 @@ export function* onSignUpSuccess () {
 }
 
 // EDIT USER PROFILE
-export function* editProfile ({payload: {displayName, email, contact, address, profile_img, id}}) {
+export function* editProfile ({payload: {displayName, email, profile_img, id}}) {
 
     let downloadUrl = '';
 
@@ -139,8 +139,6 @@ export function* editProfile ({payload: {displayName, email, contact, address, p
         yield firestore.collection("users").doc(id).update({
             displayName,
             email,
-            contact,
-            address,
             profile_img: downloadUrl ? downloadUrl : profile_img
         });
         yield put(editUserSuccess("Profile updated successfully"));

@@ -41,7 +41,7 @@ const App = ({checkUserSession, currentUser, fetchPropertiesStart, isPropertyUpl
                 <Route path='/login' render={() => currentUser ? (<Redirect to='/dashboard' />) : (<LoginPage/>)}/>
                 <Route path='/provide-space' render={() => currentUser ? (<ProvideSpace/>) : (<LoginPage/>)}/>
                 <Route path='/uploading-space' render={() => isPropertyUploaded ? (<Redirect to='/dashboard'/>) : (<ProvideSpace/>)}/>
-                <Route path='/edit-space/:uid' component={EditSpaceContainer}/>
+                <Route path='/edit-space/:uid' render={(props) => currentUser ? (<EditSpaceContainer {...props}/>) : (<LoginPage/>)}/>
                 <Route path='/search' component={SearchPage}/>
                 <Route path='/search-results' component={SearchResultsPage}/>
                 <Route exact path='/signup' render={() => currentUser ? (<Redirect to='/dashboard' />) : (<SignUp/>)}/>

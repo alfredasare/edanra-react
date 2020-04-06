@@ -10,10 +10,11 @@ import {createStructuredSelector} from "reselect";
 import {selectError, selectLoadingUser} from "../../redux/user/user.selectors";
 import LoadingSpinner from "../../components/loading-spinner/loading-spinner.component";
 import {
-    errorObject, signUpValidate,
-    validateAddress,
+    errorObject,
+    signUpValidate,
     validateConfirmPassword,
-    validateContact, validateMail, validateName,
+    validateMail,
+    validateName,
     validateSpecialPassword
 } from "../../assets/js/validation";
 import Navbar from "../../components/navbar/navbar.component";
@@ -29,8 +30,6 @@ const SignUp = ({signUpStart, error, loader}) => {
         email: '',
         password: '',
         confirmPassword: '',
-        contact: '',
-        address: '',
         profile_img: editedDefaultImageUrl,
     });
 
@@ -39,11 +38,9 @@ const SignUp = ({signUpStart, error, loader}) => {
         mailError: '',
         passwordError: '',
         confirmPasswordError: '',
-        contactError: '',
-        addressError: '',
     });
 
-    const {displayName, email, password, contact, address, profile_img} = userCredentials;
+    const {displayName, email, password, profile_img} = userCredentials;
 
     const setError = () => {
         let error = errorObject.error;
@@ -67,14 +64,6 @@ const SignUp = ({signUpStart, error, loader}) => {
         validateConfirmPassword(event);
         setError();
     };
-    const validateSignUpContact = event => {
-        validateContact(event);
-        setError();
-    };
-    const validateSignUpAddress = event => {
-        validateAddress(event);
-        setError();
-    };
 
     const handleSubmit = event => {
         event.preventDefault();
@@ -82,7 +71,7 @@ const SignUp = ({signUpStart, error, loader}) => {
         setError();
 
         if (isValid) {
-            signUpStart({displayName, email, password, contact, address, profile_img});
+            signUpStart({displayName, email, password, profile_img});
         }
     };
 
@@ -96,10 +85,6 @@ const SignUp = ({signUpStart, error, loader}) => {
             validateSignUpPassword(event);
         } else if (event.target.name === 'confirmPassword') {
             validateSignUpConfirmPassword(event);
-        } else if (event.target.name === 'contact') {
-            validateSignUpContact(event);
-        } else if (event.target.name === 'address') {
-            validateSignUpAddress(event);
         }
         setUserCredentials({...userCredentials, [name]: value});
     };
@@ -177,14 +162,6 @@ const SignUp = ({signUpStart, error, loader}) => {
                                            id='confirmPassword'
                                            label='Confirm Password' onBlur={validateSignUpConfirmPassword}/>
                             <p className='red o-100'>{errorMessages.confirmPasswordError}</p>
-
-                            <FormInputText handleChange={handleChange} type='tel' name='contact' id='contact'
-                                           label='Contact' onBlur={validateSignUpContact}/>
-                            <p style={{color: 'red'}}>{errorMessages.contactError}</p>
-
-                            <FormInputText handleChange={handleChange} type='text' name='address' id='address'
-                                           label='Address' onBlur={validateSignUpAddress}/>
-                            <p className='red o-100'>{errorMessages.addressError}</p>
 
                             <CustomButtonsContainer>
                                 {
