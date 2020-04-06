@@ -7,7 +7,7 @@ const HostingSteps = () => {
     return (
         <div style={{marginTop: '70px'}} className="container">
             <div className="row">
-                <h2 style={{marginLeft: '10px', marginBottom: '30px', fontSize: '3em', fontWeight: 'bold'}}>Hosting made easy</h2>
+                <h2 style={{marginLeft: '10px', marginBottom: '30px', fontSize: '2.5em', fontWeight: 'bold'}}>Hosting made easy</h2>
             </div>
             <div className="row">
                 <div className="col-md-4">

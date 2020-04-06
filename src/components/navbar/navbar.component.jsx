@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {connect} from 'react-redux';
 import './navbar.styles.scss';
 import {Link, NavLink} from "react-router-dom";
@@ -10,6 +10,13 @@ import LoadingSpinner from "../loading-spinner/loading-spinner.component";
 
 const Navbar = ({currentUser, signOutStart, loader}) => {
 
+    const [navClass, toggleNavClass] = useState('navbar-toggler');
+
+    const handleNavToggle = () => {
+        toggleNavClass('navbar-toggler');
+        console.log(navClass);
+    };
+
     return (
         <nav className="navbar fixed-top navbar-expand-lg"
              color-on-scroll="100"
@@ -20,7 +27,7 @@ const Navbar = ({currentUser, signOutStart, loader}) => {
                         <img src={require("../../assets/img/efiewura.png")} alt="" className="img-fluid logo"/>
                         <span style={{color: '#004D40', fontSize: '0.9em', fontWeight: 'bold'}}> EFIEWURA</span>
                     </Link>
-                    <button className="navbar-toggler" type="button" data-toggle="collapse" aria-expanded="false"
+                    <button onClick={handleNavToggle} className={navClass} type="button" data-toggle="collapse" aria-expanded="false"
                             aria-label="Toggle navigation">
                         <span className="sr-only">Toggle navigation</span>
                         <span className="navbar-toggler-icon"/>
@@ -30,19 +37,19 @@ const Navbar = ({currentUser, signOutStart, loader}) => {
                 </div>
                 <div className="collapse navbar-collapse">
                     <ul className="navbar-nav ml-auto">
-                        <li className="nav-item">
+                        <li onClick={handleNavToggle} className="nav-item navbar-toggler">
                             <NavLink activeClassName="nav-active" className="nav-link"
                                      data-toggle="collapse" exact={true} to="/">
                                 Home
                             </NavLink>
                         </li>
-                        <li className="nav-item">
+                        <li onClick={handleNavToggle} className="nav-item navbar-toggler">
                             <NavLink activeClassName="nav-active" className="nav-link"
                                      data-toggle="collapse" to="/about">
                                 About
                             </NavLink>
                         </li>
-                        <li className="nav-item">
+                        <li onClick={handleNavToggle} className="nav-item navbar-toggler">
                             <NavLink activeClassName="nav-active" className="nav-link"
                                      data-toggle="collapse" to="/contact">
                                 Contact
@@ -50,7 +57,7 @@ const Navbar = ({currentUser, signOutStart, loader}) => {
                         </li>
                         {
                             currentUser ?
-                                <li className="nav-item">
+                                <li onClick={handleNavToggle} className="nav-item navbar-toggler">
                                     <NavLink activeClassName="nav-active" className="nav-link"
                                              data-toggle="collapse" to="/provide-space">
                                         Provide space
@@ -58,7 +65,7 @@ const Navbar = ({currentUser, signOutStart, loader}) => {
                                 </li> :
                                 <></>
                         }
-                        <li className="nav-item">
+                        <li onClick={handleNavToggle} className="nav-item navbar-toggler">
                             <NavLink activeClassName="nav-active" className="nav-link"
                                      data-toggle="collapse" to="/search">
                                 Find Space
@@ -66,7 +73,7 @@ const Navbar = ({currentUser, signOutStart, loader}) => {
                         </li>
                         {
                             currentUser ?
-                                <li className="nav-item">
+                                <li onClick={handleNavToggle} className="nav-item navbar-toggler">
                                     <NavLink activeClassName="nav-active" className="nav-link"
                                              data-toggle="collapse" to="/dashboard">
                                         Dashboard
@@ -74,7 +81,7 @@ const Navbar = ({currentUser, signOutStart, loader}) => {
                                 </li> :
                                 <></>
                         }
-                        <li className="nav-item">
+                        <li className="nav-item navbar-toggler">
                             {
                                 currentUser ?
                                     <Link className="nav-link" onClick={signOutStart}
@@ -88,7 +95,7 @@ const Navbar = ({currentUser, signOutStart, loader}) => {
                             }
                         </li>
                         {
-                            currentUser ? <></> : <li className="nav-item">
+                            currentUser ? <></> : <li onClick={handleNavToggle} className="nav-item navbar-toggler">
                                 <NavLink className="nav-link get-started-link"
                                          data-toggle="collapse" to="/signup">
                                     Put up an ad
