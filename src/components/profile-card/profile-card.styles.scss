@@ -8,6 +8,7 @@
 
   @media screen and (max-width: 991px) {
     flex-direction: column;
+    justify-content: center;
   }
   
   .profile-img {
@@ -17,6 +18,11 @@
 
   .dash-profile-name {
     margin-left: 20px;
+    text-align: center;
+
+    @media screen and (max-width: 991px) {
+      margin-left: 0;
+    }
 
     h4 {
       font-weight: bold;

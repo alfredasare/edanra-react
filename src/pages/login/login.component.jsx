@@ -86,8 +86,7 @@ const LoginPage = ({googleSignInStart, emailSignInStart, error, loader}) => {
                             <h2>Login To EFIEWURA</h2>
                             {
                                 error ?
-                                    <h5 style={{color: 'red'}}>Something went wrong. Make sure you typed in the right
-                                        email and password</h5> : <></>
+                                    <h5 style={{color: 'red'}}>Something went wrong.</h5> : <></>
                             }
                             <form onSubmit={handleSubmit}>
                                 <FormInputText handleChange={handleChange} type='email' name='email' id='email'

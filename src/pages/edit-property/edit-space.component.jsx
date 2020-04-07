@@ -326,12 +326,10 @@ const EditSpace = ({regions, districts, property, history, propertyEditStart}) =
                                 </label>
                             </div>
 
-
                             <CustomButtonsContainer>
                                 <CustomButton type='submit'>Update</CustomButton>
                                 <CustomButton type='reset' inverted="true">Reset</CustomButton>
                             </CustomButtonsContainer>
-
                         </form>
                     </div>
                 </div>
