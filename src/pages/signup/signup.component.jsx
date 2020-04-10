@@ -101,9 +101,9 @@ const SignUp = ({signUpStart, error, loader}) => {
 
     const showPass = (event) => {
         let pass;
-        if (event.target.name === 'password'){
+        if (event.target.name === 'passwordCheck'){
             pass = document.getElementById('password');
-        }else if(event.target.name === 'confirmPassword'){
+        }else if(event.target.name === 'confirmPasswordCheck'){
             pass = document.getElementById('confirmPassword');
         }
         if (pass.type === 'password'){
@@ -171,13 +171,13 @@ const SignUp = ({signUpStart, error, loader}) => {
                             <FormInputText handleChange={handleChange} type='password' name='password' id='password'
                                            label='Password' onBlur={validateSignUpPassword}/>
                             <p className='red o-100'>{errorMessages.passwordError}</p>
-                            <PasswordToggle unHide={showPass} toggleName='password'/>
+                            <PasswordToggle unHide={showPass} toggleName='passwordCheck'/>
 
                             <FormInputText handleChange={handleChange} type='password' name='confirmPassword'
                                            id='confirmPassword'
                                            label='Confirm Password' onBlur={validateSignUpConfirmPassword}/>
                             <p className='red o-100'>{errorMessages.confirmPasswordError}</p>
-                            <PasswordToggle unHide={showPass} toggleName='confirmPassword'/>
+                            <PasswordToggle unHide={showPass} toggleName='confirmPasswordCheck'/>
 
                             <CustomButtonsContainer>
                                 {

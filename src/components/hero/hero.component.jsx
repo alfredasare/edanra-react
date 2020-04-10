@@ -8,7 +8,8 @@ const Hero = () => {
             <div id="hero-message" className="animated fadeIn">
                 <h1>Welcome To EFIEWURA</h1>
                 <p>
-                    Akwaaba! Kindly sign up and add to our amazing catalogue of homes ads and accommodation spaces
+                    Do you have a space to let? Let’s connect you to customers.
+                    Sign up and put it up for free!
                 </p>
             </div>
             <div id="hero-social-container">

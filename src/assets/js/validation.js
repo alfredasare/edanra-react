@@ -209,8 +209,8 @@ export const validateSpecialPassword = (event, mainEvent, name) => {
     if (password.trim() === '') {
         setInvalid(field, 'Please enter password', error);
         return false;
-    }else if (password.length < 7) {
-        setInvalid(field, 'Password should be at least 7 characters', error);
+    }else if (password.length < 6) {
+        setInvalid(field, 'Password should be at least 6 characters', error);
         return false;
     } else {
         setValid(field, error);

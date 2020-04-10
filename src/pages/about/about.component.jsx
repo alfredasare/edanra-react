@@ -18,14 +18,9 @@ const AboutPage = () => {
                     <div className="col-10 offset-1 col-lg-12 offset-lg-0 about-text animated fadeIn delay-1s">
                         <h2>SERVICES</h2>
                         <p>
-                            EFIEWURA is an online catalogue for arranging or offering accommodation space, primarily for
-                            the average
-                            Ghanaian especially National Service Personnel. It does not own any of the property
-                            listings. It acts as
-                            a meeting point for accommodation providers and seeekers. Apart from the listing fee paid by
-                            space
-                            providers, no other commission is required from either party. The platform is Ghanaian
-                            based.
+                            Efiewura is an online catalogue of property listings. It serves as the space for
+                            property owners to sell or rent their property; connecting buyers and tenants to their
+                            dream spaces.
                         </p>
                     </div>
                 </div>
@@ -33,11 +28,11 @@ const AboutPage = () => {
                     <div className="col-10 offset-1 col-lg-12 offset-lg-0 about-text animated fadeIn delay-1s">
                         <h2>HOW THE PLATFORM WORKS</h2>
                         <p>
-                            Efiewura is an online hub which lets people to showcase their property or spare rooms
-                            available for rent
-                            or lease. Efiewura charges a flat fee for property listing on the site from ad owners. There
-                            are photos
-                            of the property and contact details of owners for correspondence
+                            1. If you have a space to provide (for rent or sale), sign up and put up your property
+                            for free
+                        </p>
+                        <p>
+                            2. If you are looking for a space to buy or rent, simply search and get connected
                         </p>
                     </div>
                 </div>

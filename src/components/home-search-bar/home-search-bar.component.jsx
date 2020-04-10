@@ -32,13 +32,13 @@ const HomeSearchBar = ({getResults, allProperties, history}) => {
         <div className="container">
             <div className="row">
                 <div id="motto">
-                    <span>Want a place to buy or stay?</span> Do a quick search on Efiewura.
+                    <span>Want a space to rent or buy?</span> Do a quick search on Efiewura.
                 </div>
             </div>
 
             <div className="row">
                 <form onSubmit={handleSubmit} id="searchbar">
-                    <input onChange={handleChange} type="text" name="town" id="town" placeholder="Destination, city, address"/>
+                    <input onChange={handleChange} type="text" name="town" id="town" placeholder="Town or city"/>
                     <button type="submit">Search</button>
                 </form>
             </div>
