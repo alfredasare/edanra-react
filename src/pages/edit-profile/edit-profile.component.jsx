@@ -115,7 +115,7 @@ const EditProfile = ({currentUser, error, isUpdating, updateProfileStart, delete
                               className="form-horizontal custom-form" noValidate>
                             {
                                 error ?
-                                    <h5 className="update-message" style={{color: 'red'}}>Something went wrong.</h5> : <></>
+                                    <h5 style={{color: 'red'}}>{error.message}</h5> : <></>
                             }
                             {
                                 successMessage ?

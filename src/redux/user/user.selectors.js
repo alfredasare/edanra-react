@@ -9,7 +9,7 @@ export const selectCurrentUser = createSelector(
 
 export const selectError = createSelector(
     [selectUser],
-    user => !!user.error
+    user => user.error
 );
 
 export const selectSuccessMessage = createSelector(

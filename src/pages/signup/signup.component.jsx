@@ -139,7 +139,7 @@ const SignUp = ({signUpStart, error, loader}) => {
                             <h5 className="custom-form-subhead">Please enter your details</h5>
                             {
                                 error ?
-                                    <h5 style={{color: 'red'}}>Something went wrong.</h5> : <></>
+                                    <h5 style={{color: 'red'}}>{error.message}</h5> : <></>
                             }
                             <FormInputText handleChange={handleChange} type='text' name='displayName' id='displayName'
                                            label='Name' onBlur={validateSignUpName}/>

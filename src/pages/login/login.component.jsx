@@ -15,7 +15,7 @@ import PasswordToggle from "../../components/passwordToggle/passwordToggle.compo
 
 const LoginPage = ({googleSignInStart, emailSignInStart, error, loader}) => {
 
-    const [userCredentials, setCredentials] = useState({email: '', password: '',});
+    const [userCredentials, setCredentials] = useState({email: '', password: ''});
 
     const [errorMessages, setErrorMessages] = useState({mailError: '', passwordError: ''});
 
@@ -86,7 +86,7 @@ const LoginPage = ({googleSignInStart, emailSignInStart, error, loader}) => {
                             <h2>Login To EFIEWURA</h2>
                             {
                                 error ?
-                                    <h5 style={{color: 'red'}}>Something went wrong.</h5> : <></>
+                                    <h5 style={{color: 'red'}}>{error.message}</h5> : <></>
                             }
                             <form onSubmit={handleSubmit}>
                                 <FormInputText handleChange={handleChange} type='email' name='email' id='email'
