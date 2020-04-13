@@ -78,7 +78,7 @@ const LoginPage = ({googleSignInStart, emailSignInStart, error, loader}) => {
     return (
         <>
             <Helmet>
-                <title>Login To Efiewura</title>
+                <title>Sign In To Efiewura</title>
             </Helmet>
             <Navbar/>
             <div style={{marginTop: '60px'}} className="container-fluid">

@@ -11,12 +11,16 @@ import Hero from "../../components/hero/hero.component";
 import ReadyToEarn from "../../components/ready-to-earn/ready-to-earn.component";
 import HomeSearchBar from "../../components/home-search-bar/home-search-bar.component";
 import HostingSteps from "../../components/hosting-steps/hosting-steps.component";
+import {Helmet} from "react-helmet";
 
 
 const HomePage = ({regions}) => {
 
     return (
         <>
+            <Helmet>
+                <title>Efiewura - Browse through our amazing catalogue of ads</title>
+            </Helmet>
             <Navbar/>
             <Hero/>
             <HomeSearchBar/>
