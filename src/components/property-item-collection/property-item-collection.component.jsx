@@ -5,6 +5,7 @@ import {selectIsPropertyFetching, selectPropertiesForDisplay} from "../../redux/
 import './property-item-collection.styes.scss';
 import PropertyItem from "../property-item/property-item.component";
 import LoadingContainer from "../loading-container/loading-container.component";
+import {dateChecker} from "../../utils/date";
 
 const PropertyItemCollection = ({region, allProperties, isLoading}) => {
 

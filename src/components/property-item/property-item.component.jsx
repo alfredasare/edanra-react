@@ -17,7 +17,7 @@ const PropertyItem = ({routeName, main_image_url, town, region, username, price,
                     <div className="item-price">Ghc {price} &#9679; <span
                         className="negotiation-status">{ad_type}</span>
                     </div>
-                    <Link className="workspace-link" to={`properties/${routeName}`}>View Efie</Link>
+                    <Link className="workspace-link" to={`properties/${routeName}`}>View Space</Link>
                 </div>
             </div>
         </div>

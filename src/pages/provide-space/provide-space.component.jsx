@@ -21,6 +21,7 @@ import {
 } from "../../assets/js/validation";
 import Navbar from "../../components/navbar/navbar.component";
 import Footer from "../../components/footer/footer.component";
+import {Helmet} from "react-helmet";
 
 
 const ProvideSpace = ({currentUser, propertyStorageUploadStart, regions, districts, isUploading, history}) => {
@@ -186,6 +187,9 @@ const ProvideSpace = ({currentUser, propertyStorageUploadStart, regions, distric
 
     return (
         <>
+            <Helmet>
+                <title>Upload A Property Ad</title>
+            </Helmet>
             <Navbar/>
             <main className="container">
                 <div className="row">

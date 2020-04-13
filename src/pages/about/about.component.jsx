@@ -1,4 +1,5 @@
 import React from "react";
+import {Helmet} from "react-helmet";
 import './about.styles.scss';
 import Header from "../../components/header/header.component";
 import Navbar from "../../components/navbar/navbar.component";
@@ -10,6 +11,9 @@ const AboutPage = () => {
 
     return (
         <>
+            <Helmet>
+                <title>Find Out More About Efiewura</title>
+            </Helmet>
             <Navbar/>
             <Header title="About EFIEWURA" imageUrl={url}/>
 

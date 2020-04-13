@@ -10,6 +10,7 @@ import {selectCurrentUser} from "../../redux/user/user.selectors";
 import {checkUserSession} from "../../redux/user/user.actions";
 import Navbar from "../../components/navbar/navbar.component";
 import Footer from "../../components/footer/footer.component";
+import {Helmet} from "react-helmet";
 
 const Dashboard = ({fetchPropertiesStart, isPropertyEdited, currentUser, checkUserSession}) => {
 
@@ -20,6 +21,9 @@ const Dashboard = ({fetchPropertiesStart, isPropertyEdited, currentUser, checkUs
 
     return (
         <>
+            <Helmet>
+                <title>Manage All your Ads From Your Dashboard</title>
+            </Helmet>
             <Navbar/>
             <div id="dashboard" className="container">
                 <ProfileCard currentUser={currentUser}/>

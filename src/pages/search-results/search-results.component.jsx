@@ -10,6 +10,7 @@ import {selectPropertiesForDisplay} from "../../redux/properties/properties.sele
 import SearchItem from "../../components/search-item/search-item.component";
 import Navbar from "../../components/navbar/navbar.component";
 import Footer from "../../components/footer/footer.component";
+import {Helmet} from "react-helmet";
 
 const SearchResultsPage = ({regions, districts, getResults, results, allProperties}) => {
 
@@ -45,6 +46,9 @@ const SearchResultsPage = ({regions, districts, getResults, results, allProperti
 
     return (
         <>
+            <Helmet>
+                <title>Search Through Our Catalogue Of Ads</title>
+            </Helmet>
             <Navbar/>
             <main className="container">
                 <form onSubmit={handleSubmit} style={{marginTop: '100px'}}>

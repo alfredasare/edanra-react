@@ -3,6 +3,7 @@ import './terms.styles.scss';
 import Header from "../../components/header/header.component";
 import Navbar from "../../components/navbar/navbar.component";
 import Footer from "../../components/footer/footer.component";
+import {Helmet} from "react-helmet";
 
 const TermsPage = () => {
 
@@ -10,6 +11,9 @@ const TermsPage = () => {
 
     return (
         <>
+            <Helmet>
+                <title>Terms Of Service</title>
+            </Helmet>
             <Navbar/>
             <Header title="Terms & Conditions" imageUrl={url}/>
 

@@ -12,6 +12,7 @@ import {errorObject, loginValidate, validateMail, validatePassword} from "../../
 import Navbar from "../../components/navbar/navbar.component";
 import Footer from "../../components/footer/footer.component";
 import PasswordToggle from "../../components/passwordToggle/passwordToggle.component";
+import {Helmet} from "react-helmet";
 
 const LoginPage = ({googleSignInStart, emailSignInStart, error, loader}) => {
 
@@ -76,6 +77,9 @@ const LoginPage = ({googleSignInStart, emailSignInStart, error, loader}) => {
 
     return (
         <>
+            <Helmet>
+                <title>Login To Efiewura</title>
+            </Helmet>
             <Navbar/>
             <div style={{marginTop: '60px'}} className="container-fluid">
                 <div className="row mh-100vh">

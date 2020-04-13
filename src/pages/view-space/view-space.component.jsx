@@ -5,6 +5,7 @@ import './view-space.styles.scss';
 import {selectProperty} from "../../redux/properties/properties.selectors";
 import Navbar from "../../components/navbar/navbar.component";
 import Footer from "../../components/footer/footer.component";
+import {Helmet} from "react-helmet";
 
 const ViewSpace = ({property}) => {
 
@@ -12,6 +13,9 @@ const ViewSpace = ({property}) => {
 
     return (
         <>
+            <Helmet>
+                <title>{property.property_type} in {property.town}, {property.region} hosted by {property.username}</title>
+            </Helmet>
             <Navbar/>
             <section className="container" id="view-listing-head">
                 <div className="main-pic animated fadeIn delay-1s">

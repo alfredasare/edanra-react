@@ -20,6 +20,7 @@ import {
 import Navbar from "../../components/navbar/navbar.component";
 import Footer from "../../components/footer/footer.component";
 import PasswordToggle from "../../components/passwordToggle/passwordToggle.component";
+import {Helmet} from "react-helmet";
 
 const SignUp = ({signUpStart, error, loader}) => {
 
@@ -115,6 +116,9 @@ const SignUp = ({signUpStart, error, loader}) => {
 
     return (
         <>
+            <Helmet>
+                <title>Sign Up For Efiewura and Be A Host Today</title>
+            </Helmet>
             <Navbar/>
             <main style={{marginTop: '100px'}} className="container">
                 <div className="row">

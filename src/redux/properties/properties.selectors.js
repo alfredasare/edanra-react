@@ -1,4 +1,5 @@
 import {createSelector} from 'reselect';
+import {dateChecker} from "../../utils/date";
 
 const selectProperties = state => state.properties;
 
@@ -8,6 +9,14 @@ export const selectAllProperties = createSelector(
 );
 
 export const selectPropertiesForDisplay = createSelector(
+    [selectAllProperties],
+    properties => properties ? Object.keys(properties).map(key => properties[key]).filter((property) => {
+        const {daysLeft} = dateChecker(new Date(property.date_uploaded));
+        return daysLeft > 0;
+    }) : []
+);
+
+export const selectPropertiesForDashboard = createSelector(
     [selectAllProperties],
     properties => properties ? Object.keys(properties).map(key => properties[key]) : []
 );

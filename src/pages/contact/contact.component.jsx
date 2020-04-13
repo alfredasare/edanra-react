@@ -2,12 +2,16 @@ import React from "react";
 import './contact.styles.scss';
 import CustomButton from "../../components/custom-button/custom-button.component";
 import Navbar from "../../components/navbar/navbar.component";
+import {Helmet} from "react-helmet";
 
 const ContactPage = () => {
 
 
     return (
         <>
+            <Helmet>
+                <title>Contact Efiewura For More Information</title>
+            </Helmet>
             <Navbar/>
             <div className='cover-img'>
                 <div>

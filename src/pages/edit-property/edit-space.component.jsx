@@ -17,6 +17,7 @@ import {
 } from "../../assets/js/validation";
 import Navbar from "../../components/navbar/navbar.component";
 import Footer from "../../components/footer/footer.component";
+import {Helmet} from "react-helmet";
 
 
 const EditSpace = ({regions, districts, property, history, propertyEditStart}) => {
@@ -135,6 +136,9 @@ const EditSpace = ({regions, districts, property, history, propertyEditStart}) =
 
     return (
         <>
+            <Helmet>
+                <title>Edit Your Ad Details Here</title>
+            </Helmet>
             <Navbar/>
             <main className="container">
                 <div className="row">

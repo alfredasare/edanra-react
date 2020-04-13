@@ -11,9 +11,7 @@ import LoadingSpinner from "../loading-spinner/loading-spinner.component";
 const Navbar = ({currentUser, signOutStart, loader}) => {
 
     return (
-        <nav className="navbar fixed-top navbar-expand-lg"
-             color-on-scroll="100"
-             id="sectionsNav">
+        <nav className="navbar fixed-top navbar-expand-lg" color-on-scroll="100" id="sectionsNav">
             <div style={{paddingLeft: '40px', paddingRight: '40px'}} className="container-fluid">
                 <div className="navbar-translate">
                     <Link className="navbar-brand" to="/">
@@ -91,7 +89,7 @@ const Navbar = ({currentUser, signOutStart, loader}) => {
                             currentUser ? <></> : <li className="nav-item navbar-toggler">
                                 <NavLink className="nav-link get-started-link"
                                          data-toggle="collapse" to="/signup">
-                                    Put up an ad
+                                    Upload a space
                                 </NavLink>
                             </li>
                         }

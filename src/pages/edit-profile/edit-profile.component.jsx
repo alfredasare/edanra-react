@@ -23,6 +23,7 @@ import {
     validateName
 } from "../../assets/js/validation";
 import SuccessTick from "../../components/success-tick/success-tick.component";
+import {Helmet} from "react-helmet";
 
 const EditProfile = ({currentUser, error, isUpdating, updateProfileStart, deleteProfileImageStart, successMessage}) => {
 
@@ -99,6 +100,9 @@ const EditProfile = ({currentUser, error, isUpdating, updateProfileStart, delete
 
     return (
         <>
+            <Helmet>
+                <title>Edit Profile Details Here</title>
+            </Helmet>
             <Navbar/>
             <main style={{marginTop: '100px'}} className="container">
                 <div className="row">

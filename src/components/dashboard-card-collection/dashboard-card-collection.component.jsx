@@ -1,12 +1,13 @@
 import React from "react";
 import './dashboard-card-collection.styles.scss';
 import {createStructuredSelector} from "reselect";
-import {selectPropertiesForDisplay} from "../../redux/properties/properties.selectors";
+import {selectPropertiesForDashboard, selectPropertiesForDisplay} from "../../redux/properties/properties.selectors";
 import {selectCurrentUser} from "../../redux/user/user.selectors";
 import {connect} from "react-redux";
 import {Link} from "react-router-dom";
 import DashboardAdCard from "../dashboard-ad-cards/dashboard-ad-card.component";
 import DashboardInfoCard from "../dashboard-info/dashboard-info.component";
+import {dateChecker} from "../../utils/date";
 
 const DashboardCardCollection = ({currentUser, allProperties}) => {
 
@@ -15,11 +16,13 @@ const DashboardCardCollection = ({currentUser, allProperties}) => {
     });
 
     const filterByHosted = filterByUser.filter((property) => {
-        return property.ad_status === "Hosted"
+        const {status} = dateChecker(new Date(property.date_uploaded));
+        return status === "Hosted"
     }).length;
 
     const filterByPending = filterByUser.filter((property) => {
-        return property.ad_status === "Pending"
+        const {status} = dateChecker(new Date(property.date_uploaded));
+        return status === "Pending"
     }).length;
 
 
@@ -50,7 +53,7 @@ const DashboardCardCollection = ({currentUser, allProperties}) => {
 };
 
 const mapStateToProps = createStructuredSelector({
-    allProperties: selectPropertiesForDisplay,
+    allProperties: selectPropertiesForDashboard,
     currentUser: selectCurrentUser,
 });
 
