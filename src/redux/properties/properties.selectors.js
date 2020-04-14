@@ -3,6 +3,10 @@ import {dateChecker} from "../../utils/date";
 
 const selectProperties = state => state.properties;
 
+// subscription_type of either: free_three, month or annual
+let subscription_type = 'free_three';
+let renew_date = new Date('2020-07-31');
+
 export const selectAllProperties = createSelector(
     [selectProperties],
     properties => properties.propertyItems
@@ -11,7 +15,7 @@ export const selectAllProperties = createSelector(
 export const selectPropertiesForDisplay = createSelector(
     [selectAllProperties],
     properties => properties ? Object.keys(properties).map(key => properties[key]).filter((property) => {
-        const {daysLeft} = dateChecker(new Date(property.date_uploaded));
+        const {daysLeft} = dateChecker(new Date(property.date_uploaded),subscription_type, renew_date);
         return daysLeft > 0;
     }) : []
 );

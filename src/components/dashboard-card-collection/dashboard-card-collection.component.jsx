@@ -10,18 +10,21 @@ import DashboardInfoCard from "../dashboard-info/dashboard-info.component";
 import {dateChecker} from "../../utils/date";
 
 const DashboardCardCollection = ({currentUser, allProperties}) => {
+    // subscription_type of either: free_three, month or annual
+    let subscription_type = 'free_three';
+    let renew_date = new Date('2020-07-31');
 
     const filterByUser = allProperties.filter((property) => {
         return property.user_id === (currentUser && currentUser.id)
     });
 
     const filterByHosted = filterByUser.filter((property) => {
-        const {status} = dateChecker(new Date(property.date_uploaded));
+        const {status} = dateChecker(new Date(property.date_uploaded), subscription_type, renew_date);
         return status === "Hosted"
     }).length;
 
     const filterByPending = filterByUser.filter((property) => {
-        const {status} = dateChecker(new Date(property.date_uploaded));
+        const {status} = dateChecker(new Date(property.date_uploaded), subscription_type, renew_date);
         return status === "Pending"
     }).length;
 

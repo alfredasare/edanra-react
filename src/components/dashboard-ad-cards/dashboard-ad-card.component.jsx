@@ -1,7 +1,7 @@
 import React, {useState} from "react";
 import {connect} from 'react-redux';
 import './dashboard-ad-card.styles.scss';
-import {Link} from "react-router-dom";
+import {Link, NavLink} from "react-router-dom";
 import {removePropertyStart} from "../../redux/properties/properties.actions";
 import {createStructuredSelector} from "reselect";
 import {selectPropertiesForDisplay} from "../../redux/properties/properties.selectors";
@@ -9,7 +9,10 @@ import {dateChecker} from "../../utils/date";
 
 const DashboardAdCard = ({property, removePropertyStart, allProperties}) => {
 
-    const {routeName, main_image_url, town, price, date_uploaded, ad_status, ad_type} = property;
+    const {routeName, main_image_url, town, price, date_uploaded, ad_type} = property;
+    // subscription_type of either: free_three, month or annual
+    let subscription_type = 'free_three';
+    let renew_date = new Date('2020-07-31');
 
     const myDate = [];
     const date = new Date(date_uploaded);
@@ -18,7 +21,7 @@ const DashboardAdCard = ({property, removePropertyStart, allProperties}) => {
     myDate.push(date.getFullYear());
     const formattedDate = myDate.join('-');
 
-    const {status, daysLeft} = dateChecker(new Date(date_uploaded));
+    const {status, daysLeft} = dateChecker(new Date(date_uploaded), subscription_type, renew_date);
 
 
     const [deleteToggler, setDeleteToggler] = useState(false);
@@ -74,7 +77,14 @@ const DashboardAdCard = ({property, removePropertyStart, allProperties}) => {
                                     <span className="badge badge-pill badge-warning">Pending</span>
                             }
                         </div>
-                        <span style={{paddingRight: 16}}>Days remaining:  <span style={{color: "#004D44"}}>{daysLeft}</span></span>
+                        {
+                            status === 'Hosted' ?
+                            <span style={{paddingRight: 16}}>Days remaining:  <span style={{color: "#004D44"}}>{daysLeft}
+                            </span></span> :
+                                <span style={{paddingRight: 16}}>
+                                    <NavLink style={{color: "#fb9800", cursor: 'pointer'}} to='/payment'>Pay to Host</NavLink>
+                                </span>
+                        }
                     </div>
                     <li className="list-group-item ad-view-link">
                         <Link to={`properties/${routeName}`}>View ad</Link>
