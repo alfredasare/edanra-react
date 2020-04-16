@@ -314,7 +314,7 @@ const ProvideSpace = ({currentUser, propertyStorageUploadStart, regions, distric
 
 
                             <div className="form-group">
-                                <label htmlFor="district">District</label>
+                                <label htmlFor="district">District (optional)</label>
                                 <input value={district} onChange={handleChange} list="district" className="form-control"
                                        name="district" autoComplete="off"/>
                                 <datalist id="district">
