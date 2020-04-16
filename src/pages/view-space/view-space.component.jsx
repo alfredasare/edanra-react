@@ -87,7 +87,6 @@ const ViewSpace = ({property}) => {
                     room</h2>
                 <div className="row">
                     <div className="col-xs-12 offset-xs-0 col-md-6 offset-md-3">
-                        <h2 style={{fontWeight: 'bold'}}>Summary Of Uploaded Ad</h2>
                         <h2>Owner's Details</h2>
                         <div className="profile">
                             <div className="profile-top">
