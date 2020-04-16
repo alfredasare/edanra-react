@@ -23,10 +23,10 @@ const TermsPage = () => {
                          className="col-sm-12 offset-sm-0 col-md-10 offset-md-1 animated fadeIn delay-1s">
                         <h2 style={{fontWeight: 'normal'}}>Terms of service</h2>
                         <p className="term-paragraph">
-                            Please be sure to read the terms and conditions for the various services EFIEWURA renders as
+                            Please be sure to read the terms and conditions for the various services EDANRA renders as
                             this
                             contains information about your legal rights, remedies and obligations. By using the
-                            EFIEWURA platform,
+                            EDANRA platform,
                             you agree to comply with our terms and are thereby legally bound by these terms.
                         </p>
                         <p style={{textAlign: 'right', fontWeight: 'normal', marginTop: '20px', fontSize: '1em'}}>Last

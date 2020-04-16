@@ -19,7 +19,7 @@ const HomePage = ({regions}) => {
     return (
         <>
             <Helmet>
-                <title>Efiewura - Browse through our amazing catalogue of ads</title>
+                <title>Edanra - Browse through our amazing catalogue of ads</title>
             </Helmet>
             <Navbar/>
             <Hero/>

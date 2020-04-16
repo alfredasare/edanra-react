@@ -10,7 +10,7 @@ const ContactPage = () => {
     return (
         <>
             <Helmet>
-                <title>Contact Efiewura For More Information</title>
+                <title>Contact Edanra For More Information</title>
             </Helmet>
             <Navbar/>
             <div className='cover-img'>
@@ -24,8 +24,8 @@ const ContactPage = () => {
                 <div className='row contact-row'>
                     <div className='col-xs-12 col-sm-12 col-md-4 col-lg-3 card'>
                         <i className='fa fa-envelope animated jello'/>
-                        <h5>Mail Efiewura</h5>
-                        <p>Want to send us feedback? Just send a mail to Efiewura and we will respond as soon as
+                        <h5>Mail Edanra</h5>
+                        <p>Want to send us feedback? Just send a mail to Edanra and we will respond as soon as
                             possible.</p>
                         <a href="mailto:efiewura18@gmail.com" target='_blank' rel="noopener noreferrer"><CustomButton>send mail</CustomButton></a>
                     </div>
@@ -41,7 +41,7 @@ const ContactPage = () => {
                     </div>
                     <div className='col-xs-12 col-sm-12 col-md-4 col-lg-3 card location'>
                         <i className='fa fa-map-marker animated jello delay-2s'/>
-                        <h5>Locate Efiewura</h5>
+                        <h5>Locate Edanra</h5>
                         <p>Accra</p>
                         <div className='call-header'>
                             <h6> Or call</h6>

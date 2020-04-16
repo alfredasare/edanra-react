@@ -117,7 +117,7 @@ const SignUp = ({signUpStart, error, loader}) => {
     return (
         <>
             <Helmet>
-                <title>Sign Up For Efiewura and Be A Host Today</title>
+                <title>Sign Up For Edanra and Be A Host Today</title>
             </Helmet>
             <Navbar/>
             <main style={{marginTop: '100px'}} className="container">
@@ -127,9 +127,9 @@ const SignUp = ({signUpStart, error, loader}) => {
                             <p style={{marginTop: '30px'}} className="property-head fadeInUp" data-wow-delay="0.3s">Sign
                                 Up
                                 For
-                                EFIEWURA</p>
+                                EDANRA</p>
                             <p style={{fontSize: '1.1em'}} className="fadeInUp" data-wow-delay="0.5s">
-                                Sign up to EFIEWURA so you can have access to more functionality and also, so that we
+                                Sign up to EDANRA so you can have access to more functionality and also, so that we
                                 can connect with you.
                             </p>
                             <p style={{fontSize: '1.1em'}} className="fadeInUp" data-wow-delay="0.7s">Already have an

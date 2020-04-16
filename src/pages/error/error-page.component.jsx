@@ -7,7 +7,7 @@ const ErrorPage = () => {
     return (
         <>
             <Helmet>
-                <title>Page Not Found - Efiewura</title>
+                <title>Page Not Found - Edanra</title>
             </Helmet>
             <div id="err-main-div">
                 <div className="container-fluid">

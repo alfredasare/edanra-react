@@ -9,7 +9,7 @@ const SearchItem = ({town, region, price, routeName, main_image_url, property_ty
             <div className="card-body">
                 <p>{region} Region &#9679; {town}</p>
                 <p>Ghc {price}</p>
-                <Link className="workspace-link" to={`properties/${routeName}`}>View Efie</Link>
+                <Link className="workspace-link" to={`properties/${routeName}`}>View Space</Link>
             </div>
         </div>
     );

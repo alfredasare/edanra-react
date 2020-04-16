@@ -7,9 +7,9 @@ const HowToUse = () => {
         <section id="how-to-use-container" className="container">
             <div className="row">
                 <div style={{paddingTop: '30px'}} className="col-sm-12 col-md-10 col-lg-10 animated fadeIn">
-                    <h2>What EFIEWURA Does</h2>
+                    <h2>What EDANRA Does</h2>
                     <p style={{marginTop: '1.2em'}}>
-                        EFIEWURA connects home/property owners to their potential customers all
+                        EDANRA connects home/property owners to their potential customers all
                         over the country.
                         We save you from the long hunt for a convenient space.
                         Your accommodation is just a search away!

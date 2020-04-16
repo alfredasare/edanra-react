@@ -9,7 +9,7 @@ const Footer = () => {
             <div className="container">
                 <div className="row" style={{textAlign: 'center'}}>
                     <div className="col-md-4" style={{marginTop: '20px'}}>
-                        Copyright &copy; 2020 Efiewura
+                        Copyright &copy; 2020 Edanra
                     </div>
                     <div className="col-md-4" style={{marginTop: '20px'}}>
                         <Link to="/terms" className="text-decoration-none">

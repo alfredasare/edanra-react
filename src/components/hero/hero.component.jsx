@@ -6,7 +6,7 @@ const Hero = () => {
     return (
         <header className="wow fadeIn" id="hero" data-wow-delay="0.1s">
             <div id="hero-message" className="animated fadeIn">
-                <h1>Welcome To EFIEWURA</h1>
+                <h1>Welcome To EDANRA</h1>
                 <p>
                     Do you have a space to let? Let’s connect you to customers.
                     Sign up and put it up for free!

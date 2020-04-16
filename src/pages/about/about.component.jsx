@@ -12,17 +12,17 @@ const AboutPage = () => {
     return (
         <>
             <Helmet>
-                <title>Find Out More About Efiewura</title>
+                <title>Find Out More About Edanra</title>
             </Helmet>
             <Navbar/>
-            <Header title="About EFIEWURA" imageUrl={url}/>
+            <Header title="About EDANRA" imageUrl={url}/>
 
             <section style={{marginBottom: '100px'}} className="container">
                 <div className="row">
                     <div className="col-10 offset-1 col-lg-12 offset-lg-0 about-text animated fadeIn delay-1s">
                         <h2>SERVICES</h2>
                         <p>
-                            Efiewura is an online catalogue of property listings. It serves as the space for
+                            Edanra is an online catalogue of property listings. It serves as the space for
                             property owners to sell or rent their property; connecting buyers and tenants to their
                             dream spaces.
                         </p>

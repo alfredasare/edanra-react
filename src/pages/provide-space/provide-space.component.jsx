@@ -429,7 +429,7 @@ const ProvideSpace = ({currentUser, propertyStorageUploadStart, regions, distric
                                            checked={agreeCheck} name="agree"/>
                                     By checking this, you hereby agree with all the terms and conditions associated
                                     with using the
-                                    Efiewura Platform
+                                    Edanra Platform
                                     <span className="form-check-sign">
                                     <span className="check"/>
                                 </span>

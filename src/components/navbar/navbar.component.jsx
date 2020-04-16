@@ -16,7 +16,7 @@ const Navbar = ({currentUser, signOutStart, loader}) => {
                 <div className="navbar-translate">
                     <Link className="navbar-brand" to="/">
                         <img src={require("../../assets/img/efiewura.png")} alt="" className="img-fluid logo"/>
-                        <span style={{color: '#004D40', fontSize: '0.9em', fontWeight: 'bold'}}> EFIEWURA</span>
+                        <span style={{color: '#004D40', fontSize: '0.9em', fontWeight: 'bold'}}> EDANRA</span>
                     </Link>
                     <button className='navbar-toggler' type="button" data-toggle="collapse" aria-expanded="false"
                             aria-label="Toggle navigation">

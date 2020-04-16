@@ -78,7 +78,7 @@ const LoginPage = ({googleSignInStart, emailSignInStart, error, loader}) => {
     return (
         <>
             <Helmet>
-                <title>Sign In To Efiewura</title>
+                <title>Sign In To Edanra</title>
             </Helmet>
             <Navbar/>
             <div style={{marginTop: '60px'}} className="container-fluid">
@@ -87,7 +87,7 @@ const LoginPage = ({googleSignInStart, emailSignInStart, error, loader}) => {
                         className="col-10 col-sm-8 col-md-6 col-lg-6 offset-1 offset-sm-2 offset-md-3 offset-lg-0 align-self-center d-lg-flex align-items-lg-center align-self-lg-stretch bg-white p-5 rounded rounded-lg-0 my-5 my-lg-0"
                         id="login-block">
                         <div className="m-auto w-lg-75 w-xl-50">
-                            <h2>Login To EFIEWURA</h2>
+                            <h2>Login To EDANRA</h2>
                             {
                                 error ?
                                     <h5 style={{color: 'red'}}>{error.message}</h5> : <></>
