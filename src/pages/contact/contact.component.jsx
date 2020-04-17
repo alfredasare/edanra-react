@@ -27,16 +27,16 @@ const ContactPage = () => {
                         <h5>Mail Edanra</h5>
                         <p>Want to send us feedback? Just send a mail to Edanra and we will respond as soon as
                             possible.</p>
-                        <a href="mailto:efiewura18@gmail.com" target='_blank' rel="noopener noreferrer"><CustomButton>send mail</CustomButton></a>
+                        <a href="mailto:edanragh@gmail.com" target='_blank' rel="noopener noreferrer"><CustomButton>send mail</CustomButton></a>
                     </div>
                     <div className='col-xs-12 col-sm-12 col-md-4 col-lg-3 card'>
                         <i className='fa fa-comments animated jello delay-1s'/>
                         <h5>Reach us on social media</h5>
                         <p>Follow, send messages, comment and like our social media pages.</p>
                         <div className='social'>
-                            <a href="/#"><i className='fa fa-facebook'/></a>
-                            <a rel="noopener noreferrer" href="https://www.instagram.com/efiawura/" target="_blank"><i className='fa fa-instagram'/></a>
-                            <a rel="noopener noreferrer" href="https://twitter.com/efiewuragh" target="_blank"><i className='fa fa-twitter'/></a>
+                            <a rel="noopener noreferrer" href="https://www.facebook.com/edanragh" target="_blank"><i className='fa fa-facebook'/></a>
+                            <a rel="noopener noreferrer" href="https://www.instagram.com/edanragh" target="_blank"><i className='fa fa-instagram'/></a>
+                            <a rel="noopener noreferrer" href="https://twitter.com/edanragh" target="_blank"><i className='fa fa-twitter'/></a>
                         </div>
                     </div>
                     <div className='col-xs-12 col-sm-12 col-md-4 col-lg-3 card location'>

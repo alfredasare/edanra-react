@@ -18,13 +18,13 @@ const Footer = () => {
                     </div>
                     <div className="col-md-4" style={{marginTop: '20px'}}>
                         <div id="footer-social" className="wow fadeInUp" data-wow-delay="0.9s">
-                            <a rel="noopener noreferrer" href="https://twitter.com/efiewuragh" target="_blank">
+                            <a rel="noopener noreferrer" href="https://twitter.com/edanragh" target="_blank">
                                 <i className="fa fa-twitter"/>
                             </a>
-                            <a rel="noopener noreferrer" href="https://www.facebook.com/Efiewura" target="_blank">
+                            <a rel="noopener noreferrer" href="https://www.facebook.com/edanragh" target="_blank">
                                 <i className="fa fa-facebook-square"/>
                             </a>
-                            <a rel="noopener noreferrer" href="https://www.instagram.com/efiawura/" target="_blank">
+                            <a rel="noopener noreferrer" href="https://www.instagram.com/edanragh" target="_blank">
                                 <i className="fa fa-instagram"/>
                             </a>
                         </div>

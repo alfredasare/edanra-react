@@ -20,6 +20,11 @@ export const selectPropertiesForDisplay = createSelector(
     }) : []
 );
 
+export const selectAllPropertiesLength = createSelector(
+    [selectPropertiesForDisplay],
+    properties => properties.length
+);
+
 export const selectPropertiesForDashboard = createSelector(
     [selectAllProperties],
     properties => properties ? Object.keys(properties).map(key => properties[key]) : []

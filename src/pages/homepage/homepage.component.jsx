@@ -12,9 +12,10 @@ import ReadyToEarn from "../../components/ready-to-earn/ready-to-earn.component"
 import HomeSearchBar from "../../components/home-search-bar/home-search-bar.component";
 import HostingSteps from "../../components/hosting-steps/hosting-steps.component";
 import {Helmet} from "react-helmet";
+import {selectAllPropertiesLength} from "../../redux/properties/properties.selectors";
 
 
-const HomePage = ({regions}) => {
+const HomePage = ({regions, properties}) => {
 
     return (
         <>
@@ -27,12 +28,14 @@ const HomePage = ({regions}) => {
             <HowToUse/>
             <HostingSteps/>
 
-            <div className="container">
-                <div className="row">
-                    <h2 style={{marginLeft: '10px', marginTop: '70px'}}>Find yourself a home that suits your exact
-                        needs</h2>
-                </div>
-            </div>
+            {
+                properties > 0 ? <div className="container">
+                    <div className="row">
+                        <h2 style={{marginLeft: '10px', marginTop: '70px'}}>Find yourself a home that suits your exact
+                            needs</h2>
+                    </div>
+                </div> : <></>
+            }
 
             {
                 regions.map((region) => (<PropertyItemCollection key={region} region={region}/>))
@@ -45,7 +48,8 @@ const HomePage = ({regions}) => {
 };
 
 const mapStateToProps = createStructuredSelector({
-    regions: selectRegions
+    regions: selectRegions,
+    properties: selectAllPropertiesLength
 });
 
 

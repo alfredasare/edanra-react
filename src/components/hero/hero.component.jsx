@@ -14,15 +14,15 @@ const Hero = () => {
             </div>
             <div id="hero-social-container">
                 <div id="hero-social-icons" className="animated fadeIn delay-1s">
-                    <a rel="noopener noreferrer" data-placement="bottom" href="https://twitter.com/efiewuragh"
+                    <a rel="noopener noreferrer" data-placement="bottom" href="https://twitter.com/edanragh"
                        target="_blank">
                         <i className="fa fa-twitter"/>
                     </a>
-                    <a rel="noopener noreferrer" data-placement="bottom" href="https://www.facebook.com/Efiewura"
+                    <a rel="noopener noreferrer" data-placement="bottom" href="https://www.facebook.com/edanragh"
                        target="_blank">
                         <i className="fa fa-facebook-square"/>
                     </a>
-                    <a rel="noopener noreferrer" data-placement="bottom" href="https://www.instagram.com/efiawura/"
+                    <a rel="noopener noreferrer" data-placement="bottom" href="https://www.instagram.com/edanragh"
                        target="_blank">
                         <i className="fa fa-instagram"/>
                     </a>

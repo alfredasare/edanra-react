@@ -30,20 +30,20 @@ export const dateChecker = (property_date, subscription_type, renew_date) => {
     let endDate;
     let daysInterval;
     let daysLeft;
-    console.log(subscription_type);
+    // console.log(subscription_type);
 
     if (subscription_type.toLowerCase() === 'free_three') {
         daysInterval = 92;
         endDate = renew_date;
     } else if (subscription_type.toLowerCase() === 'month') {
-        console.log('month');
+        // console.log('month');
         daysInterval = 31;
         renew_date.setDate(renew_date.getDate() + daysInterval);
-        console.log(renew_date);
+        // console.log(renew_date);
         return renew_date >= todayDate ? {status: 'Hosted', daysLeft: daysBetween(todayDate, renew_date) + 1} :
             {status: 'Pending', daysLeft: 0}
     } else if (subscription_type.toLowerCase() === 'annual') {
-        console.log('annual');
+        // console.log('annual');
         daysInterval = 365;
         renew_date.setDate(renew_date.getDate() + daysInterval);
         return renew_date >= todayDate ? {status: 'Hosted', daysLeft: daysBetween(todayDate, renew_date) + 1} :
