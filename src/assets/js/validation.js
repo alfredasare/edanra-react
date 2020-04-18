@@ -509,11 +509,13 @@ const containsCharacters = (field, code, error) => {
             return matchWithRegEx(field, regEx, "Must contain at least one lower case letter, one upper case letter, one number and one special character", error);
         case 5:
             // for emails
-            regEx = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+            // eslint-disable-next-line no-useless-escape
+            regEx = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
             return (matchWithRegEx(field, regEx, "Invalid Email", error));
         case 6:
             // check if only numbers
-            regEx = /^[+]*[(]{0,1}[0-9]{1,4}[)]{0,1}[-\s\./0-9]*$/;
+            // eslint-disable-next-line no-useless-escape
+            regEx = /^[+]*[(]{0,1}[0-9]{1,4}[)]{0,1}[-\s./0-9]*$/;
             return matchWithRegEx(field, regEx, "Please enter a valid phone number", error);
         default:
             return false

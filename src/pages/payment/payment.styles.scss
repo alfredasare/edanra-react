@@ -1,119 +1,143 @@
-.main-content{
+.main-content {
   padding: 20px 10px;
   margin-top: 100px;
-
-  @media screen and (min-width:1366px) {
+  @media screen and (min-width: 1366px) {
     margin-bottom: 150px;
   }
 }
-.divider{
+
+.divider {
   height: 1px;
   background: #eee;
   margin: 30px 0;
 }
-h4{
-  font-weight: 500;
-  margin-bottom: 30px;
-  color: #004D40;
-}
-input[type="radio"]{
-  margin-right: 10px;
-}
-.bill-cycle{
-  margin-bottom: 20px;
-}
-label{
-  font-size: 1.1em;
-  display: flex;
-  align-items: center;
-  justify-content: left;
-}
-.pay-options{
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: center;
-  margin-bottom: 20px;
 
-  p{
-    margin-bottom: 0;
-    font-size: 1.1em;
-  }
-}
-
-.point{
+.point {
   background: #004D40;
   width: 10px;
   height: 10px;
   border-radius: 100px;
   margin: 0 20px;
 }
-.pay-style{
+
+h4 {
+  font-weight: 500;
+  margin-bottom: 30px;
+  color: #004D40;
+}
+
+input[type="radio"] {
+  margin-right: 10px;
+}
+
+.bill-cycle {
+  margin-bottom: 20px;
+}
+
+label {
+  font-size: 1.1em;
+  display: flex;
+  align-items: center;
+  justify-content: left;
+}
+
+.pay-options {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+p {
+  margin-bottom: 0;
+  // todo: remove the font size;
+}
+
+.pay-style {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+
+  img {
+    margin-bottom: 20px;
+  }
 }
-.pay-style img{
-  margin-bottom: 20px;
-}
-.make-teal{
+
+.make-teal {
   color: #004D40;
   font-size: 1.05em;
 }
-.fa-cc-visa{
+
+.fa-cc-visa {
   font-size: 40px;
 }
-.mobile-money{
+
+.mobile-money {
   width: 60px;
 }
-.card-input{
+
+.card-input {
   border: 1px solid #eee;
   border-radius: 3px;
   height: 50px;
   width: 100%;
   padding: 20px;
   margin-bottom: 30px;
+
+  &:focus {
+    border: 1px solid #004D40;
+  }
 }
-.card-input:focus{
-  border: 1px solid #004D40;
-}
-.half-field{
+
+.half-field {
   width: 45%;
 }
-.one-row{
+
+.one-row {
   display: flex;
   flex-direction: row;
 }
-.banner{
+
+.banner {
   height: 5px;
   width: 100%;
   background: #004D40;
   border-radius: 6px;
 }
-.checkout-content{
+
+.checkout-content {
   padding: 0 20px 30px;
+
+  h4 {
+    text-align: center;
+  }
 }
-.checkout-content h4{
-  text-align: center;
-}
-.checkout-list{
+
+.checkout-list {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
   margin-bottom: 20px;
 }
-.fa-check-circle{
+
+.fa-check-circle {
   font-size: 40px;
   color: #004D40;
   padding: 0 20px;
 }
 
+.bill-error {
+  color: red;
+  text-align: center;
+}
+
 @media only screen and (min-width: 600px) {
-  .main-content{
+  .main-content {
     padding: 20px 60px;
   }
-  .bill-cycle{
+  .bill-cycle {
     margin-bottom: 0;
   }
 }

@@ -13,11 +13,12 @@ import {selectProperty} from "../../redux/properties/properties.selectors";
 import {Helmet} from "react-helmet";
 import {updateLastDatePaidStart} from "../../redux/payment/payment.actions";
 
-const Payment = ({currentUser, property, history, updatePaymentData}) => {
+const Payment = ({property, history, updatePaymentData}) => {
 
     const [billingInfo, setBillingInfo] = useState({
         cycle: '',
         pay: '',
+        error: '',
         amount: 0,
         subscription_type: ''
     });
@@ -37,12 +38,27 @@ const Payment = ({currentUser, property, history, updatePaymentData}) => {
                 cycle: 'Annual',
                 pay: 'Ghana cedis 100',
                 amount: 100,
-                subscription_type: 'annual'
+                subscription_type: 'annual',
+                error: '',
             });
         } else if (event.target.value === 'six_months') {
-            setBillingInfo({...billingInfo, cycle: 'Six(6) months', pay: 'Ghana cedis 40', amount: 40, subscription_type: 'six_months'});
+            setBillingInfo({
+                ...billingInfo,
+                cycle: 'Six(6) months',
+                pay: 'Ghana cedis 40',
+                amount: 40,
+                subscription_type: 'six_months',
+                error: '',
+            });
         } else if (event.target.value === 'three_months') {
-            setBillingInfo({...billingInfo, cycle: 'Three(3) months', pay: 'Ghana cedis 20', amount: 20, subscription_type: 'three_months'});
+            setBillingInfo({
+                ...billingInfo,
+                cycle: 'Three(3) months',
+                pay: 'Ghana cedis 20',
+                amount: 20,
+                subscription_type: 'three_months',
+                error: '',
+            });
         }
     };
 
@@ -71,9 +87,15 @@ const Payment = ({currentUser, property, history, updatePaymentData}) => {
     };
 
     const handlePayment = event => {
+        let isValid;
         event.preventDefault();
-
-        initializePayment(onPaymentSuccess, onModalClose);
+        if (billingInfo.cycle === '') {
+            setBillingInfo({...billingInfo, error: 'Please choose a billing cycle'});
+            isValid = false;
+        } else {
+            isValid = true;
+        }
+        isValid ? initializePayment(onPaymentSuccess, onModalClose) : console.log();
     };
 
 
@@ -153,7 +175,8 @@ const Payment = ({currentUser, property, history, updatePaymentData}) => {
                                         <h4>Payment Summary</h4>
                                         <div className='checkout-list'>
                                             <p>Name</p>
-                                            <p>{currentUser.displayName}</p>
+                                            <p>{property.username}</p>
+                                            {/*    TODO: currentuser.displayName not working for me*/}
                                         </div>
                                         <div className='checkout-list'>
                                             <p>Billing Date</p>
@@ -174,6 +197,8 @@ const Payment = ({currentUser, property, history, updatePaymentData}) => {
                                             </span>
                                         </div>
                                         <CustomButton type='submit' style={{width: '100%'}}>Make payment</CustomButton>
+                                        <p className='bill-error'>{billingInfo.error}</p>
+                                        {/*    TODO: validation for submit to check cycle*/}
                                     </div>
                                 </div>
                             </div>
