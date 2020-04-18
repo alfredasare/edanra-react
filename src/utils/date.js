@@ -35,11 +35,17 @@ export const dateChecker = (property_date, subscription_type, renew_date) => {
     if (subscription_type.toLowerCase() === 'free_three') {
         daysInterval = 92;
         endDate = renew_date;
-    } else if (subscription_type.toLowerCase() === 'month') {
-        // console.log('month');
-        daysInterval = 31;
+    } else if (subscription_type.toLowerCase() === 'three_months') {
+        // console.log('three_months');
+        daysInterval = 93;
         renew_date.setDate(renew_date.getDate() + daysInterval);
         // console.log(renew_date);
+        return renew_date >= todayDate ? {status: 'Hosted', daysLeft: daysBetween(todayDate, renew_date) + 1} :
+            {status: 'Pending', daysLeft: 0}
+    } else if (subscription_type.toLowerCase() === 'six_months') {
+        // console.log('six_months');
+        daysInterval = 186;
+        renew_date.setDate(renew_date.getDate() + daysInterval);
         return renew_date >= todayDate ? {status: 'Hosted', daysLeft: daysBetween(todayDate, renew_date) + 1} :
             {status: 'Pending', daysLeft: 0}
     } else if (subscription_type.toLowerCase() === 'annual') {
@@ -56,7 +62,6 @@ export const dateChecker = (property_date, subscription_type, renew_date) => {
 
 // convert date to time
     const propertyDate_ms = propertyDate.getTime();
-
 
 // convert endDate into time
     const endDate_ms = endDate.getTime();
@@ -76,6 +81,4 @@ export const dateChecker = (property_date, subscription_type, renew_date) => {
     } else {
         return {status: 'Pending', daysLeft: 0}
     }
-
 };
-

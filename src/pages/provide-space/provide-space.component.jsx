@@ -42,7 +42,8 @@ const ProvideSpace = ({currentUser, propertyStorageUploadStart, regions, distric
         ad_type: '',
         negotiation_status: '',
         date_uploaded: new Date().toString(),
-        ad_status: 'Hosted',
+        last_date_paid: '',
+        subscription_type: 'free_three',
         user_id: null,
         username: null,
         other_images_url: null,
@@ -448,7 +449,6 @@ const ProvideSpace = ({currentUser, propertyStorageUploadStart, regions, distric
                                     <h4 className="uploading-message">Please wait. We're uploading your ad and updating
                                         your dashboard.</h4> : <></>
                             }
-
                         </form>
                     </div>
                 </div>

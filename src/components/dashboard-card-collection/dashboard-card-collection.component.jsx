@@ -1,7 +1,7 @@
 import React from "react";
 import './dashboard-card-collection.styles.scss';
 import {createStructuredSelector} from "reselect";
-import {selectPropertiesForDashboard, selectPropertiesForDisplay} from "../../redux/properties/properties.selectors";
+import {selectPropertiesForDashboard} from "../../redux/properties/properties.selectors";
 import {selectCurrentUser} from "../../redux/user/user.selectors";
 import {connect} from "react-redux";
 import {Link} from "react-router-dom";
@@ -10,20 +10,20 @@ import DashboardInfoCard from "../dashboard-info/dashboard-info.component";
 import {dateChecker} from "../../utils/date";
 
 const DashboardCardCollection = ({currentUser, allProperties}) => {
-    // subscription_type of either: free_three, month or annual
-    let subscription_type = 'free_three';
-    let renew_date = new Date('2020-07-31');
-
     const filterByUser = allProperties.filter((property) => {
         return property.user_id === (currentUser && currentUser.id)
     });
 
     const filterByHosted = filterByUser.filter((property) => {
+        const subscription_type = property.subscription_type ? property.subscription_type :'free_three';
+        const renew_date = property.last_date_paid ? new Date(property.last_date_paid) : new Date('2020-07-31');
         const {status} = dateChecker(new Date(property.date_uploaded), subscription_type, renew_date);
         return status === "Hosted"
     }).length;
 
     const filterByPending = filterByUser.filter((property) => {
+        const subscription_type = property.subscription_type ? property.subscription_type :'free_three';
+        const renew_date = property.last_date_paid ? new Date(property.last_date_paid) : new Date('2020-07-31');
         const {status} = dateChecker(new Date(property.date_uploaded), subscription_type, renew_date);
         return status === "Pending"
     }).length;

@@ -32,6 +32,8 @@
 
 .uploading-message {
   opacity: 1;
+  text-align: center;
+  margin-top: 10px;
   font-weight: bold;
   animation: loading 1.4s ease 0.5s infinite;
 }

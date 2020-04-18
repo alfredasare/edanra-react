@@ -9,10 +9,9 @@ import {dateChecker} from "../../utils/date";
 
 const DashboardAdCard = ({property, removePropertyStart, allProperties}) => {
 
-    const {routeName, main_image_url, town, price, date_uploaded, ad_type} = property;
-    // subscription_type of either: free_three, month or annual
-    let subscription_type = 'free_three';
-    let renew_date = new Date('2020-07-31');
+    const {routeName, main_image_url, town, price, date_uploaded, ad_type, last_date_paid} = property;
+    const subscription_type = property.subscription_type ? property.subscription_type :'free_three';
+    const renew_date = last_date_paid ? new Date(last_date_paid) : new Date('2020-07-31');
 
     const myDate = [];
     const date = new Date(date_uploaded);
@@ -82,7 +81,7 @@ const DashboardAdCard = ({property, removePropertyStart, allProperties}) => {
                             <span style={{paddingRight: 16}}>Days remaining:  <span style={{color: "#004D44"}}>{daysLeft}
                             </span></span> :
                                 <span style={{paddingRight: 16}}>
-                                    <NavLink style={{color: "#fb9800", cursor: 'pointer'}} to='/payment'>Pay to Host</NavLink>
+                                    <NavLink style={{color: "#fb9800", cursor: 'pointer'}} to={`/payment/${property.uid}`}>Pay to Host</NavLink>
                                 </span>
                         }
                     </div>

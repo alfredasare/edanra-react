@@ -52,5 +52,4 @@ const mapStateToProps = createStructuredSelector({
     properties: selectAllPropertiesLength
 });
 
-
 export default connect(mapStateToProps)(HomePage);

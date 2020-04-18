@@ -22,7 +22,7 @@ import DashboardContainer from "./pages/dashboard/dashboard.container";
 import EditSpaceContainer from "./pages/edit-property/edit-space.container";
 import {selectIsPropertyUploaded} from "./redux/property-upload/property-upload.selectors";
 import EditProfile from "./pages/edit-profile/edit-profile.component";
-import Payment from "./pages/payment/payment.component";
+import PaymentContainer from "./pages/payment/payment.container";
 
 const App = ({checkUserSession, currentUser, fetchPropertiesStart, isPropertyUploaded}) => {
 
@@ -49,7 +49,7 @@ const App = ({checkUserSession, currentUser, fetchPropertiesStart, isPropertyUpl
                 <Route path='/terms' component={TermsPage}/>
                 <Route path='/properties/:uid' component={ViewSpaceContainer}/>
                 <Route path='/edit-profile/:id' render={() => currentUser ? (<EditProfile/>) : (<LoginPage/>)}/>
-                <Route path='/payment' component={Payment}/>
+                <Route path='/payment/:id' render={(props) => currentUser ? (<PaymentContainer {...props}/>) : (<LoginPage/>)}/>
                 <Route component={ErrorPage}/>
             </Switch>
         </div>

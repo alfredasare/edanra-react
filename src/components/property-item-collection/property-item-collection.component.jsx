@@ -11,7 +11,7 @@ const PropertyItemCollection = ({region, allProperties, isLoading}) => {
     const [visible, setVisible] = useState(3);
 
     const filteredProperties = allProperties.filter((property) => {
-        return property.region === region && property.ad_status === 'Hosted';
+        return property.region === region;
     });
 
     const propertyItems = filteredProperties.slice(0, visible).map(({uid, ...otherPropertyProps}) => (
@@ -27,9 +27,8 @@ const PropertyItemCollection = ({region, allProperties, isLoading}) => {
         setVisible(visible => visible + 3);
     };
 
-
     return (
-        <div style={{marginTop: '20px'}} className="container">
+        <div className="container">
             {
                 regionCheck ? <div className="workspace-head-wrapper">
                     <h2 className="workspace-head"><span className="first-word">Homes</span> in {region} Region</h2>

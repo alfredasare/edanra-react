@@ -1,18 +1,25 @@
 import React, {useState} from "react";
+import {connect} from 'react-redux';
+import {useRavePayment} from "react-ravepayment";
 import Footer from "../../components/footer/footer.component";
 import Navbar from "../../components/navbar/navbar.component";
 import './payment.styles.scss';
-import Momo from '../../assets/img/momo.png';
-import Vodafone from '../../assets/img/voda.png';
-import Airtel from '../../assets/img/airtel.png';
+import PayCard from '../../assets/img/payment.png'
+import MobileMoney from '../../assets/img/smartphone.png';
 import CustomButton from "../../components/custom-button/custom-button.component";
 import {NavLink} from "react-router-dom";
+import {selectCurrentUser} from "../../redux/user/user.selectors";
+import {selectProperty} from "../../redux/properties/properties.selectors";
+import {Helmet} from "react-helmet";
+import {updateLastDatePaidStart} from "../../redux/payment/payment.actions";
 
-const Payment = () => {
+const Payment = ({currentUser, property, history, updatePaymentData}) => {
+
     const [billingInfo, setBillingInfo] = useState({
         cycle: '',
         pay: '',
-        payType: '',
+        amount: 0,
+        subscription_type: ''
     });
 
     const myDate = [];
@@ -21,35 +28,62 @@ const Payment = () => {
     myDate.push(date.getMonth() + 1);
     myDate.push(date.getFullYear());
     const renewalDate = myDate.join('-');
+    const lastDatePaid = date.toString();
 
     const setBillingCycle = (event) => {
         if (event.target.value === 'annual') {
             setBillingInfo({
                 ...billingInfo,
                 cycle: 'Annual',
-                pay: 'Ghana cedis 100'
+                pay: 'Ghana cedis 100',
+                amount: 100,
+                subscription_type: 'annual'
             });
-        } else {
-            setBillingInfo({...billingInfo, cycle: 'Monthly', pay: 'Ghana cedis 10'});
+        } else if (event.target.value === 'six_months') {
+            setBillingInfo({...billingInfo, cycle: 'Six(6) months', pay: 'Ghana cedis 40', amount: 40, subscription_type: 'six_months'});
+        } else if (event.target.value === 'three_months') {
+            setBillingInfo({...billingInfo, cycle: 'Three(3) months', pay: 'Ghana cedis 20', amount: 20, subscription_type: 'three_months'});
         }
     };
 
-    const setPaymentOption = (event) => {
-        if (event.target.value === 'visa'){
-            setBillingInfo({...billingInfo, payType: 'Visa card'});
-        }else if (event.target.value === 'momo'){
-            setBillingInfo({...billingInfo, payType: 'MTN mobile money'});
-        }else if (event.target.value === 'voda'){
-            setBillingInfo({...billingInfo, payType: 'Vodafone cash'});
-        }else if (event.target.value === 'airtel'){
-            setBillingInfo({...billingInfo, payType: 'Airtel-Tigo money'});
-        }
+    const config = {
+        txref: "MC-" + Date.now(),
+        customer_firstname: property.username,
+        customer_email: property.email,
+        customer_phone: property.contact,
+        amount: billingInfo.amount,
+        PBFPubKey: "FLWPUBK_TEST-ef6e4a21fdaae3b8c5e954b5a9750f49-X",
+        currency: "GHS",
+        country: "GH",
+        production: false,
     };
+
+    const {initializePayment} = useRavePayment(config);
+
+    const onPaymentSuccess = () => {
+        const {subscription_type} = billingInfo;
+        updatePaymentData({property, lastDatePaid, subscription_type});
+        history.push(`/dashboard`);
+    };
+
+    const onModalClose = () => {
+        // console.log("Modal closed")
+    };
+
+    const handlePayment = event => {
+        event.preventDefault();
+
+        initializePayment(onPaymentSuccess, onModalClose);
+    };
+
 
     return (
         <>
+            <Helmet>
+                <title>Complete Your Payment To Host Your Ad</title>
+            </Helmet>
             <Navbar/>
-            <form action="">
+            <form onSubmit={handlePayment}>
                 <div className='main-content'>
                     <div className='container-fluid'>
                         <div className='row'>
@@ -59,7 +93,23 @@ const Payment = () => {
                                 <h4>Choose your billing cycle</h4>
                                 <div className='container-fluid'>
                                     <div className='row'>
-                                        <div className='col-xs-6 col-sm-6 col-md-6 col-lg-6'>
+                                        <div className='col-xs-4 col-sm-4 col-md-4 col-lg-4 bill-cycle'>
+                                            <label>
+                                                <input type="radio" name="cycle" id="three_months" value="three_months"
+                                                       onClick={setBillingCycle}/>
+                                                Bill 3 Months
+                                            </label>
+                                            <p className='make-teal'>GH cedis 20 / 3 months</p>
+                                        </div>
+                                        <div className='col-xs-4 col-sm-4 col-md-4 col-lg-4 bill-cycle'>
+                                            <label>
+                                                <input type="radio" name="cycle" id="six_months" value="six_months"
+                                                       onClick={setBillingCycle}/>
+                                                Bill 6 Months
+                                            </label>
+                                            <p className='make-teal'>GH cedis 40 / 6 months</p>
+                                        </div>
+                                        <div className='col-xs-4 col-sm-4 col-md-4 col-lg-4 bill-cycle'>
                                             <label>
                                                 <input type="radio" id="annual" name="cycle" value="annual"
                                                        onClick={setBillingCycle}/>
@@ -67,73 +117,44 @@ const Payment = () => {
                                             </label>
                                             <p className='make-teal'>GH cedis 100 / year</p>
                                         </div>
-                                        <div className='col-xs-6 col-sm-6 col-md-6 col-lg-6'>
-                                            <label>
-                                                <input type="radio" name="cycle" id="monthly" value="monthly"
-                                                       onClick={setBillingCycle}/>
-                                                Bill Monthly
-                                            </label>
-                                            <p className='make-teal'>GH cedis 10 / month</p>
-                                        </div>
                                     </div>
                                 </div>
                                 <div className='divider'/>
-                                <h4>Enter payment details</h4>
-                                <div className='container-fluid payment'>
+                                <h4>Our Payment Options</h4>
+                                <div className='container-fluid'>
                                     <div className='row'>
-                                        <div className='col-xs-6 col-sm-6 col-md-3 col-lg-3 pay-style'>
-                                            <label>
-                                                <input type="radio" name="payment-option" id="visa" value="visa"
-                                                       onClick={setPaymentOption}/>
-                                                <i className="fa fa-cc-visa" aria-hidden="true"/>
-                                            </label>
+                                        <div className='col-xs-12 col-sm-12 col-md-12 col-lg-6 pay-style'>
+                                            <img src={PayCard} alt="payment card" className='mobile-money'/>
+                                            <div className="pay-options">
+                                                <p>Visa card</p>
+                                                <div className="point"/>
+                                                <p>Mastercard</p>
+                                                <div className="point"/>
+                                                <p>Verge</p>
+                                            </div>
                                         </div>
-                                        <div className='col-xs-6 col-sm-6 col-md-3 col-lg-3 pay-style'>
-                                            <label>
-                                                <input type="radio" name="payment-option" id="momo" value="momo"
-                                                       onClick={setPaymentOption}/>
-                                                <img src={Momo} alt="mtn mobile money" className='mobile-money'/>
-                                            </label>
-                                        </div>
-                                        <div className='col-xs-6 col-sm-6 col-md-3 col-lg-3 pay-style'>
-                                            <label>
-                                                <input type="radio" name="payment-option" id="voda" value="voda"
-                                                       onClick={setPaymentOption}/>
-                                                <img src={Vodafone} alt="vodafone cash" className='mobile-money'/>
-                                            </label>
-                                        </div>
-                                        <div className='col-xs-6 col-sm-6 col-md-3 col-lg-3 pay-style'>
-                                            <label>
-                                                <input type="radio" name="payment-option" id="airtel" value="airtel"
-                                                       onClick={setPaymentOption}/>
-                                                <img src={Airtel} alt="airtel-tigo money" className='mobile-money'/>
-                                            </label>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div className='visa-section'>
-                                    <p>Name on card</p>
-                                    <input type="text" name="cardName" id="cardName" className='card-input'/>
-                                    <p>Card number</p>
-                                    <input type="text" name="cardNumber" id="cardNumber" className='card-input'/>
-                                    <div className='one-row'>
-                                        <div className='half-field' style={{marginRight: '10%'}}>
-                                            <p>Expiry date</p>
-                                            <input type="date" name="expiryDate" id="expiryDate"
-                                                   className='card-input'/>
-                                        </div>
-                                        <div className='half-field'>
-                                            <p>CVC code</p>
-                                            <input type="number" name="cvcCode" id="cvcCode" className='card-input'/>
+                                        <div className='col-xs-12 col-sm-12 col-md-12 col-lg-6 pay-style'>
+                                            <img src={MobileMoney} alt="mobile money" className='mobile-money'/>
+                                            <div className="pay-options">
+                                                <p>MTN</p>
+                                                <div className="point"/>
+                                                <p>Vodafone</p>
+                                                <div className="point"/>
+                                                <p>Airtel-Tigo</p>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                            <div className='col-xs-12 col-sm-12 col-md-5 col-lg-5'>
+                            <div className='col-xs-12 col-sm-12 col-md-5 col-lg-4'>
                                 <div className='card'>
                                     <div className='banner'/>
                                     <div className='checkout-content'>
                                         <h4>Payment Summary</h4>
+                                        <div className='checkout-list'>
+                                            <p>Name</p>
+                                            <p>{currentUser.displayName}</p>
+                                        </div>
                                         <div className='checkout-list'>
                                             <p>Billing Date</p>
                                             <p>{renewalDate}</p>
@@ -141,10 +162,6 @@ const Payment = () => {
                                         <div className='checkout-list'>
                                             <p>Billing Cycle</p>
                                             <p>{billingInfo.cycle}</p>
-                                        </div>
-                                        <div className='checkout-list'>
-                                            <p>Payment Type</p>
-                                            <p>{billingInfo.payType}</p>
                                         </div>
                                         <div className='checkout-list'>
                                             <p>Amount to be paid</p>
@@ -168,4 +185,14 @@ const Payment = () => {
         </>
     )
 };
-export default Payment;
+
+const mapStateToProps = (state, ownProps) => ({
+    currentUser: selectCurrentUser,
+    property: selectProperty(ownProps.match.params.id)(state),
+});
+
+const mapDispatchToProps = dispatch => ({
+    updatePaymentData: (data) => dispatch(updateLastDatePaidStart(data))
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(Payment);
