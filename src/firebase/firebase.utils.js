@@ -5,7 +5,7 @@ import 'firebase/storage';
 
 const config = {
     apiKey: "AIzaSyD5XrGQiHNAJUr-avU2QMeZe74zNjOQUJo",
-    authDomain: "efiewura-db-60044.firebaseapp.com",
+    authDomain: "edanra.com",
     databaseURL: "https://efiewura-db-60044.firebaseio.com",
     projectId: "efiewura-db-60044",
     storageBucket: "efiewura-db-60044.appspot.com",
