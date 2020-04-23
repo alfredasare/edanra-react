@@ -15,7 +15,7 @@ const HostingSteps = () => {
                         <i className="material-icons">looks_one</i>
                     </div>
                     <div className="step-head">
-                        <h3>Sign up on Edanra</h3>
+                        <h3>Sign up on edanra</h3>
                     </div>
                     <div className="step-content">
                         <p>
@@ -28,11 +28,11 @@ const HostingSteps = () => {
                         <i className="material-icons">looks_two</i>
                     </div>
                     <div className="step-head">
-                        <h3>Put up an ad</h3>
+                        <h3>Host your property</h3>
                     </div>
                     <div className="step-content">
                         <p>
-                            From your dashboard, you can get started on putting up an ad by filling the necessary details or by clicking provide space link on the navigation after signing in.
+                            From your dashboard, you can get started on putting up an ad by filling the necessary details or by clicking 'host your property' on the navigation after signing in.
                         </p>
                     </div>
                 </div>
@@ -41,7 +41,7 @@ const HostingSteps = () => {
                         <i className="material-icons">looks_3</i>
                     </div>
                     <div className="step-head">
-                        <h3>Manage your ads</h3>
+                        <h3>Manage your listing </h3>
                     </div>
                     <div className="step-content">
                         <p>

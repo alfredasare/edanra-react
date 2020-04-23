@@ -117,19 +117,16 @@ const SignUp = ({signUpStart, error, loader}) => {
     return (
         <>
             <Helmet>
-                <title>Sign Up For Edanra and Be A Host Today</title>
+                <title>Sign Up For edanra and Be A Host Today</title>
             </Helmet>
             <Navbar/>
             <main style={{marginTop: '100px'}} className="container">
                 <div className="row">
                     <div className="col-sm-12 offset-sm-0 col-md-8 offset-md-2 animated fadeIn delay-1s">
                         <div style={{textAlign: 'justify', fontSize: '18px', marginBottom: '50px'}}>
-                            <p style={{marginTop: '30px'}} className="property-head fadeInUp" data-wow-delay="0.3s">Sign
-                                Up
-                                For
-                                EDANRA</p>
+                            <p style={{marginTop: '30px'}} className="property-head fadeInUp" data-wow-delay="0.3s">Sign Up For edanra</p>
                             <p style={{fontSize: '1.1em'}} className="fadeInUp" data-wow-delay="0.5s">
-                                Sign up to EDANRA so you can have access to more functionality and also, so that we
+                                Sign up to edanra so you can have access to more functionality and also, so that we
                                 can connect with you.
                             </p>
                             <p style={{fontSize: '1.1em'}} className="fadeInUp" data-wow-delay="0.7s">Already have an

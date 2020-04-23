@@ -6,10 +6,11 @@ const Hero = () => {
     return (
         <header className="wow fadeIn" id="hero" data-wow-delay="0.1s">
             <div id="hero-message" className="animated fadeIn">
-                <h1>Welcome To EDANRA</h1>
+                <h1>Welcome To edanra</h1>
                 <p>
-                    Do you have a space to let? Let’s connect you to customers.
-                    Sign up and put it up for free!
+                    Do you have a house/room to sell or rent in Ghana?
+                    Let’s connect you to customers.
+                    Sign up and host your property for free!
                 </p>
             </div>
             <div id="hero-social-container">
@@ -18,7 +19,7 @@ const Hero = () => {
                        target="_blank">
                         <i className="fa fa-twitter"/>
                     </a>
-                    <a rel="noopener noreferrer" data-placement="bottom" href="https://www.facebook.com/edanragh"
+                    <a rel="noopener noreferrer" data-placement="bottom" href="https://web.facebook.com/Edanra-105026167849323/"
                        target="_blank">
                         <i className="fa fa-facebook-square"/>
                     </a>

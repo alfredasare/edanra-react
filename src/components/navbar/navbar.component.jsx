@@ -16,7 +16,7 @@ const Navbar = ({currentUser, signOutStart, loader}) => {
                 <div className="navbar-translate">
                     <Link className="navbar-brand" to="/">
                         <img src={require("../../assets/img/efiewura.png")} alt="" className="img-fluid logo"/>
-                        <span style={{color: '#004D40', fontSize: '0.9em', fontWeight: 'bold'}}> EDANRA</span>
+                        <span style={{color: '#004D40', fontSize: '0.9em', fontWeight: 'bold'}}> edanra</span>
                     </Link>
                     <button className='navbar-toggler' type="button" data-toggle="collapse" aria-expanded="false"
                             aria-label="Toggle navigation">
@@ -89,7 +89,7 @@ const Navbar = ({currentUser, signOutStart, loader}) => {
                             currentUser ? <></> : <li className="nav-item navbar-toggler">
                                 <NavLink className="nav-link get-started-link"
                                          data-toggle="collapse" to="/signup">
-                                    Upload a space
+                                    Host your property
                                 </NavLink>
                             </li>
                         }

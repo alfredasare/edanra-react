@@ -10,7 +10,7 @@ const ContactPage = () => {
     return (
         <>
             <Helmet>
-                <title>Contact Edanra For More Information</title>
+                <title>Contact edanra For More Information</title>
             </Helmet>
             <Navbar/>
             <div className='cover-img'>
@@ -24,8 +24,8 @@ const ContactPage = () => {
                 <div className='row contact-row'>
                     <div className='col-xs-12 col-sm-12 col-md-4 col-lg-3 card'>
                         <i className='fa fa-envelope animated jello'/>
-                        <h5>Mail Edanra</h5>
-                        <p>Want to send us feedback? Just send a mail to Edanra and we will respond as soon as
+                        <h5>Mail edanra</h5>
+                        <p>Want to send us feedback? Just send a mail to edanra and we will respond as soon as
                             possible.</p>
                         <a href="mailto:edanragh@gmail.com" target='_blank' rel="noopener noreferrer"><CustomButton>send mail</CustomButton></a>
                     </div>
@@ -34,14 +34,14 @@ const ContactPage = () => {
                         <h5>Reach us on social media</h5>
                         <p>Follow, send messages, comment and like our social media pages.</p>
                         <div className='social'>
-                            <a rel="noopener noreferrer" href="https://www.facebook.com/edanragh" target="_blank"><i className='fa fa-facebook'/></a>
+                            <a rel="noopener noreferrer" href="https://web.facebook.com/Edanra-105026167849323/" target="_blank"><i className='fa fa-facebook'/></a>
                             <a rel="noopener noreferrer" href="https://www.instagram.com/edanragh" target="_blank"><i className='fa fa-instagram'/></a>
                             <a rel="noopener noreferrer" href="https://twitter.com/edanragh" target="_blank"><i className='fa fa-twitter'/></a>
                         </div>
                     </div>
                     <div className='col-xs-12 col-sm-12 col-md-4 col-lg-3 card location'>
                         <i className='fa fa-map-marker animated jello delay-2s'/>
-                        <h5>Locate Edanra</h5>
+                        <h5>Locate edanra</h5>
                         <p>Accra</p>
                         <div className='call-header'>
                             <h6> Or call</h6>

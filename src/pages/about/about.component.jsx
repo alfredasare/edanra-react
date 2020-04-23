@@ -12,19 +12,21 @@ const AboutPage = () => {
     return (
         <>
             <Helmet>
-                <title>Find Out More About Edanra</title>
+                <title>Find Out More About edanra</title>
             </Helmet>
             <Navbar/>
-            <Header title="About EDANRA" imageUrl={url}/>
+            <Header title="About edanra" imageUrl={url}/>
 
             <section style={{marginBottom: '100px'}} className="container">
                 <div className="row">
                     <div className="col-10 offset-1 col-lg-12 offset-lg-0 about-text animated fadeIn delay-1s">
                         <h2>SERVICES</h2>
                         <p>
-                            Edanra is an online catalogue of property listings. It serves as the space for
-                            property owners to sell or rent their property; connecting buyers and tenants to their
-                            dream spaces.
+                            edanra is an online catalogue of property (houses and rooms) listings in Ghana. It serves as
+                            the platform for property (house or room) owners to sell or rent their property; connecting
+                            buyers and tenants to their next accommodation.
+                            Our objective is to make the search for accommodation (houses and rooms) in Ghana as easy
+                            and convenient as it goes.
                         </p>
                     </div>
                 </div>
@@ -32,11 +34,12 @@ const AboutPage = () => {
                     <div className="col-10 offset-1 col-lg-12 offset-lg-0 about-text animated fadeIn delay-1s">
                         <h2>HOW THE PLATFORM WORKS</h2>
                         <p>
-                            1. If you have a space to provide (for rent or sale), sign up and put up your property
-                            for free
+                            1. If you have a house, hotel or room to host (for rent or sale), sign up and host your
+                            property for free
                         </p>
                         <p>
-                            2. If you are looking for a space to buy or rent, simply search and get connected
+                            2. If you are looking for a house or room to buy or rent in Ghana, simply search and get
+                            connected.
                         </p>
                     </div>
                 </div>
