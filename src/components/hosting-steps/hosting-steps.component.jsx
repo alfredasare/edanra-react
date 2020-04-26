@@ -15,7 +15,7 @@ const HostingSteps = () => {
                         <i className="material-icons">looks_one</i>
                     </div>
                     <div className="step-head">
-                        <h3>Sign up on edanra</h3>
+                        <h3>Sign up on <span className="teal-head">edanra</span></h3>
                     </div>
                     <div className="step-content">
                         <p>

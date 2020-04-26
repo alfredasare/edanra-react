@@ -124,15 +124,11 @@ const SignUp = ({signUpStart, error, loader}) => {
                 <div className="row">
                     <div className="col-sm-12 offset-sm-0 col-md-8 offset-md-2 animated fadeIn delay-1s">
                         <div style={{textAlign: 'justify', fontSize: '18px', marginBottom: '50px'}}>
-                            <p style={{marginTop: '30px'}} className="property-head fadeInUp" data-wow-delay="0.3s">Sign Up For edanra</p>
+                            <p style={{marginTop: '30px'}} className="property-head fadeInUp" data-wow-delay="0.3s">Sign Up For <span className="teal-head">edanra</span></p>
                             <p style={{fontSize: '1.1em'}} className="fadeInUp" data-wow-delay="0.5s">
-                                Sign up to edanra so you can have access to more functionality and also, so that we
-                                can connect with you.
+                                Sign up to <span className="teal-head">edanra</span> and let's form a great partnership
                             </p>
-                            <p style={{fontSize: '1.1em'}} className="fadeInUp" data-wow-delay="0.7s">Already have an
-                                account?
-                                Just
-                                <NavLink style={{fontWeight: 'bold'}} id="login-link" to="/login"> Login</NavLink>
+                            <p style={{fontSize: '1.1em'}} className="fadeInUp" data-wow-delay="0.7s">Already have an account? <NavLink style={{fontWeight: 'bold'}} id="login-link" to="/login"> Log In</NavLink>
                             </p>
                         </div>
                         <form onSubmit={handleSubmit} style={{marginBottom: '70px'}}

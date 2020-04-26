@@ -31,6 +31,11 @@ body {
   }
 }
 
+.teal-head {
+  color: var(--teal);
+  font-weight: bold;
+}
+
 input:-webkit-autofill {
   -webkit-animation-delay: 1s; /* Safari support - any positive time runs instantly */
   -webkit-animation-name: autofill;

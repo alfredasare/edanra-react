@@ -22,7 +22,7 @@ const AboutPage = () => {
                     <div className="col-10 offset-1 col-lg-12 offset-lg-0 about-text animated fadeIn delay-1s">
                         <h2>SERVICES</h2>
                         <p>
-                            edanra is an online catalogue of property (houses and rooms) listings in Ghana. It serves as
+                            <span className="teal-head">edanra</span> is an online catalogue of property (houses and rooms) listings in Ghana. It serves as
                             the platform for property (house or room) owners to sell or rent their property; connecting
                             buyers and tenants to their next accommodation.
                             Our objective is to make the search for accommodation (houses and rooms) in Ghana as easy

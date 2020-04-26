@@ -199,7 +199,7 @@ const ProvideSpace = ({currentUser, propertyStorageUploadStart, regions, distric
                               encType="multipart/form-data">
 
                             <h2>Provide The Details For Your Listing</h2>
-                            <h4>Fill the form below with the details of the particular property you want to host. To
+                            <h4 style={{color: '#3c4858', fontWeight: 'normal'}}>Fill the form below with the details of the particular property you want to host. To
                                 make
                                 transactions
                                 easy make sure you input accurate information about the property

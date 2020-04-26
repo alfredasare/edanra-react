@@ -32,7 +32,7 @@ const HomeSearchBar = ({getResults, allProperties, history}) => {
         <div className="container">
             <div className="row">
                 <div id="motto">
-                    <span>Want a room or house to rent or buy?</span> Do a quick search on edanra.
+                    <span>Want a room or house to rent or buy?</span> Do a quick search on <span className="teal-head">edanra</span>.
                 </div>
             </div>
 

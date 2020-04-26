@@ -7,9 +7,9 @@ const HowToUse = () => {
         <section id="how-to-use-container" className="container">
             <div className="row">
                 <div style={{paddingTop: '30px'}} className="col-sm-12 col-md-10 col-lg-10 animated fadeIn">
-                    <h2>What edanra Does</h2>
+                    <h2>What <span className="teal-head">edanra</span> Does</h2>
                     <p style={{marginTop: '1.2em'}}>
-                        edanra connects house, hotel, hostel and room owners to their potential customers all across Ghana.
+                        <span className="teal-head">edanra</span> connects house, hotel, hostel and room owners to their potential customers all across Ghana.
                         We save you from the long hunt for a convenient accommodation.
                         Enough of the hustle with property agents. Your next house or room is just a search away!
                     </p>
