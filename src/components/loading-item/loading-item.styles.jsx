@@ -66,6 +66,8 @@ const LoaderProperties = css`
 
 export const Loader = styled.div`
     width: 95%;
+    margin-bottom: 10px;
+    margin-top: 10px;
     
     ${KeyFrameAnimation}
 `;
