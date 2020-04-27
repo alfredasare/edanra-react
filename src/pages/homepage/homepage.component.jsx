@@ -38,7 +38,7 @@ const HomePage = ({regions, properties}) => {
             }
 
             {
-                properties > 0 ? regions.map((region) => (<PropertyItemCollection key={region} region={region}/>)) : <></>
+                regions.map((region) => (<PropertyItemCollection key={region} region={region}/>))
             }
 
             <ReadyToEarn/>
