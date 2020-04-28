@@ -21,6 +21,7 @@ import Navbar from "../../components/navbar/navbar.component";
 import Footer from "../../components/footer/footer.component";
 import PasswordToggle from "../../components/passwordToggle/passwordToggle.component";
 import {Helmet} from "react-helmet";
+import ScrollToTop from "../../utils/scroll-to-top";
 
 const SignUp = ({signUpStart, error, loader}) => {
 
@@ -119,6 +120,7 @@ const SignUp = ({signUpStart, error, loader}) => {
             <Helmet>
                 <title>Sign Up For edanra and Be A Host Today</title>
             </Helmet>
+            <ScrollToTop/>
             <Navbar/>
             <main style={{marginTop: '100px'}} className="container">
                 <div className="row">

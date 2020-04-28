@@ -1,6 +1,7 @@
 import React from "react";
 import './error-page.styles.scss';
 import {Helmet} from "react-helmet";
+import ScrollToTop from "../../utils/scroll-to-top";
 
 const ErrorPage = () => {
 
@@ -9,6 +10,7 @@ const ErrorPage = () => {
             <Helmet>
                 <title>Page Not Found - Edanra</title>
             </Helmet>
+            <ScrollToTop/>
             <div id="err-main-div">
                 <div className="container-fluid">
                     <div className="row">

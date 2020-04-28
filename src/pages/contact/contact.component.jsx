@@ -3,6 +3,7 @@ import './contact.styles.scss';
 import CustomButton from "../../components/custom-button/custom-button.component";
 import Navbar from "../../components/navbar/navbar.component";
 import {Helmet} from "react-helmet";
+import ScrollToTop from "../../utils/scroll-to-top";
 
 const ContactPage = () => {
 
@@ -12,6 +13,7 @@ const ContactPage = () => {
             <Helmet>
                 <title>Contact edanra For More Information</title>
             </Helmet>
+            <ScrollToTop/>
             <Navbar/>
             <div className='cover-img'>
                 <div>

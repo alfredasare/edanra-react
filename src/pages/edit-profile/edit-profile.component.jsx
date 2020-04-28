@@ -24,6 +24,7 @@ import {
 } from "../../assets/js/validation";
 import SuccessTick from "../../components/success-tick/success-tick.component";
 import {Helmet} from "react-helmet";
+import ScrollToTop from "../../utils/scroll-to-top";
 
 const EditProfile = ({currentUser, error, isUpdating, updateProfileStart, deleteProfileImageStart, successMessage}) => {
 
@@ -103,6 +104,7 @@ const EditProfile = ({currentUser, error, isUpdating, updateProfileStart, delete
             <Helmet>
                 <title>Edit Profile Details Here</title>
             </Helmet>
+            <ScrollToTop/>
             <Navbar/>
             <main style={{marginTop: '100px'}} className="container">
                 <div className="row">

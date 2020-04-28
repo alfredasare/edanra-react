@@ -13,6 +13,7 @@ import HomeSearchBar from "../../components/home-search-bar/home-search-bar.comp
 import HostingSteps from "../../components/hosting-steps/hosting-steps.component";
 import {Helmet} from "react-helmet";
 import {selectAllPropertiesLength} from "../../redux/properties/properties.selectors";
+import ScrollToTop from "../../utils/scroll-to-top";
 
 
 const HomePage = ({regions, properties}) => {
@@ -22,6 +23,7 @@ const HomePage = ({regions, properties}) => {
             <Helmet>
                 <title>Edanra - Browse through our amazing catalogue of ads</title>
             </Helmet>
+            <ScrollToTop/>
             <Navbar/>
             <Hero/>
             <HomeSearchBar/>

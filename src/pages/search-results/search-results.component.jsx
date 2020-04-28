@@ -11,6 +11,7 @@ import SearchItem from "../../components/search-item/search-item.component";
 import Navbar from "../../components/navbar/navbar.component";
 import Footer from "../../components/footer/footer.component";
 import {Helmet} from "react-helmet";
+import ScrollToTop from "../../utils/scroll-to-top";
 
 const SearchResultsPage = ({regions, districts, getResults, results, allProperties}) => {
 
@@ -49,6 +50,7 @@ const SearchResultsPage = ({regions, districts, getResults, results, allProperti
             <Helmet>
                 <title>Search Through Our Catalogue Of Ads</title>
             </Helmet>
+            <ScrollToTop/>
             <Navbar/>
             <main className="container">
                 <form onSubmit={handleSubmit} style={{marginTop: '100px'}}>

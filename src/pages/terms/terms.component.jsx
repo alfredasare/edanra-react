@@ -4,6 +4,7 @@ import Header from "../../components/header/header.component";
 import Navbar from "../../components/navbar/navbar.component";
 import Footer from "../../components/footer/footer.component";
 import {Helmet} from "react-helmet";
+import ScrollToTop from "../../utils/scroll-to-top";
 
 const TermsPage = () => {
 
@@ -14,6 +15,7 @@ const TermsPage = () => {
             <Helmet>
                 <title>Terms Of Service</title>
             </Helmet>
+            <ScrollToTop/>
             <Navbar/>
             <Header title="Terms & Conditions" imageUrl={url}/>
 

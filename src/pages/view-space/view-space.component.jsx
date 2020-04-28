@@ -6,6 +6,7 @@ import {selectProperty} from "../../redux/properties/properties.selectors";
 import Navbar from "../../components/navbar/navbar.component";
 import Footer from "../../components/footer/footer.component";
 import {Helmet} from "react-helmet";
+import ScrollToTop from "../../utils/scroll-to-top";
 
 const ViewSpace = ({property}) => {
 
@@ -16,6 +17,7 @@ const ViewSpace = ({property}) => {
             <Helmet>
                 <title>{property.property_type} in {property.town}, {property.region} hosted by {property.username}</title>
             </Helmet>
+            <ScrollToTop/>
             <Navbar/>
             <section className="container" id="view-listing-head">
                 <div className="main-pic animated fadeIn delay-1s">

@@ -11,6 +11,7 @@ import {checkUserSession} from "../../redux/user/user.actions";
 import Navbar from "../../components/navbar/navbar.component";
 import Footer from "../../components/footer/footer.component";
 import {Helmet} from "react-helmet";
+import ScrollToTop from "../../utils/scroll-to-top";
 
 const Dashboard = ({fetchPropertiesStart, isPropertyEdited, currentUser, checkUserSession}) => {
 
@@ -24,6 +25,7 @@ const Dashboard = ({fetchPropertiesStart, isPropertyEdited, currentUser, checkUs
             <Helmet>
                 <title>Manage All your Ads From Your Dashboard</title>
             </Helmet>
+            <ScrollToTop/>
             <Navbar/>
             <div id="dashboard" className="container">
                 <ProfileCard currentUser={currentUser}/>

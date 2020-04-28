@@ -12,6 +12,7 @@ import {selectCurrentUser} from "../../redux/user/user.selectors";
 import {selectProperty} from "../../redux/properties/properties.selectors";
 import {Helmet} from "react-helmet";
 import {updateLastDatePaidStart} from "../../redux/payment/payment.actions";
+import ScrollToTop from "../../utils/scroll-to-top";
 
 const Payment = ({property, history, updatePaymentData}) => {
 
@@ -104,6 +105,7 @@ const Payment = ({property, history, updatePaymentData}) => {
             <Helmet>
                 <title>Complete Your Payment To Host Your Ad</title>
             </Helmet>
+            <ScrollToTop/>
             <Navbar/>
             <form onSubmit={handlePayment}>
                 <div className='main-content'>

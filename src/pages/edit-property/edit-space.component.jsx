@@ -18,6 +18,7 @@ import {
 import Navbar from "../../components/navbar/navbar.component";
 import Footer from "../../components/footer/footer.component";
 import {Helmet} from "react-helmet";
+import ScrollToTop from "../../utils/scroll-to-top";
 
 
 const EditSpace = ({regions, districts, property, history, propertyEditStart}) => {
@@ -139,6 +140,7 @@ const EditSpace = ({regions, districts, property, history, propertyEditStart}) =
             <Helmet>
                 <title>Edit Your Ad Details Here</title>
             </Helmet>
+            <ScrollToTop/>
             <Navbar/>
             <main className="container">
                 <div className="row">

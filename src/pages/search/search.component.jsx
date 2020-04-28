@@ -11,6 +11,7 @@ import {selectPropertiesForDisplay} from "../../redux/properties/properties.sele
 import Navbar from "../../components/navbar/navbar.component";
 import Footer from "../../components/footer/footer.component";
 import {Helmet} from "react-helmet";
+import ScrollToTop from "../../utils/scroll-to-top";
 
 const SearchPage = ({districts, regions, getResults, history, allProperties}) => {
 
@@ -41,6 +42,7 @@ const SearchPage = ({districts, regions, getResults, history, allProperties}) =>
             <Helmet>
                 <title>Search Through Our Catalogue Of Ads</title>
             </Helmet>
+            <ScrollToTop/>
             <Navbar/>
             <main className="container">
                 <div className="row">

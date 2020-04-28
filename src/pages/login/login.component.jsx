@@ -13,6 +13,7 @@ import Navbar from "../../components/navbar/navbar.component";
 import Footer from "../../components/footer/footer.component";
 import PasswordToggle from "../../components/passwordToggle/passwordToggle.component";
 import {Helmet} from "react-helmet";
+import ScrollToTop from "../../utils/scroll-to-top";
 
 const LoginPage = ({googleSignInStart, emailSignInStart, error, loader}) => {
 
@@ -80,6 +81,7 @@ const LoginPage = ({googleSignInStart, emailSignInStart, error, loader}) => {
             <Helmet>
                 <title>Sign In To Edanra</title>
             </Helmet>
+            <ScrollToTop/>
             <Navbar/>
             <div style={{marginTop: '60px'}} className="container-fluid">
                 <div className="row mh-100vh">

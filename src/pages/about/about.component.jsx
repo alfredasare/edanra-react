@@ -4,6 +4,7 @@ import './about.styles.scss';
 import Header from "../../components/header/header.component";
 import Navbar from "../../components/navbar/navbar.component";
 import Footer from "../../components/footer/footer.component";
+import ScrollToTop from "../../utils/scroll-to-top";
 
 const AboutPage = () => {
 
@@ -14,6 +15,7 @@ const AboutPage = () => {
             <Helmet>
                 <title>Find Out More About edanra</title>
             </Helmet>
+            <ScrollToTop/>
             <Navbar/>
             <Header title="About edanra" imageUrl={url}/>
 
