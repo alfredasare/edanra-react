@@ -1,28 +1,35 @@
-.step-icon {
-  i {
-    font-size: 3em;
-    color: var(--teal);
+.step-container {
+  .step-icon {
+    i {
+      font-size: 3em;
+      color: var(--teal);
+    }
+
   }
 
-}
+  .step-head {
 
-.step-head {
-
-  h3 {
-    font-size: 1.7em;
-    font-weight: 700;
-    line-height: 1.25em;
-  }
-}
-
-.step-content {
-
-  p {
-    font-size: 1.1em;
-    line-height: 1.25em;
+    h3 {
+      font-size: 1.7em;
+      font-weight: 700;
+      line-height: 1.25em;
+    }
   }
 
-  a {
-    font-weight: bold;
+  .step-content {
+
+    p {
+      font-size: 1.1em;
+      line-height: 1.25em;
+    }
+
+    a {
+      font-weight: bold;
+    }
+  }
+
+  @media screen and (max-width: 480px) {
+    margin-bottom: 2em;
+    text-align: center;
   }
 }

@@ -28,7 +28,7 @@ const ContactPage = () => {
                         <i className='fa fa-envelope animated jello'/>
                         <h5>Mail <span className="teal-head">edanra</span></h5>
                         <p>Want to send us feedback? Just send a mail to edanra and we will respond as soon as possible.</p>
-                        <a href="mailto:edanragh@gmail.com" target='_blank' rel="noopener noreferrer"><CustomButton>send mail</CustomButton></a>
+                        <a href="mailto:info@edanra.com" target='_blank' rel="noopener noreferrer"><CustomButton>send mail</CustomButton></a>
                     </div>
                     <div className='col-xs-12 col-sm-12 col-md-4 col-lg-3 card'>
                         <i className='fa fa-comments animated jello delay-1s'/>

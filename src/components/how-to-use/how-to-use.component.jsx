@@ -9,9 +9,9 @@ const HowToUse = () => {
                 <div style={{paddingTop: '30px'}} className="col-sm-12 col-md-10 col-lg-10 animated fadeIn">
                     <h2>What <span className="teal-head">edanra</span> Does</h2>
                     <p style={{marginTop: '1.2em'}}>
-                        <span className="teal-head">edanra</span> connects house, hotel, hostel and room owners to their potential customers all across Ghana.
-                        We save you from the long hunt for a convenient accommodation.
-                        Enough of the hustle with property agents. Your next house or room is just a search away!
+                        <span className="teal-head">edanra</span> creates the platform for room and house owners to rent
+                        out their space to potential customers.
+                        Your next home is just a search away!
                     </p>
                 </div>
                 <div className="col-8 offset-2 col-md-2 offset-md-0 col-lg-2 animated fadeIn delay-1s">

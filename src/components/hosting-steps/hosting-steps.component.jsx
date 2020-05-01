@@ -7,10 +7,10 @@ const HostingSteps = () => {
     return (
         <div style={{marginTop: '70px'}} className="container">
             <div className="row">
-                <h2 style={{marginLeft: '10px', marginBottom: '30px', fontSize: '2.5em', fontWeight: 'bold'}}>Hosting made easy</h2>
+                <h2 style={{marginLeft: '10px', marginBottom: '30px', fontSize: '2.5em', fontWeight: 'bold'}}>Renting made easy</h2>
             </div>
             <div className="row">
-                <div className="col-md-4">
+                <div className="col-md-4 step-container">
                     <div className="step-icon">
                         <i className="material-icons">looks_one</i>
                     </div>
@@ -23,12 +23,12 @@ const HostingSteps = () => {
                         </p>
                     </div>
                 </div>
-                <div className="col-md-4">
+                <div className="col-md-4 step-container">
                     <div className="step-icon">
                         <i className="material-icons">looks_two</i>
                     </div>
                     <div className="step-head">
-                        <h3>Host your property</h3>
+                        <h3>List your property</h3>
                     </div>
                     <div className="step-content">
                         <p>
@@ -36,7 +36,7 @@ const HostingSteps = () => {
                         </p>
                     </div>
                 </div>
-                <div className="col-md-4">
+                <div className="col-md-4 step-container">
                     <div className="step-icon">
                         <i className="material-icons">looks_3</i>
                     </div>

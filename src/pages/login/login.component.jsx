@@ -129,7 +129,7 @@ const LoginPage = ({googleSignInStart, emailSignInStart, error, loader}) => {
                     </div>
                     <div className="col-lg-6 d-flex align-items-end wow fadeIn" data-wow-delay="0.5s" id="bg-block"
                          style={{
-                             background: `url(${require('../../assets/img/login.jpg')})`,
+                             background: `url(${require('../../assets/img/african-american-woman-black-girl-black-woman-chair-1181414.jpg')})`,
                              backgroundSize: 'cover',
                              backgroundPosition: 'center center'
                          }}/>

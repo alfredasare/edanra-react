@@ -8,7 +8,7 @@ import ScrollToTop from "../../utils/scroll-to-top";
 
 const TermsPage = () => {
 
-    const url = "https://firebasestorage.googleapis.com/v0/b/efiewura-db-60044.appspot.com/o/site-images%2Fterms.png?alt=media&token=10eb6c0d-b4fe-4b4f-bc93-2c6e93bed8fd";
+    const url = require("../../assets/img/two-person-in-long-sleeved-shirt-shakehand-955395.jpg");
 
     return (
         <>

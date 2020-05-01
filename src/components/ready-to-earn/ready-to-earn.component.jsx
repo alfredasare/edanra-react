@@ -8,7 +8,7 @@ const ReadyToEarn = () => {
         <div style={{marginTop: '50px'}} className="container-fluid">
             <div className="row misc-content-bg">
                 <div className="misc-content">
-                    <h2>Want to start hosting ads? </h2>
+                    <h2>Want to start hosting property? </h2>
                     <div className="get-started">
                         <Link to="/signup">Get started</Link>
                     </div>
