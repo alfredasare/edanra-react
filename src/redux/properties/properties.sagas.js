@@ -42,9 +42,9 @@ export function* removePropertyStart() {
 }
 
 export function* deleteFilesFromServer({payload}) {
-    const {profile_img, main_image_url, other_images_url} = payload;
+    const {main_image_url, other_images_url} = payload;
     const other_images = other_images_url.map(image => image.url);
-    const images = [profile_img, main_image_url, ...other_images];
+    const images = [main_image_url, ...other_images];
 
     try {
         for (let image of images) {
