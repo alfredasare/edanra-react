@@ -8,7 +8,7 @@ export const HeaderContainer = styled.header`
   flex-flow: row nowrap;
   justify-content: center;
   align-items: center;
-  background: ${({imageUrl}) => `url(${imageUrl})`} no-repeat center center fixed;
+  background: ${({imageUrl}) => `url(${imageUrl})`} no-repeat center center scroll;
   background-size: cover;
   padding-top: 40px;
 `;
