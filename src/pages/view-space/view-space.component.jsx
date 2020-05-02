@@ -28,19 +28,16 @@ const ViewSpace = ({property}) => {
                     <h2 style={{textTransform: 'capitalize'}}>{property.property_type} in {property.town}</h2>
                     <p style={{fontSize: '1.1em'}}><span style={{fontWeight: '400'}}>Region :</span> {property.region}
                     </p>
+                    {
+                        property.district ? <p style={{fontSize: '1.1em'}}><span
+                            style={{fontWeight: '400'}}>District :</span> {property.district}</p> : <></>
+                    }
                     <p style={{fontSize: '1.1em'}}><span
-                        style={{fontWeight: '400'}}>District :</span> {property.district}</p>
-                    <p style={{fontSize: '1.1em'}}><span
-                        style={{fontWeight: '400'}}>Price :</span> Ghc {property.price} &#9679; {property.ad_type} &#9679;{property.negotiation_status}</p>
-                    <h3>Description</h3>
+                        style={{fontWeight: '400'}}>Price :</span> Ghc {property.price} &#9679; {property.negotiation_status}</p>
+                    <h3 style={{marginTop: '20px'}}>Description</h3>
                     <p style={{fontSize: '1.1em'}}>
                         {
-                            property.description ? property.description : `Lorem ipsum dolor sit amet, consectetur adipisicing elit. At
-                            consequuntur, ducimus
-                            laboriosam modi mollitia
-                            nulla ratione similique sunt tempora ullam. Amet aspernatur atque debitis non praesentium
-                            quaerat quis
-                            similique veniam.`
+                            property.description ? property.description : ``
                         }
                     </p>
                 </div>

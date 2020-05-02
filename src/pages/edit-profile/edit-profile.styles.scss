@@ -14,6 +14,11 @@
   object-position: center;
 }
 
+.update-message {
+  text-align: center;
+  font-size: 1.3em;
+}
+
 .dashboard-link {
   width: 100%;
   display: flex;
@@ -28,9 +33,4 @@
       opacity: 0.8;
     }
   }
-}
-
-.update-message {
-  text-align: center;
-  font-size: 1.3em;
 }

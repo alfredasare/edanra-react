@@ -11,7 +11,10 @@ export const getSearchResults = ({filters, allProperties}) => {
         } else if (town !== "" && region !== "" && district === "") {
             return property.town.toLowerCase().includes(town.toLowerCase()) && property.region === region;
         } else if (town !== "" && region !== "" && district !== "") {
-            return property.town.toLowerCase().includes(town.toLowerCase()) === town && property.region === region && property.district.toLowerCase().includes(district.toLowerCase());
+            if (town === region && district === region && town === district) {
+                return property.town.toLowerCase().includes(town.toLowerCase()) || property.region.toLowerCase().includes(region.toLowerCase()) || property.district.toLowerCase().includes(district.toLowerCase());
+            }
+            return property.town.toLowerCase().includes(town.toLowerCase()) && property.region === region && property.district.toLowerCase().includes(district.toLowerCase());
         } else if (town !== "" && region === "" && district !== "") {
             return property.town.toLowerCase().includes(town.toLowerCase()) && property.district.toLowerCase().includes(district.toLowerCase());
         } else if (town === "" && region !== "" && district !== "") {

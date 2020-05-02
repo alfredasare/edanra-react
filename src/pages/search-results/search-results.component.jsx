@@ -30,7 +30,9 @@ const SearchResultsPage = ({regions, districts, getResults, results, allProperti
     };
 
     const handleChange = event => {
-        const {name, value} = event.target;
+        const {name} = event.target;
+        let {value} = event.target;
+        value = value === "CHOOSE REGION" ? "" : value;
         setFilters({
             ...filters,
             [name]: value

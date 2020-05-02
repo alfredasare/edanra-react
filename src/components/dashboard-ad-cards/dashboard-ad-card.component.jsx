@@ -9,7 +9,7 @@ import {dateChecker} from "../../utils/date";
 
 const DashboardAdCard = ({property, removePropertyStart, allProperties}) => {
 
-    const {routeName, main_image_url, town, price, date_uploaded, ad_type, last_date_paid} = property;
+    const {routeName, main_image_url, town, price, date_uploaded, last_date_paid} = property;
     const subscription_type = property.subscription_type ? property.subscription_type :'free_three';
     const renew_date = last_date_paid ? new Date(last_date_paid) : new Date('2020-07-31');
 
@@ -67,7 +67,6 @@ const DashboardAdCard = ({property, removePropertyStart, allProperties}) => {
                         <li className="list-group-item">Ghs {price}</li>
                     </div>
                     <li className="list-group-item">Uploaded on {formattedDate}</li>
-                    <li className="list-group-item">For {ad_type}</li>
                     <div style={{display: 'flex', justifyContent: 'space-between'}}>
                         <div className="badge-container">
                             {

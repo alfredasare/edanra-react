@@ -21,10 +21,12 @@ const HomeSearchBar = ({getResults, allProperties, history}) => {
     };
 
     const handleChange = event => {
-        const {name, value} = event.target;
+        const {value} = event.target;
         setFilters({
             ...filters,
-            [name]: value
+            town: value,
+            region: value,
+            district: value
         });
     };
 
