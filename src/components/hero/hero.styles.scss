@@ -30,6 +30,10 @@
     width: 50%;
     height: 30vh;
 
+    @media screen and (max-width: 360px) {
+      height: unset;
+    }
+
     h1 {
       font-size: 2.5em;
 
