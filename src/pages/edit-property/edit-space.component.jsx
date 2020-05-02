@@ -22,7 +22,6 @@ import ScrollToTop from "../../utils/scroll-to-top";
 import {selectIsPropertyEdited} from "../../redux/property-upload/property-upload.selectors";
 import LoadingSpinner from "../../components/loading-spinner/loading-spinner.component";
 import SuccessTick from "../../components/success-tick/success-tick.component";
-import {Link} from "react-router-dom";
 import BackToDashLink from "../../components/back-to-dash-link/back-to-dash-link.component";
 
 

@@ -12,6 +12,7 @@ import Navbar from "../../components/navbar/navbar.component";
 import Footer from "../../components/footer/footer.component";
 import {Helmet} from "react-helmet";
 import ScrollToTop from "../../utils/scroll-to-top";
+import {selectIsDeleted, selectPropertiesForDisplay} from "../../redux/properties/properties.selectors";
 
 const Dashboard = ({fetchPropertiesStart, isPropertyEdited, currentUser, checkUserSession}) => {
 
@@ -41,6 +42,8 @@ const Dashboard = ({fetchPropertiesStart, isPropertyEdited, currentUser, checkUs
 const mapStateToProps = createStructuredSelector({
     isPropertyEdited: selectIsPropertyEdited,
     currentUser: selectCurrentUser,
+    isDeleted: selectIsDeleted,
+    allProperties: selectPropertiesForDisplay,
 });
 
 const mapDispatchToProps = dispatch => ({

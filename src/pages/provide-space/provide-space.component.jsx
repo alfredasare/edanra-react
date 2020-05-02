@@ -108,9 +108,6 @@ const ProvideSpace = ({currentUser, propertyStorageUploadStart, regions, distric
         setErrorMessages({...errorMessages, negotiationError: ''});
     };
 
-    const makeAdTypeValid = () => {
-        setErrorMessages({...errorMessages, adTypeError: ''});
-    };
 
     const validatePropertyDescription = event => {
         validateDescription(event);
@@ -366,7 +363,7 @@ const ProvideSpace = ({currentUser, propertyStorageUploadStart, regions, distric
 
 
                             <FormInputText handleChange={handleChange} type='number' name='price' id='price'
-                                           label="Price per month"
+                                           label="Price per month (GHS)"
                                            onBlur={validatePropertyPrice}/>
                             <p className='red o-100'>{errorMessages.priceError}</p>
 

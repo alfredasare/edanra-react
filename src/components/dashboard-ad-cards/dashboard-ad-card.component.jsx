@@ -32,7 +32,7 @@ const DashboardAdCard = ({property, removePropertyStart, allProperties}) => {
 
     const handleDelete = event => {
         event.preventDefault();
-        removePropertyStart({allProperties, property})
+        removePropertyStart({allProperties, property});
     };
 
     return (

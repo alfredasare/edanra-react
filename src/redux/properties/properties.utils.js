@@ -4,6 +4,6 @@ export const removeProperty = ({allProperties, property}) => {
     });
 
     if (existingPropertyItem) {
-        return allProperties.filter(propertyItem => propertyItem.uid !== property.uid);
+        return allProperties.filter(propertyItem => propertyItem.uid !== existingPropertyItem.uid);
     }
 };
