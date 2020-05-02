@@ -40,7 +40,7 @@ const HomeSearchBar = ({getResults, allProperties, history}) => {
 
             <div className="row">
                 <form onSubmit={handleSubmit} id="searchbar">
-                    <input onChange={handleChange} type="text" name="town" id="town" placeholder="Town or city"/>
+                    <input onChange={handleChange} type="text" name="town" id="town" placeholder="Town, region or district"/>
                     <button type="submit">Search</button>
                 </form>
             </div>
