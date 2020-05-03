@@ -14,7 +14,7 @@ const PropertyItem = ({routeName, main_image_url, town, region, username, price,
                 <div className="item-content">
                     <div className="item-location">{town} &#9679; {region}</div>
                     <div className="item-name">{property_type} hosted by {username}</div>
-                    <div className="item-price">Ghc {price} &#9679; <span
+                    <div className="item-price">Ghc {price} / month &#9679; <span
                         className="negotiation-status">{negotiation_status}</span>
                     </div>
                     <Link className="workspace-link" to={`properties/${routeName}`}>View Space</Link>

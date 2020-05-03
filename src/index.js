@@ -17,12 +17,14 @@ ReactDOM.render(
     document.getElementById('root')
 );
 
-serviceWorker.register({
-    onUpdate: registration => {
-        alert('New version available!  Ready to update?');
-        if (registration && registration.waiting) {
-            registration.waiting.postMessage({ type: 'SKIP_WAITING' });
-        }
-        window.location.reload();
-    }
-});
+// serviceWorker.register({
+//     onUpdate: registration => {
+//         alert('New version available!  Ready to update?');
+//         if (registration && registration.waiting) {
+//             registration.waiting.postMessage({ type: 'SKIP_WAITING' });
+//         }
+//         window.location.reload();
+//     }
+// });
+
+serviceWorker.unregister();
