@@ -9,11 +9,11 @@ import {
 } from "./property-upload.actions";
 
 export function* upload({payload}) {
-    const {property_images} = payload;
-    const images = [...property_images];
+    const {property_images, main_image_url} = payload;
+    const images = [...property_images, main_image_url];
     const downloadUrls = [];
-    try {
 
+    try {
         for (let image of images) {
             const storageRef = storage.ref(`ads/${Date.now()}_${image.name}`);
             const uploadTask = yield storageRef.put(image);
@@ -23,7 +23,8 @@ export function* upload({payload}) {
 
         yield put(propertyStorageUploadSuccess({
             ...payload,
-            property_images: downloadUrls
+            property_images: downloadUrls,
+            main_image_url: downloadUrls[downloadUrls.length - 1]
         }))
     } catch (error) {
         yield put(propertyStorageUploadError(error));
@@ -36,9 +37,8 @@ export function* onPropertyStorageUploadStart() {
 
 
 export function* uploadProperty({payload}) {
-    const {property_images, ...modifiedPropertyDetails} = payload;
-    const [main_image_url, ...other_images_url] = property_images;
-    const transformed_images = other_images_url.map((image_url, idx) => {
+    const {property_images, main_image_url, ...modifiedPropertyDetails} = payload;
+    const transformed_images = property_images.map((image_url, idx) => {
         return {
             id: idx,
             url: image_url

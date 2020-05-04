@@ -66,7 +66,7 @@ const ProvideSpace = ({currentUser, propertyStorageUploadStart, regions, distric
         negotiationError: '',
     });
 
-    const {property_type, region, district, negotiation_status, property_images} = propertyDetails;
+    const {property_type, region, district, negotiation_status, property_images, main_image_url} = propertyDetails;
 
 
     const setError = () => {
@@ -107,7 +107,6 @@ const ProvideSpace = ({currentUser, propertyStorageUploadStart, regions, distric
     const makeNegotiationValid = () => {
         setErrorMessages({...errorMessages, negotiationError: ''});
     };
-
 
     const validatePropertyDescription = event => {
         validateDescription(event);
@@ -174,10 +173,17 @@ const ProvideSpace = ({currentUser, propertyStorageUploadStart, regions, distric
             }
         }
         const name = event.target.name;
-        const files = event.target.files;
-        setPropertyDetails({...propertyDetails, [name]: Array.from(files)});
 
+        if (name === 'property_images') {
+            const files = event.target.files;
+            setPropertyDetails({...propertyDetails, [name]: Array.from(files)});
+        } else {
+            const file = event.target.files[0];
+            setPropertyDetails({...propertyDetails, [name]: file});
+        }
     };
+
+
 
     const handleAgree = () => {
         setAgreeCheck(!agreeCheck);
@@ -328,6 +334,33 @@ const ProvideSpace = ({currentUser, propertyStorageUploadStart, regions, distric
                                            onBlur={validatePropertyTown}/>
                             <p className='red o-100'>{errorMessages.townError}</p>
 
+
+                            <h5 className="custom-form-subhead">Main Display Image</h5>
+                            <input onChange={handleFileChange} name="main_image_url" type="file"
+                                   id="single-file-upload"
+                                   hidden="hidden"
+                                   accept='image/*'/>
+                            <label className="upload-button-label" htmlFor="single-file-upload">
+                                <div id="propertiesUpBtn" className="btn btn-fab btn-round btn-primary">
+                                    <i className="material-icons">attachment</i>
+                                </div>
+                                <div className="upload-text">
+                                    Click here to upload the main display image
+                                </div>
+                            </label>
+                            {
+                                main_image_url
+                                    ? <div className="uploaded-images">
+                                        <h5>You uploaded:</h5>
+                                        <ul>
+                                            <li>{main_image_url.name}</li>
+                                        </ul>
+                                    </div>
+                                    : <></>
+                            }
+
+                            <h5 className="custom-form-subhead">Other Images</h5>
+
                             <input onChange={handleFileChange} name="property_images" type="file"
                                    id="multiple-file-upload"
                                    hidden="hidden"
@@ -337,7 +370,7 @@ const ProvideSpace = ({currentUser, propertyStorageUploadStart, regions, distric
                                     <i className="material-icons">layers</i>
                                 </div>
                                 <div className="upload-text">
-                                    Click here to upload pictures of property (preferably 5 or less)
+                                    Click here to upload pictures of property (between 3 to 5)
                                 </div>
                             </label>
                             {
