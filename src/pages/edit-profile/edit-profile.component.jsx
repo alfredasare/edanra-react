@@ -1,6 +1,5 @@
 import React, {useState} from "react";
 import {connect} from 'react-redux';
-import {Link} from 'react-router-dom';
 import FormInputText from "../../components/form-input-text/form-input-text.component";
 import CustomButtonsContainer from "../../components/custom-buttons-container/custom-buttons-container.component";
 import CustomButton from "../../components/custom-button/custom-button.component";
@@ -25,6 +24,7 @@ import {
 import SuccessTick from "../../components/success-tick/success-tick.component";
 import {Helmet} from "react-helmet";
 import ScrollToTop from "../../utils/scroll-to-top";
+import BackToDashLink from "../../components/back-to-dash-link/back-to-dash-link.component";
 
 const EditProfile = ({currentUser, error, isUpdating, updateProfileStart, deleteProfileImageStart, successMessage}) => {
 
@@ -159,9 +159,9 @@ const EditProfile = ({currentUser, error, isUpdating, updateProfileStart, delete
                                 <CustomButton type='reset' inverted="true">Reset</CustomButton>
                             </CustomButtonsContainer>
 
-                            <div className="dashboard-link">
-                                <Link to={'/dashboard'}>Back To Dashboard</Link>
-                            </div>
+                            {
+                                isUpdating ? <BackToDashLink visibility="hidden" /> : <BackToDashLink visibility="visible"/>
+                            }
                         </form>
                     </div>
                 </div>

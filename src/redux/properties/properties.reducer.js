@@ -1,10 +1,10 @@
 import PropertyActionTypes from "./properties.types";
-import {removeProperty} from "./properties.utils";
 
 const INITIAL_STATE = {
     propertyItems: [],
     isFetching: true,
-    error: undefined
+    error: undefined,
+    isDeleted: false
 };
 
 const propertiesReducer = (state = INITIAL_STATE, action) => {
@@ -33,8 +33,14 @@ const propertiesReducer = (state = INITIAL_STATE, action) => {
         case PropertyActionTypes.REMOVE_PROPERTY_START:
             return {
                 ...state,
-                propertyItems: removeProperty(action.payload)
+                propertyItems: Object.keys(state.propertyItems).map(key => state.propertyItems[key]).filter(property => property.uid !== action.payload.property.uid),
             };
+
+        case PropertyActionTypes.REMOVE_PROPERTY_SUCCESS:
+            return {
+                ...state,
+            };
+
 
         default:
             return state;

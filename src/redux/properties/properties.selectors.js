@@ -8,6 +8,11 @@ export const selectAllProperties = createSelector(
     properties => properties.propertyItems
 );
 
+export const selectIsDeleted = createSelector(
+    [selectProperties],
+    properties => properties.isDeleted
+);
+
 export const selectPropertiesForDisplay = createSelector(
     [selectAllProperties],
     properties => properties ? Object.keys(properties).map(key => properties[key]).filter((property) => {

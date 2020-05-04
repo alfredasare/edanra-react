@@ -555,7 +555,6 @@ export const provideSpaceValidate = event => {
         validateDescription(undefined, event, 'description')
         && validateRegion(event, 'region') && validateTown(undefined, event, 'town') &&
         validateImages(undefined, event, 'property_images') &&
-        validateRadioButtons(event, 'ad_type', 'adTypeError') &&
         validatePrice(undefined, event, 'price') &&
         validateRadioButtons(event, 'negotiation_status', 'negotiationError');
 };

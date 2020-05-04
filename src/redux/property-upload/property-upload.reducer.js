@@ -25,10 +25,16 @@ const propertyUploadReducer = (state = INITIAL_STATE, action) => {
                 uploadedProperty: action.payload
             };
 
-        case PropertyUploadTypes.PROPERTY_EDIT_SUCCESS:
+        case PropertyUploadTypes.PROPERTY_EDIT_START:
             return {
                 ...state,
                 isPropertyEdited: true
+            };
+
+        case PropertyUploadTypes.PROPERTY_EDIT_SUCCESS:
+            return {
+                ...state,
+                isPropertyEdited: false
             };
 
         case PropertyUploadTypes.PROPERTY_FIRESTORE_UPLOAD_FAILURE:

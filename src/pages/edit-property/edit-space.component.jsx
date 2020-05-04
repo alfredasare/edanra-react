@@ -19,9 +19,15 @@ import Navbar from "../../components/navbar/navbar.component";
 import Footer from "../../components/footer/footer.component";
 import {Helmet} from "react-helmet";
 import ScrollToTop from "../../utils/scroll-to-top";
+import {selectIsPropertyEdited} from "../../redux/property-upload/property-upload.selectors";
+import LoadingSpinner from "../../components/loading-spinner/loading-spinner.component";
+import SuccessTick from "../../components/success-tick/success-tick.component";
+import BackToDashLink from "../../components/back-to-dash-link/back-to-dash-link.component";
 
 
-const EditSpace = ({regions, districts, property, history, propertyEditStart}) => {
+const EditSpace = ({regions, districts, property, propertyEditStart, isPropertyEdited}) => {
+
+    const [updateButtonVisibility, setUpdateButtonVisibility] = useState(true);
 
     const [propertyDetails, setPropertyDetails] = useState({
         uid: property.uid,
@@ -34,7 +40,6 @@ const EditSpace = ({regions, districts, property, history, propertyEditStart}) =
         region: property.region,
         district: property.district,
         town: property.town,
-        ad_type: property.ad_type,
         price: property.price,
         negotiation_status: property.negotiation_status,
     });
@@ -50,7 +55,7 @@ const EditSpace = ({regions, districts, property, history, propertyEditStart}) =
         priceError: '',
     });
 
-    const {property_type, ad_type,region, district, negotiation_status, ...otherPropertyDetails} = propertyDetails;
+    const {property_type,region, district, negotiation_status, ...otherPropertyDetails} = propertyDetails;
 
     const setError = () => {
         let error = errorObject.error;
@@ -101,16 +106,19 @@ const EditSpace = ({regions, districts, property, history, propertyEditStart}) =
 
     const handleSubmit = event => {
         event.preventDefault();
+        setUpdateButtonVisibility(false);
         const isValid = editSpaceValidate(event);
         setError();
 
         if (isValid) {
             propertyEditStart(propertyDetails);
-            history.push(`/dashboard`);
         }
     };
 
     const handleChange = event => {
+
+        setUpdateButtonVisibility(true);
+
         const {name, value} = event.target;
         setPropertyDetails({
             ...propertyDetails,
@@ -276,34 +284,8 @@ const EditSpace = ({regions, districts, property, history, propertyEditStart}) =
                             />
                             <p className='red o-100'>{errorMessages.townError}</p>
 
-
-                            <h5 style={{fontWeight: 'bold', marginTop: '15px', marginBottom: '10px'}}>Ad type</h5>
-                            <div style={{marginTop: '10px'}} className="form-check form-check-radio">
-                                <label htmlFor="sale" className="form-check-label">
-                                    <input onChange={handleChange} className="form-check-input" type="radio"
-                                           name="ad_type" id="sale"
-                                           value="Sale" checked={ad_type === "Sale"}/>
-                                    Sale
-                                    <span className="circle">
-                                    <span className="check"/>
-                                </span>
-                                </label>
-                            </div>
-                            <div className="form-check form-check-radio">
-                                <label htmlFor="rent" className="form-check-label">
-                                    <input onChange={handleChange} className="form-check-input" type="radio"
-                                           name="ad_type" id="rent"
-                                           value="Rent" checked={ad_type === "Rent"}/>
-                                    Rent
-                                    <span className="circle">
-                                    <span className="check"/>
-                                </span>
-                                </label>
-                            </div>
-
-
                             <FormInputText value={otherPropertyDetails.price} handleChange={handleChange} type='number'
-                                           name='price' id='price' label={`Price ${ad_type === 'Rent' ? 'per month': ''}`}
+                                           name='price' id='price' label="Price per month"
                             />
                             <p className='red o-100'>{errorMessages.priceError}</p>
 
@@ -333,9 +315,17 @@ const EditSpace = ({regions, districts, property, history, propertyEditStart}) =
                             </div>
 
                             <CustomButtonsContainer>
-                                <CustomButton type='submit'>Update</CustomButton>
+
+                                {
+                                    isPropertyEdited ? <LoadingSpinner/> : updateButtonVisibility ? <CustomButton type='submit'>Update</CustomButton> : <SuccessTick/>
+                                }
+
                                 <CustomButton type='reset' inverted="true">Reset</CustomButton>
                             </CustomButtonsContainer>
+
+                            {
+                                isPropertyEdited ? <BackToDashLink visibility="hidden" /> : <BackToDashLink visibility="visible"/>
+                            }
                         </form>
                     </div>
                 </div>
@@ -348,7 +338,8 @@ const EditSpace = ({regions, districts, property, history, propertyEditStart}) =
 const mapStateToProps = (state, ownProps) => ({
     districts: selectDistricts(state),
     regions: selectRegions(state),
-    property: selectProperty(ownProps.match.params.uid)(state)
+    property: selectProperty(ownProps.match.params.uid)(state),
+    isPropertyEdited: selectIsPropertyEdited(state)
 });
 
 const mapDispatchToProps = dispatch => ({
