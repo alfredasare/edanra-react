@@ -10,9 +10,14 @@ const checkFocus = field => {
     }
 };
 
-export const getElement = () => {
-    const image = document.querySelector('#image');
-    image.focus();
+export const getElement = (type) => {
+    if (type === 'allImages'){
+        const image = document.querySelector('#multiple-file-upload');
+        image.focus();
+    }else if(type === 'mainImage'){
+        const image = document.querySelector('#single-file-upload');
+        image.focus();
+    }
 };
 
 export const errorObject = {
@@ -470,18 +475,43 @@ export const validateImages = (event, mainEvent, name) => {
         myFiles = event.target;
         focusable = false;
     }
-    if (myFiles.files.length < 3) {
+    if (myFiles.files.length < 2) {
         errorObject.error = 'imageError';
-        errorObject.message = 'Please upload at least 3 images';
-        getElement();
+        errorObject.message = 'Please upload at least 2 images';
+        getElement('allImages');
         return false;
     } else if (myFiles.files.length > 5) {
         errorObject.error = 'imageError';
         errorObject.message = 'Please upload a maximum of 5 images';
-        getElement();
+        getElement('allImages');
         return false;
     } else {
         errorObject.error = 'imageError';
+        errorObject.message = '';
+        return true;
+    }
+};
+export const validateMainImage = (event, mainEvent, name) => {
+    let item;
+    let myFiles;
+    if (event === undefined) {
+        for (item of mainEvent.target) {
+            if (item.name === name) {
+                myFiles = item;
+                focusable = true;
+            }
+        }
+    } else if (mainEvent === undefined) {
+        myFiles = event.target;
+        focusable = false;
+    }
+    if (myFiles.files.length === 0) {
+        errorObject.error = 'mainImageError';
+        errorObject.message = 'Please upload a main image';
+        getElement('mainImage');
+        return false;
+    }else {
+        errorObject.error = 'mainImageError';
         errorObject.message = '';
         return true;
     }
@@ -554,6 +584,7 @@ export const provideSpaceValidate = event => {
         && validateRadioButtons(event, 'property_type', 'propertyError') &&
         validateDescription(undefined, event, 'description')
         && validateRegion(event, 'region') && validateTown(undefined, event, 'town') &&
+        validateMainImage(undefined,event,'main_image_url') &&
         validateImages(undefined, event, 'property_images') &&
         validatePrice(undefined, event, 'price') &&
         validateRadioButtons(event, 'negotiation_status', 'negotiationError');

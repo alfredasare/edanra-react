@@ -16,7 +16,7 @@ import {
     validateAddress,
     validateContact,
     validateDescription, validateImages,
-    validateMail,
+    validateMail, validateMainImage,
     validateName, validatePrice, validateTown
 } from "../../assets/js/validation";
 import Navbar from "../../components/navbar/navbar.component";
@@ -60,6 +60,7 @@ const ProvideSpace = ({currentUser, propertyStorageUploadStart, regions, distric
         descriptionError: '',
         regionError: '',
         townError: '',
+        mainImageError: '',
         imageError: '',
         priceError: '',
         adTypeError: '',
@@ -170,6 +171,12 @@ const ProvideSpace = ({currentUser, propertyStorageUploadStart, regions, distric
                 setErrorMessages({...errorMessages, imageError: ''});
             } else {
                 setErrorMessages({...errorMessages, imageError: errorObject.message});
+            }
+        }else if (event.target.name === 'main_image_url'){
+            if (validateMainImage(event)){
+                setErrorMessages({...errorMessages, mainImageError: ''});
+            }else{
+                setErrorMessages({...errorMessages, mainImageError: errorObject.message});
             }
         }
         const name = event.target.name;
@@ -358,6 +365,8 @@ const ProvideSpace = ({currentUser, propertyStorageUploadStart, regions, distric
                                     </div>
                                     : <></>
                             }
+                            <p className='red o-100'>{errorMessages.mainImageError}</p>
+
 
                             <h5 className="custom-form-subhead">Other Images</h5>
 
@@ -370,7 +379,7 @@ const ProvideSpace = ({currentUser, propertyStorageUploadStart, regions, distric
                                     <i className="material-icons">layers</i>
                                 </div>
                                 <div className="upload-text">
-                                    Click here to upload pictures of property (between 3 to 5)
+                                    Click here to upload pictures of property (2 to 5 images)
                                 </div>
                             </label>
                             {
