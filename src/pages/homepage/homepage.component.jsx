@@ -21,7 +21,7 @@ const HomePage = ({regions, properties}) => {
     return (
         <>
             <Helmet>
-                <title>Edanra - Browse through our amazing catalogue of ads</title>
+                <title>Edanra - Rent a house or room in Ghana</title>
             </Helmet>
             <ScrollToTop/>
             <Navbar/>
