@@ -8,7 +8,7 @@ const PropertyItem = ({routeName, main_image_url, town, region, username, price,
         <div style={{marginTop: '20px'}} className="col-md-4">
             <div className="slide-item">
                 <div className="item-image">
-                    <img className="img-fluid" src={main_image_url}
+                    <img src={main_image_url}
                          alt={`${property_type} at ${region}`}/>
                 </div>
                 <div className="item-content">

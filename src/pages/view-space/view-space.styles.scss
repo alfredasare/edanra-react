@@ -10,7 +10,7 @@
   grid-row: span 2;
 
   img {
-    object-fit: cover;
+    //object-fit: cover;
     object-position: center;
     height: 20em;
     width: 30em !important;
@@ -41,7 +41,7 @@
     width: 100%;
     border-radius: 10px;
     transition: 0.2s ease-in-out;
-    object-fit: cover;
+    //object-fit: cover;
     object-position: center;
 
     &:hover {
