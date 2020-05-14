@@ -69,7 +69,7 @@ const Payment = ({property, history, updatePaymentData}) => {
         customer_email: property.email,
         customer_phone: property.contact,
         amount: billingInfo.amount,
-        PBFPubKey: "FLWPUBK_TEST-ef6e4a21fdaae3b8c5e954b5a9750f49-X",
+        PBFPubKey: "",
         currency: "GHS",
         country: "GH",
         production: false,
