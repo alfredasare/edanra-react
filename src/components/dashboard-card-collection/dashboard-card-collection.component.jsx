@@ -16,14 +16,14 @@ const DashboardCardCollection = ({currentUser, allProperties}) => {
 
     const filterByHosted = filterByUser.filter((property) => {
         const subscription_type = property.subscription_type ? property.subscription_type :'free_three';
-        const renew_date = property.last_date_paid ? new Date(property.last_date_paid) : new Date('2020-07-31');
+        const renew_date = property.last_date_paid ? new Date(property.last_date_paid) : new Date('2020-10-31');
         const {status} = dateChecker(new Date(property.date_uploaded), subscription_type, renew_date);
         return status === "Hosted"
     }).length;
 
     const filterByPending = filterByUser.filter((property) => {
         const subscription_type = property.subscription_type ? property.subscription_type :'free_three';
-        const renew_date = property.last_date_paid ? new Date(property.last_date_paid) : new Date('2020-07-31');
+        const renew_date = property.last_date_paid ? new Date(property.last_date_paid) : new Date('2020-10-31');
         const {status} = dateChecker(new Date(property.date_uploaded), subscription_type, renew_date);
         return status === "Pending"
     }).length;

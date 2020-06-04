@@ -11,7 +11,7 @@ const DashboardAdCard = ({property, removePropertyStart, allProperties}) => {
 
     const {routeName, main_image_url, town, price, date_uploaded, last_date_paid} = property;
     const subscription_type = property.subscription_type ? property.subscription_type :'free_three';
-    const renew_date = last_date_paid ? new Date(last_date_paid) : new Date('2020-07-31');
+    const renew_date = last_date_paid ? new Date(last_date_paid) : new Date('2020-10-31');
 
     const myDate = [];
     const date = new Date(date_uploaded);

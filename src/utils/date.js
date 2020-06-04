@@ -33,7 +33,7 @@ export const dateChecker = (property_date, subscription_type, renew_date) => {
     // console.log(subscription_type);
 
     if (subscription_type.toLowerCase() === 'free_three') {
-        daysInterval = 92;
+        daysInterval = 186;
         endDate = renew_date;
     } else if (subscription_type.toLowerCase() === 'three_months') {
         // console.log('three_months');
