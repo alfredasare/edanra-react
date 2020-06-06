@@ -8,7 +8,7 @@ import LoadingContainer from "../loading-container/loading-container.component";
 
 const PropertyItemCollection = ({region, allProperties, isLoading}) => {
 
-    const [visible, setVisible] = useState(3);
+    const [visible, setVisible] = useState(9);
 
     const filteredProperties = allProperties.filter((property) => {
         return property.region === region;
@@ -24,7 +24,7 @@ const PropertyItemCollection = ({region, allProperties, isLoading}) => {
     });
 
     const loadMore = () => {
-        setVisible(visible => visible + 3);
+        setVisible(visible => visible + 9);
     };
 
     return (
