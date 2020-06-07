@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, {useEffect, useState} from "react";
 import {connect} from 'react-redux';
 import {useRavePayment} from "react-ravepayment";
 import Footer from "../../components/footer/footer.component";
@@ -13,8 +13,22 @@ import {selectProperty} from "../../redux/properties/properties.selectors";
 import {Helmet} from "react-helmet";
 import {updateLastDatePaidStart} from "../../redux/payment/payment.actions";
 import ScrollToTop from "../../utils/scroll-to-top";
+import {functions} from "../../firebase/firebase.utils";
 
 const Payment = ({property, history, updatePaymentData}) => {
+
+    const [flutterWaveKeys, setKeys] = useState({});
+
+    useEffect(() => {
+        const keysRequest = functions.httpsCallable('flutterwave');
+        keysRequest()
+            .then((result) => {
+                setKeys(result.data);
+            })
+            .catch((error) => {
+                console.log(error);
+            });
+    }, []);
 
     const [billingInfo, setBillingInfo] = useState({
         cycle: '',
@@ -69,11 +83,12 @@ const Payment = ({property, history, updatePaymentData}) => {
         customer_email: property.email,
         customer_phone: property.contact,
         amount: billingInfo.amount,
-        PBFPubKey: "FLWPUBK_TEST-ef6e4a21fdaae3b8c5e954b5a9750f49-X",
+        PBFPubKey: flutterWaveKeys.publicKey,
         currency: "GHS",
         country: "GH",
         production: false,
     };
+
 
     const {initializePayment} = useRavePayment(config);
 

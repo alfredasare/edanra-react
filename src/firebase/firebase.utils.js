@@ -2,6 +2,7 @@ import firebase from "firebase/app";
 import 'firebase/firestore';
 import 'firebase/auth';
 import 'firebase/storage';
+import 'firebase/functions';
 
 const config = {
     apiKey: "AIzaSyD5XrGQiHNAJUr-avU2QMeZe74zNjOQUJo",
@@ -14,14 +15,12 @@ const config = {
     measurementId: "G-0EDERWGCDQ"
 };
 
-//  Adding auth users to Firestore
 export const createUserProfileDocument = async (userAuth, additionalData) => {
     if (!userAuth) return;
 
     const userRef = firestore.doc(`users/${userAuth.uid}`);
     const snapshot = await userRef.get();
 
-    //  Check if snapshot data does not exist in the database
     if (!snapshot.exists) {
         const {displayName, email, photoURL} = userAuth;
         const createdAt = new Date();
@@ -38,7 +37,6 @@ export const createUserProfileDocument = async (userAuth, additionalData) => {
             console.log('Error creating user', e.message);
         }
     }
-
     return userRef;
 };
 
@@ -63,32 +61,18 @@ export const convertPropertySnapshotToMap = (properties) => {
         };
     });
 
-    // return transformedProperties;
     return transformedProperties.reduce((accumulator, property) => {
         accumulator[property.uid] = property;
         return accumulator;
     }, {});
 };
 
-// BULK UPLOAD OF PROPERTIES
-// export const addPropertyAndDocuments = async (propertyKey, objectsToAdd) => {
-//     const propertyRef = firestore.collection(propertyKey);
-//
-//     const batch = firestore.batch();
-//     objectsToAdd.forEach(obj => {
-//         const newDocRef = propertyRef.doc();
-//         batch.set(newDocRef, obj);
-//     });
-//
-//     return await batch.commit();
-// };
-
-
 firebase.initializeApp(config);
 
 export const auth = firebase.auth();
 export const firestore = firebase.firestore();
 export const storage = firebase.storage();
+export const functions = firebase.functions();
 
 //  Google authentication utility
 export const googleProvider = new firebase.auth.GoogleAuthProvider();
