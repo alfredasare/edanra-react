@@ -33,6 +33,7 @@ const ProvideSpace = ({currentUser, propertyStorageUploadStart, regions, distric
         contact: '',
         address: '',
         property_type: '',
+        short_description: '',
         description: '',
         region: '',
         district: '',
@@ -40,6 +41,7 @@ const ProvideSpace = ({currentUser, propertyStorageUploadStart, regions, distric
         property_images: null,
         price: '',
         ad_type: '',
+        charge_rate: '',
         negotiation_status: '',
         date_uploaded: new Date().toString(),
         last_date_paid: '',
@@ -67,7 +69,7 @@ const ProvideSpace = ({currentUser, propertyStorageUploadStart, regions, distric
         negotiationError: '',
     });
 
-    const {property_type, region, district, negotiation_status, property_images, main_image_url} = propertyDetails;
+    const {property_type, region, district, negotiation_status, property_images, main_image_url, charge_rate} = propertyDetails;
 
 
     const setError = () => {
@@ -132,7 +134,8 @@ const ProvideSpace = ({currentUser, propertyStorageUploadStart, regions, distric
 
             if (isValid) {
                 history.push('/uploading-space');
-                propertyStorageUploadStart(propertyDetails);
+                // propertyStorageUploadStart(propertyDetails);
+                console.log(propertyDetails);
             }
         }
     };
@@ -299,6 +302,10 @@ const ProvideSpace = ({currentUser, propertyStorageUploadStart, regions, distric
                             <p className='red o-100'>{errorMessages.propertyError}</p>
 
 
+                            <FormInputText handleChange={handleChange} type='text' name='short_description' id='short_description'
+                                           label='Short Description (eg. 3 bedroom self-contained)'/>
+
+
                             <div className="form-group">
                                 <label htmlFor="description">Description</label>
                                 <textarea onChange={handleChange}
@@ -393,19 +400,39 @@ const ProvideSpace = ({currentUser, propertyStorageUploadStart, regions, distric
                                                 })
                                             }
                                         </ul>
-                                        {/*{property_images.map((image, idx) => {*/}
-                                        {/*    return (*/}
-                                        {/*        <img key={idx+1000} src={URL.createObjectURL(image)} alt=""/>*/}
-                                        {/*    );*/}
-                                        {/*})}*/}
                                     </div>
                                     : <></>
                             }
                             <p className='red o-100' tabIndex='-1' id='image'>{errorMessages.imageError}</p>
 
 
+                            <h5 className="custom-form-subhead">Charge Rate</h5>
+                            <div className="form-check form-check-radio">
+                                <label className="form-check-label">
+                                    <input onChange={handleChange} className="form-check-input" type="radio"
+                                           name="charge_rate" id="per-day"
+                                           value="per day" checked={charge_rate === 'per day'} />
+                                    Per day
+                                    <span className="circle">
+                                    <span className="check"/>
+                                </span>
+                                </label>
+                            </div>
+                            <div className="form-check form-check-radio">
+                                <label className="form-check-label">
+                                    <input onChange={handleChange} className="form-check-input" type="radio"
+                                           name="charge_rate"
+                                           id="per-month" value="per month"
+                                           checked={charge_rate === 'per month'}/>
+                                    Per month
+                                    <span className="circle">
+                                    <span className="check"/>
+                                </span>
+                                </label>
+                            </div>
+
                             <FormInputText handleChange={handleChange} type='number' name='price' id='price'
-                                           label="Price per month (GHS)"
+                                           label={`Price ${!charge_rate ? '' : charge_rate === "per day" ? 'per day' : 'per month'} (GHS)`}
                                            onBlur={validatePropertyPrice}/>
                             <p className='red o-100'>{errorMessages.priceError}</p>
 

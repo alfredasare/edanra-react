@@ -18,11 +18,16 @@ const SearchPage = ({districts, regions, getResults, history, allProperties}) =>
     const [filters, setFilters] = useState({
         town: "",
         region: "",
-        district: ""
+        district: "",
+        property_type: "",
+        price: ""
     });
+
+    const {property_type} = filters;
 
     const handleSubmit = event => {
         event.preventDefault();
+        // console.log(filters);
         getResults({filters, allProperties});
         history.push(`/search-results`);
     };
@@ -84,6 +89,70 @@ const SearchPage = ({districts, regions, getResults, history, allProperties}) =>
                                 </datalist>
                             </div>
 
+
+                            <h5 style={{fontWeight: 'bold'}}>Property type</h5>
+                            <div className="form-check form-check-radio">
+                                <label htmlFor="house" className="form-check-label">
+                                    <input onChange={handleChange} className="form-check-input" type="radio"
+                                           name="property_type" id="house"
+                                           value="House" checked={property_type === "House"}
+                                    />
+                                    House
+                                    <span className="circle">
+                                    <span className="check"/>
+                                </span>
+                                </label>
+                            </div>
+                            <div className="form-check form-check-radio">
+                                <label htmlFor="hotel" className="form-check-label">
+                                    <input onChange={handleChange} className="form-check-input" type="radio"
+                                           name="property_type" id="hotel"
+                                           value="Hotel" checked={property_type === "Hotel"}
+                                    />
+                                    Hotel
+                                    <span className="circle">
+                                    <span className="check"/>
+                                </span>
+                                </label>
+                            </div>
+                            <div className="form-check form-check-radio">
+                                <label htmlFor="guest-house" className="form-check-label">
+                                    <input onChange={handleChange} className="form-check-input" type="radio"
+                                           name="property_type" id="guest-house"
+                                           value="Guest House" checked={property_type === "Guest House"}
+                                    />
+                                    Guest House
+                                    <span className="circle">
+                                    <span className="check"/>
+                                </span>
+                                </label>
+                            </div>
+                            <div className="form-check form-check-radio">
+                                <label htmlFor="hostel" className="form-check-label">
+                                    <input onChange={handleChange} className="form-check-input" type="radio"
+                                           name="property_type" id="hostel"
+                                           value="Hostel" checked={property_type === "Hostel"}
+                                    />
+                                    Hostel
+                                    <span className="circle">
+                                    <span className="check"/>
+                                </span>
+                                </label>
+                            </div>
+                            <div className="form-check form-check-radio">
+                                <label htmlFor="apartment" className="form-check-label">
+                                    <input onChange={handleChange} className="form-check-input" type="radio"
+                                           name="property_type" id="apartment"
+                                           value="Apartment" checked={property_type === "Apartment"}
+                                    />
+                                    Apartment
+                                    <span className="circle">
+                                    <span className="check"/>
+                                </span>
+                                </label>
+                            </div>
+
+
                             <CustomButtonsContainer>
                                 <CustomButton type='submit'>Search</CustomButton>
                                 <CustomButton type='reset' inverted="true">Reset</CustomButton>
@@ -94,7 +163,7 @@ const SearchPage = ({districts, regions, getResults, history, allProperties}) =>
             </main>
             <Footer/>
         </>
-    );
+);
 };
 
 const mapStateToProps = createStructuredSelector({
