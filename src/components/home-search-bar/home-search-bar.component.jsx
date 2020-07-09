@@ -11,7 +11,7 @@ const HomeSearchBar = ({getResults, allProperties, history}) => {
     const [filters, setFilters] = useState({
         town: "",
         region: "",
-        district: ""
+        district: "",
     });
 
     const handleSubmit = event => {
