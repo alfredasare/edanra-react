@@ -1,26 +1,30 @@
 export const getSearchResults = ({filters, allProperties}) => {
-    const {town, region, district} = filters;
 
-    return allProperties.filter((property) => {
-        if (town !== "" && region === "" && district === "") {
-            return property.town.toLowerCase().includes(town.toLowerCase());
-        } else if (town === "" && region !== "" && district === "") {
-            return property.region === region;
-        } else if (town === "" && region === "" && district !== "") {
-            return property.district.toLowerCase().includes(district.toLowerCase());
-        } else if (town !== "" && region !== "" && district === "") {
-            return property.town.toLowerCase().includes(town.toLowerCase()) && property.region === region;
-        } else if (town !== "" && region !== "" && district !== "") {
-            if (town === region && district === region && town === district) {
-                return property.town.toLowerCase().includes(town.toLowerCase()) || property.region.toLowerCase().includes(region.toLowerCase()) || property.district.toLowerCase().includes(district.toLowerCase());
-            }
-            return property.town.toLowerCase().includes(town.toLowerCase()) && property.region === region && property.district.toLowerCase().includes(district.toLowerCase());
-        } else if (town !== "" && region === "" && district !== "") {
-            return property.town.toLowerCase().includes(town.toLowerCase()) && property.district.toLowerCase().includes(district.toLowerCase());
-        } else if (town === "" && region !== "" && district !== "") {
-            return property.region === region && property.district.toLowerCase().includes(district.toLowerCase());
+
+    const transformedArray = allProperties.map(property => {
+        return {
+            ...property
         }
-        return null;
+    })
 
-    });
+    function filterArray(array, filters) {
+        const filterKeys = Object.keys(filters);
+        return array.filter(item => {
+            // validates all filter criteria
+            return filterKeys.every(key => {
+                // ignores non-function predicates
+                if (typeof filters[key] !== 'function') return true;
+                return filters[key](item[key]);
+            });
+        });
+    }
+
+    const transformedFilters = {
+        town: town => town.toLowerCase().includes(filters.town.toLowerCase()),
+        region: region => region.toLowerCase().includes(filters.region.toLowerCase()),
+        district: district =>  district.toLowerCase().includes(filters.district.toLowerCase()),
+    }
+
+    console.log(filterArray(transformedArray, transformedFilters));
+    return filterArray(transformedArray, transformedFilters);
 };
