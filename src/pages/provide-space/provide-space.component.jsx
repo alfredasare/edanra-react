@@ -33,7 +33,7 @@ const ProvideSpace = ({currentUser, propertyStorageUploadStart, regions, distric
         contact: '',
         address: '',
         property_type: '',
-        short_description: '',
+        no_of_bedrooms: '',
         description: '',
         region: '',
         district: '',
@@ -134,7 +134,7 @@ const ProvideSpace = ({currentUser, propertyStorageUploadStart, regions, distric
 
             if (isValid) {
                 history.push('/uploading-space');
-                // propertyStorageUploadStart(propertyDetails);
+                propertyStorageUploadStart(propertyDetails);
                 console.log(propertyDetails);
             }
         }
@@ -302,8 +302,8 @@ const ProvideSpace = ({currentUser, propertyStorageUploadStart, regions, distric
                             <p className='red o-100'>{errorMessages.propertyError}</p>
 
 
-                            <FormInputText handleChange={handleChange} type='text' name='short_description' id='short_description'
-                                           label='Short Description (eg. 3 bedroom self-contained)'/>
+                            <FormInputText handleChange={handleChange} type='number' min="0" name='no_of_bedrooms' id='no_of_bedrooms'
+                                           label='Number of bedrooms'/>
 
 
                             <div className="form-group">
@@ -410,9 +410,9 @@ const ProvideSpace = ({currentUser, propertyStorageUploadStart, regions, distric
                             <div className="form-check form-check-radio">
                                 <label className="form-check-label">
                                     <input onChange={handleChange} className="form-check-input" type="radio"
-                                           name="charge_rate" id="per-day"
-                                           value="per day" checked={charge_rate === 'per day'} />
-                                    Per day
+                                           name="charge_rate" id="per-night"
+                                           value="per night" checked={charge_rate === 'per night'} />
+                                    Per night
                                     <span className="circle">
                                     <span className="check"/>
                                 </span>
@@ -432,7 +432,7 @@ const ProvideSpace = ({currentUser, propertyStorageUploadStart, regions, distric
                             </div>
 
                             <FormInputText handleChange={handleChange} type='number' name='price' id='price'
-                                           label={`Price ${!charge_rate ? '' : charge_rate === "per day" ? 'per day' : 'per month'} (GHS)`}
+                                           label={`Price ${!charge_rate ? '' : charge_rate === "per night" ? 'per night' : 'per month'} (GHS)`}
                                            onBlur={validatePropertyPrice}/>
                             <p className='red o-100'>{errorMessages.priceError}</p>
 

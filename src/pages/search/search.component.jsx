@@ -19,6 +19,7 @@ const SearchPage = ({districts, regions, getResults, history, allProperties}) =>
         town: "",
         region: "",
         district: "",
+        no_of_bedrooms: "",
         property_type: "",
         price: ""
     });
@@ -88,6 +89,9 @@ const SearchPage = ({districts, regions, getResults, history, allProperties}) =>
                                     }
                                 </datalist>
                             </div>
+
+                            <FormInputText handleChange={handleChange} type='number' min="0" name='no_of_bedrooms' id='no_of_bedrooms'
+                                           label='Number of bedrooms'/>
 
 
                             <h5 style={{fontWeight: 'bold'}}>Property type</h5>

@@ -23,9 +23,11 @@ export const getSearchResults = ({filters, allProperties}) => {
         }
 
         const transformedFilters = {
-            town: town => town.toLowerCase().includes(filters.town.toLowerCase()),
+            property_type: property_type => property_type.includes(filters.property_type),
+            town: town =>  town.toLowerCase().includes(filters.town.toLowerCase()),
             region: region => region.toLowerCase().includes(filters.region.toLowerCase()),
             district: district =>  district.toLowerCase().includes(filters.district.toLowerCase()),
+            no_of_bedrooms: no_of_bedrooms => no_of_bedrooms === filters.no_of_bedrooms
         }
 
         console.log(filterArray(transformedArray, transformedFilters));
