@@ -21,7 +21,8 @@ const SearchPage = ({districts, regions, getResults, history, allProperties}) =>
         district: "",
         no_of_bedrooms: "",
         property_type: "",
-        price: ""
+        price_min: 100,
+        price_max: 800,
     });
 
     const {property_type} = filters;

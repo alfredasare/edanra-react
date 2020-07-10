@@ -27,7 +27,8 @@ export const getSearchResults = ({filters, allProperties}) => {
             town: town =>  town.toLowerCase().includes(filters.town.toLowerCase()),
             region: region => region.toLowerCase().includes(filters.region.toLowerCase()),
             district: district =>  district.toLowerCase().includes(filters.district.toLowerCase()),
-            no_of_bedrooms: no_of_bedrooms => no_of_bedrooms === filters.no_of_bedrooms
+            // no_of_bedrooms: no_of_bedrooms => no_of_bedrooms === filters.no_of_bedrooms,
+            price: price => price > filters.price_min && price < filters.price_max
         }
 
         console.log(filterArray(transformedArray, transformedFilters));
