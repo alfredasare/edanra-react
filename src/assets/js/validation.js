@@ -11,10 +11,10 @@ const checkFocus = field => {
 };
 
 export const getElement = (type) => {
-    if (type === 'allImages'){
+    if (type === 'allImages') {
         const image = document.querySelector('#multiple-file-upload');
         image.focus();
-    }else if(type === 'mainImage'){
+    } else if (type === 'mainImage') {
         const image = document.querySelector('#single-file-upload');
         image.focus();
     }
@@ -69,6 +69,36 @@ export const validateName = (event, mainEvent, name) => {
         return false;
     } else if (username.length < 2) {
         setInvalid(field, 'Invalid input', error);
+        return false;
+    } else {
+        setValid(field, error);
+        return true;
+    }
+};
+
+export const validateEmpty = (event, mainEvent, name) => {
+    let error = 'no_of_bedroomsError';
+    let value;
+    let field;
+    let item;
+    if (event === undefined) {
+        for (item of mainEvent.target) {
+            if (item.name === name) {
+                mainEvent = item;
+                console.log(mainEvent)
+                value = mainEvent.value;
+                field = mainEvent;
+                focusable = true;
+            }
+        }
+        //    for other validations
+    } else if (mainEvent === undefined) {
+        value = event.target.value;
+        field = event.target;
+        focusable = false;
+    }
+    if (value.trim() === '') {
+        setInvalid(field, 'Please do not leave blank', error);
         return false;
     } else {
         setValid(field, error);
@@ -206,7 +236,7 @@ export const validateSpecialPassword = (event, mainEvent, name) => {
             }
         }
         //    for other validations
-    }else if (mainEvent === undefined) {
+    } else if (mainEvent === undefined) {
         password = event.target.value;
         field = event.target;
         focusable = false;
@@ -214,7 +244,7 @@ export const validateSpecialPassword = (event, mainEvent, name) => {
     if (password.trim() === '') {
         setInvalid(field, 'Please enter password', error);
         return false;
-    }else if (password.length < 6) {
+    } else if (password.length < 6) {
         setInvalid(field, 'Password should be at least 6 characters', error);
         return false;
     } else {
@@ -510,7 +540,7 @@ export const validateMainImage = (event, mainEvent, name) => {
         errorObject.message = 'Please upload a main image';
         getElement('mainImage');
         return false;
-    }else {
+    } else {
         errorObject.error = 'mainImageError';
         errorObject.message = '';
         return true;
@@ -581,11 +611,11 @@ export const signUpValidate = event => {
 export const provideSpaceValidate = event => {
     return validateName(undefined, event, 'name') && validateMail(undefined, event, 'email')
         && validateContact(undefined, event, 'contact') && validateAddress(undefined, event, 'address')
-        && validateRadioButtons(event, 'property_type', 'propertyError') &&
+        && validateRadioButtons(event, 'property_type', 'propertyError') && validateEmpty(undefined, event, 'no_of_bedrooms') &&
         validateDescription(undefined, event, 'description')
         && validateRegion(event, 'region') && validateTown(undefined, event, 'town') &&
-        validateMainImage(undefined,event,'main_image_url') &&
-        validateImages(undefined, event, 'property_images') &&
+        validateMainImage(undefined, event, 'main_image_url') &&
+        validateImages(undefined, event, 'property_images') && validateRadioButtons(event, 'charge_rate', 'charge_rateError') &&
         validatePrice(undefined, event, 'price') &&
         validateRadioButtons(event, 'negotiation_status', 'negotiationError');
 };

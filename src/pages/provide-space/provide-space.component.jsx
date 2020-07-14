@@ -15,7 +15,7 @@ import {
     errorObject, provideSpaceValidate,
     validateAddress,
     validateContact,
-    validateDescription, validateImages,
+    validateDescription, validateEmpty, validateImages,
     validateMail, validateMainImage,
     validateName, validatePrice, validateTown
 } from "../../assets/js/validation";
@@ -67,6 +67,8 @@ const ProvideSpace = ({currentUser, propertyStorageUploadStart, regions, distric
         priceError: '',
         adTypeError: '',
         negotiationError: '',
+        no_of_bedroomsError: '',
+        charge_rateError: '',
     });
 
     const {property_type, region, district, negotiation_status, property_images, main_image_url, charge_rate} = propertyDetails;
@@ -98,6 +100,10 @@ const ProvideSpace = ({currentUser, propertyStorageUploadStart, regions, distric
         validateAddress(event);
         setError();
     };
+    const validateBedrooms = event => {
+        validateEmpty(event)
+        setError();
+    }
 
     const makePropertyValid = () => {
         setErrorMessages({...errorMessages, propertyError: ''});
@@ -110,6 +116,10 @@ const ProvideSpace = ({currentUser, propertyStorageUploadStart, regions, distric
     const makeNegotiationValid = () => {
         setErrorMessages({...errorMessages, negotiationError: ''});
     };
+
+    const makeRateValid = () => {
+        setErrorMessages({...errorMessages, charge_rateError: ''});
+    }
 
     const validatePropertyDescription = event => {
         validateDescription(event);
@@ -159,7 +169,10 @@ const ProvideSpace = ({currentUser, propertyStorageUploadStart, regions, distric
             validatePropertyAddress(event);
         } else if (event.target.name === 'description') {
             validatePropertyDescription(event);
-        } else if (event.target.name === 'town') {
+        } else if (event.target.name === 'no_of_bedrooms') {
+            validateBedrooms(event);
+        }
+        else if (event.target.name === 'town') {
             validatePropertyTown(event);
         } else if (event.target.name === 'price') {
             validatePropertyPrice(event);
@@ -280,7 +293,7 @@ const ProvideSpace = ({currentUser, propertyStorageUploadStart, regions, distric
                                     <input onChange={handleChange} className="form-check-input" type="radio"
                                            name="property_type" id="hostel"
                                            value="Hostel" checked={property_type === "Hostel"}
-                                           onClick={makePropertyValid}/>
+                                           />
                                     Hostel
                                     <span className="circle">
                                     <span className="check"/>
@@ -304,6 +317,8 @@ const ProvideSpace = ({currentUser, propertyStorageUploadStart, regions, distric
 
                             <FormInputText handleChange={handleChange} type='number' min="0" name='no_of_bedrooms' id='no_of_bedrooms'
                                            label='Number of bedrooms'/>
+                            <p className='red o-100'>{errorMessages.no_of_bedroomsError}</p>
+
 
 
                             <div className="form-group">
@@ -411,7 +426,7 @@ const ProvideSpace = ({currentUser, propertyStorageUploadStart, regions, distric
                                 <label className="form-check-label">
                                     <input onChange={handleChange} className="form-check-input" type="radio"
                                            name="charge_rate" id="per-night"
-                                           value="per night" checked={charge_rate === 'per night'} />
+                                           value="per night" checked={charge_rate === 'per night'} onClick={makeRateValid}/>
                                     Per night
                                     <span className="circle">
                                     <span className="check"/>
@@ -423,13 +438,17 @@ const ProvideSpace = ({currentUser, propertyStorageUploadStart, regions, distric
                                     <input onChange={handleChange} className="form-check-input" type="radio"
                                            name="charge_rate"
                                            id="per-month" value="per month"
-                                           checked={charge_rate === 'per month'}/>
+                                           checked={charge_rate === 'per month'} onClick={makeRateValid}/>
                                     Per month
                                     <span className="circle">
                                     <span className="check"/>
                                 </span>
                                 </label>
                             </div>
+
+                            <p className='red o-100'>{errorMessages.charge_rateError}</p>
+
+
 
                             <FormInputText handleChange={handleChange} type='number' name='price' id='price'
                                            label={`Price ${!charge_rate ? '' : charge_rate === "per night" ? 'per night' : 'per month'} (GHS)`}
