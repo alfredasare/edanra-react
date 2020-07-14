@@ -22,6 +22,8 @@
 }
 
 .card {
+  min-width: 260px;
+
   .card-action {
     a {
       &:not(.btn) {
