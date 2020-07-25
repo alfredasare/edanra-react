@@ -30,15 +30,14 @@ const SearchPage = ({
     district: "",
     no_of_bedrooms: "",
     property_type: "",
-    price_min: 100,
-    price_max: 800,
+    price_min: 20,
+    price_max: 10000,
   });
 
   const { property_type } = filters;
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    // console.log(filters);
     getResults({ filters, allProperties });
     history.push(`/search-results`);
   };
@@ -142,9 +141,9 @@ const SearchPage = ({
 
               <FormInputSlider
                 price={[filters.price_min, filters.price_max]}
-                label="Price"
+                label="Price (GHS)"
                 id="price_slider"
-                max={1000}
+                max={10000}
                 min={20}
                 sliderChange={sliderChange}
               />

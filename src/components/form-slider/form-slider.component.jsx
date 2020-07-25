@@ -1,5 +1,5 @@
 import React from "react";
-import Slider, { Range } from "rc-slider";
+import { Range } from "rc-slider";
 import "rc-slider/assets/index.css";
 import "./form-slider.style.scss";
 
@@ -17,10 +17,6 @@ const FormInputSlider = ({
         <label htmlFor={otherProps.id} className="col-md-4">
           {label}
         </label>
-        <p className="col-md-8">
-          <span class="badge">{price[0]}</span> -{" "}
-          <span class="badge">{price[1]}</span>
-        </p>
       </div>
       <Range
         min={min}
@@ -29,6 +25,10 @@ const FormInputSlider = ({
         onChange={sliderChange}
         {...otherProps}
       />
+        <p className="badge-container col-md-12">
+            <span className="badge">{price[0]}</span> -{" "}
+            <span className="badge">{price[1]}</span>
+        </p>
     </div>
   );
 };

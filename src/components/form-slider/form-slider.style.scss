@@ -2,7 +2,39 @@ label {
   color: #aaa;
 }
 
+.badge-container {
+  text-align: center;
+  margin-top: 10px;
+}
+
 .badge {
   background-color: #004d40;
   opacity: 0.9;
+  font-size: 1rem;
+}
+
+.rc-slider-track {
+  background-color: rgba(0, 105, 92, 0.7);
+}
+
+
+.rc-slider-handle {
+  border: solid 2px #004d40;
+  background-color: #fff;
+  touch-action: pan-x;
+}
+
+.rc-slider-handle:active {
+  border-color: #004d40;
+  box-shadow: 0 0 5px #004d40;
+  cursor: grabbing;
+}
+
+.rc-slider-handle:hover {
+  border-color: #00695C;
+}
+
+.rc-slider-handle-dragging.rc-slider-handle-dragging.rc-slider-handle-dragging {
+  border-color: #004D40;
+  box-shadow: 0 0 0 5px rgba(0, 105, 92, 0.5);
 }
