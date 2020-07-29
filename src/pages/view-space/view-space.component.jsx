@@ -25,7 +25,9 @@ const ViewSpace = ({property}) => {
                          alt=""/>
                 </div>
                 <div className="animated fadeIn" id="listing-details">
-                    <h2 style={{textTransform: 'capitalize'}}>{property.property_type} in {property.town}</h2>
+                    <h2 style={{textTransform: 'capitalize'}}>
+                        {property.no_of_bedrooms ? `${property.no_of_bedrooms} bedroom `: ''}{property.property_type} in {property.town}
+                    </h2>
                     <p style={{fontSize: '1.1em'}}><span style={{fontWeight: '400'}}>Region :</span> {property.region}
                     </p>
                     {
